@@ -45,13 +45,13 @@ namespace Assets.Scripts
                 {
                     column = i % msg.Map.width;
 
-                    GameObject tile = Instantiate(TilePrefab);
-                    Vector3 pos = new Vector3(column * msg.Map.tilewidth * 0.01f, 0.1f, -row * msg.Map.tileheight * 0.01f);
-                    tile.transform.position = pos;
-                    tile.transform.SetParent(transform, false);
-
                     if(layer.data[i] - 1 >= 0)
                     {
+                        GameObject tile = Instantiate(TilePrefab);
+                        Vector3 pos = new Vector3(column * msg.Map.tilewidth * 0.01f, 0.1f, -row * msg.Map.tileheight * 0.01f);
+                        tile.transform.position = pos;
+                        tile.transform.SetParent(transform, false);
+
                         string id = msg.Map.tilesets[0].name + "_" + (layer.data[i] - 1);
                         tile.GetComponent<SpriteRenderer>().sprite = _tiles[id];
                     }

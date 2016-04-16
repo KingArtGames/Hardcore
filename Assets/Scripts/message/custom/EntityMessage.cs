@@ -33,9 +33,9 @@ namespace Assets.Scripts.message.custom
 
     public class SpawnPlayerMessage : BaseMessage
     {
-        public PlayerModule Player { get; set; }
+        public GameEntity Player { get; set; }
 
-        public SpawnPlayerMessage(object sender, PlayerModule player)
+        public SpawnPlayerMessage(object sender, GameEntity player)
             : base(sender)
         {
             Player = player;

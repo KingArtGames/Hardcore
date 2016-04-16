@@ -2,14 +2,15 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
+using UnityEngine;
 
 namespace Assets.Scripts.entity
 {
     public class GameEntity
     {
-        public IGameEntityType GameEntityType { get; set; }
+        public GameType GameEntityType;
 
-        public GameEntity(IGameEntityType type)
+        public GameEntity(GameType type)
         {
             GameEntityType = type;
             _modules = new Dictionary<Type, BaseModule>();
@@ -40,18 +41,28 @@ namespace Assets.Scripts.entity
 
     }
 
-    public interface IGameEntityType
+    [Serializable]
+    public class GameType
     {
-        string Value { get; set; }
-    }
-
-    public class GameEntityType : IGameEntityType
-    {
-        public string Value { get; set; }
-        public GameEntityType(string value)
+        [SerializeField]
+        public string Value;
+        public GameType(string value)
         {
             Value = value;
         }
+    }
+
+    public enum MusicTypes
+    {
+        Metall,
+        Classic,
+        Techno
+    }
+
+    public enum EntityTypes
+    {
+        Player,
+        Enemy
     }
 
 }

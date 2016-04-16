@@ -3,27 +3,16 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using TinyMessenger;
+using UnityEngine;
 
 namespace Assets.Scripts.entity
 {
     public abstract class BaseModule
     {
-        protected GameEntity _owner;
-        protected IMessageBus _messageBus;
-        public BaseModule(GameEntity owner, IMessageBus bus)
-        {
-            _owner = owner;
-            _messageBus = bus;
-        }
-    }
-
-    public abstract class BaseModule<Data, Template> : BaseModule
-    {
         protected Data _data;
         protected Template _template;
 
         public BaseModule(GameEntity owner, IMessageBus bus, Data data, Template template)
-            : base(owner, bus)
         {
             _data = data;
             _template = template;
@@ -39,15 +28,35 @@ namespace Assets.Scripts.entity
         }
     }
 
-    public class Data
+    [Serializable]public class Data
     {
-
+        [SerializeField]
+        public Vector2 CurrentPosition;
+        [SerializeField]
+        public GameType CurrentMusicType;
     }
-    public class Template
+    [Serializable]public class Template
     {
-
+        [SerializeField]
+        public GameType GameType;
+        [SerializeField]
+        public GameType MusicType;
+        [SerializeField]
+        public Vector2 SpawnPosition;
     }
 
+    [Serializable]public class Connection
+    {
+        [SerializeField]
+        public Data Data;
+        [SerializeField]
+        public Template Template;
+    }
+
+    public class Enemies
+    {
+        public Connection[] Connections;
+    }
 
     #region exceptions
 

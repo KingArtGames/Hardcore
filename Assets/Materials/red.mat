@@ -144,7 +144,7 @@ Material:
       data:
         first:
           name: _Metallic
-        second: 1
+        second: 0.606
       data:
         first:
           name: _Emission

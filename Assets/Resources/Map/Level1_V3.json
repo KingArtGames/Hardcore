@@ -290,11 +290,11 @@
                 },
              "620":
                 {
-                 "endPoint":false
+                 "specialTile":"end"
                 },
              "621":
                 {
-                 "startPoint":false
+                 "specialTile":"start"
                 }
             },
          "tilepropertytypes":
@@ -337,11 +337,11 @@
                 },
              "620":
                 {
-                 "endPoint":"bool"
+                 "specialTile":"string"
                 },
              "621":
                 {
-                 "startPoint":"bool"
+                 "specialTile":"string"
                 }
             },
          "tilewidth":32

@@ -10,8 +10,39 @@
          "width":100,
          "x":0,
          "y":0
+        }, 
+        {
+         "draworder":"topdown",
+         "height":100,
+         "name":"Objektebene 1",
+         "objects":[
+                {
+                 "height":472,
+                 "id":1,
+                 "name":"",
+                 "properties":
+                    {
+                     "enemySpawn":"Metal"
+                    },
+                 "propertytypes":
+                    {
+                     "enemySpawn":"string"
+                    },
+                 "rotation":0,
+                 "type":"",
+                 "visible":true,
+                 "width":488,
+                 "x":1232,
+                 "y":168
+                }],
+         "opacity":1,
+         "type":"objectgroup",
+         "visible":true,
+         "width":100,
+         "x":0,
+         "y":0
         }],
- "nextobjectid":1,
+ "nextobjectid":4,
  "orientation":"orthogonal",
  "renderorder":"right-up",
  "tileheight":32,

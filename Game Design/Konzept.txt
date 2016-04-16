@@ -2,7 +2,7 @@
 Hyper Song Shifter
 
 
-GRUNDPRINZIP
+GRUNDPRINZIP:
 Der Spieler steuert mit den Pfeiltasten einen Charakter der einen Ghettoblaster trägt.
 
 Über die Taste S kann er einen von insgesamt drei Tracks auswählen. Je nach gewähltem
@@ -18,34 +18,83 @@ er in den richtigen Momenten zwischen den Tracks wechselt und alle Gegner besieg
 Spiel ist gewonnen, wenn der Spieler vor Ablauf des Zeitlimits das Ende erreicht.
 
 
-FELD-TYPEN:
--Musikrichtungen (Metal, Klassik, Techno), gehen kaputt nach 2-3 Sekunden falsche Musik
--Neutral
--Musik"batterien": Aufladbar mit Musikrichtung, spielen diese für kurze Zeit
--Vibrationsblöcke
--Gegner: Gleiche lassen in Frieden, besiegbare Gegner weichen aus, 
- besiegende Gegner laufen auf Spieler zu
+STEUERUNG:
+- Pfeiltasten: Figur steuern
+- S-Taste: Track weiterschalten
+- A-Taste: Nahkampfangriff
+- D-Taste: Spezialangriff auslösen
 
--Lebensenergie == Musikmeter
-- wenn Musikmeter voll Limit Break Attack
+
+GRAFIKEN:
+
+Felder:
+- Metal-Bodenfeld
+- Klassik-Bodenfeld
+- Techno-Bodenfeld
+- Neutrales Bodenfeld
+- Mauer-Bodenfeld (Nicht passierbar)
+- Start-Bodenfeld
+- Ziel-Bodenfeld
+- Transparentes, leeres Bodenfeld
+
+Objekte:
+- Lautsprecher (Nicht passierbar)
+- Vibrationsblöcke (???)
+
+Items:
+- Batterien
+
+-Gegner: 
+- Techno-Hamster
+- Metal-Igel
+- Klassik-Ente (???)
+
+Sonstige Grafiken:
+- Titelbild
+- Himmelgrafik
+- Wolken
+
+
+MUSIK:
+- Titelmusik
+- "Reign of Chaos"
+- "Le Chanson de la Chanson Op. 4 Noc. 23 in E-Moll"
+- "How much is the red herring"
+
+
+SPIELWELT:
+
+- Felder des Typs Metal, Klassik und Techno brechen nach 2-3 Sekunden weg, sofern der Spieler
+auf ihnen dauerhaft steht und währenddessen die falsche Musik hört. Die Felder verwandeln sich
+zu einem transparenten Feld.
+
+MECHANIKEN:
+- Startet das Level, läuft ein Timer von 120 Sekunden herab.
+- Betritt der Spieler ein transparentes, leeres Feld, steht der Timer auf 0 oder hat 0 Lebensenergie, stirbt er
+- Stirbt ein Spieler, startet das Level erneut.
+- Hört man den Track eines Gegners, lässt er einen in Ruhe.
+- Hört man den "feindlichen" Track eines Gegners, flüchtet er.
+- Hört man den verhassten Track eines Gegners, greift er an.
+- Mit jeder Sekunde füllt sich das Limit-Meter weiter. bei 10 Sekunden ist es voll aufgefüllt.
+- Ist das Limit-Meter voll, kann der Spieler je nach aktuell gewähltem Track eine Spezialattacke triggern
 	- Metal-Schallwelle, wirft Gegner weg
 	- Technostrahl, betäubt Gegner (machen keinen Schaden, schiebbar, reagieren nicht)
 	- Klassik - Violinenschlüssel-Schlag: Rundumschlag mit Violinenschlüssel vor Charakter
+- Wechselt der Spieler den Track, wird das Limit-Meter auf 0 gesetzt.
+- Der Ghettoblaster benötigt Batterien. Zu Beginn hält er 20 Sekunden.
+- Ein Batteriepack erhöht die Laufzeit des Ghettoblasters um 15 Sekunden.
 
-	- Batterieanzeige für Ghettoblaster
-	- Batteriepacks einsammeln
-	
-- absolutes Zeitlimit für Level
+Beispiel: hört man Techno, ist es den Techno-Hamstern ziemlich egal. Metal-Igel werden
+hingegen angreifen, da sie Techno hassen. Klassik-Enten flüchten, da sie der Techno verstört.
 
--Charakter: Passende Kreatur mit Ghettoblaster
 
-- Score-System berechnet aus 
+SCORE-SYSTEM
+Ist das Level abgeschlossen, wird ein Highscore aus folgenden Werten berechnet:
 	- getöteten Gegnern
 	- übrige Zeit
-	- übrige Batterie
-	- Anzahl Limitbreaks?
+	- übrige Batterielaufzeit
+	- Anzahl durchgeführterLimitbreaks?
 
-Titelscreeen: keyvisual, Musik, Text
 
-NOTIZEN ZUM SPIEL
-- Es git ein Level
+SONSTIGE NOTIZEN ZUM SPIEL
+- Es git erstmal ein Level

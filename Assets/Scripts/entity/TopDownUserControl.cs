@@ -13,12 +13,12 @@ namespace UnityStandardAssets.Characters.ThirdPerson
     {
         public float MovementSpeed;
 
-        private TopDownCharacter m_Character;
+        private PlayerComponent _player;
         private IMessageBus _bus;
         
         private void Start()
         {
-            m_Character = GetComponentInChildren<TopDownCharacter>();
+            _player = GetComponent<PlayerComponent>();
             _bus = Initialiser.Instance.GetService<IMessageBus>();
         }
 
@@ -26,47 +26,40 @@ namespace UnityStandardAssets.Characters.ThirdPerson
         private void Update()
         {
             if (Input.GetKeyDown(KeyCode.Alpha1))
-            {
                 _bus.Publish(new PlayerChangedMusikTypeMessage(this, MusicTypes.Metal));
-                m_Character = GetComponentInChildren<TopDownCharacter>();
-            }
             if (Input.GetKeyDown(KeyCode.Alpha2))
-            {
                 _bus.Publish(new PlayerChangedMusikTypeMessage(this, MusicTypes.Classic));
-                m_Character = GetComponentInChildren<TopDownCharacter>();
-            }
             if (Input.GetKeyDown(KeyCode.Alpha3))
-            {
                 _bus.Publish(new PlayerChangedMusikTypeMessage(this, MusicTypes.Techno));
-                m_Character = GetComponentInChildren<TopDownCharacter>();
-            }
         }
 
 
         // Fixed update is called in sync with physics
         private void FixedUpdate()
         {
-            if (Input.GetMouseButton(0))
+            if (_player.ActiveType != null)
             {
-                if (!m_Character.AttackRay.isPlaying)
-                    m_Character.AttackRay.Play();
+                if (Input.GetMouseButton(0))
+                {
+                    if (!_player.ActiveType.AttackRay.isPlaying)
+                        _player.ActiveType.AttackRay.Play();
+                }
+                else if (!Input.GetMouseButton(0))
+                {
+                    if (!_player.ActiveType.AttackRay.isStopped)
+                        _player.ActiveType.AttackRay.Stop();
+                }
             }
-            else if (!Input.GetMouseButton(0))
-            {
-                if (!m_Character.AttackRay.isStopped)
-                    m_Character.AttackRay.Stop();
-            }
-
             // read inputs
             float h = CrossPlatformInputManager.GetAxis("Horizontal");
             float v = CrossPlatformInputManager.GetAxis("Vertical");
 
-            m_Character.FollowMouse();
+            _player.FollowMouse();
             // pass all parameters to the character control script
             if(Input.GetKey(KeyCode.W) || Input.GetKey(KeyCode.S))
-                m_Character.MoveForeward(-v * MovementSpeed); 
+                _player.MoveForeward(-v * MovementSpeed); 
             if(Input.GetKey(KeyCode.A) || Input.GetKey(KeyCode.D))
-                m_Character.MoveSidewards(h * MovementSpeed);
+                _player.MoveSidewards(h * MovementSpeed);
         }
     }
 }

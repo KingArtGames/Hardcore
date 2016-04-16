@@ -1,0 +1,16 @@
+Metal ( besiegt Techno )
+Klassik ( besiegt Metal )
+Techno ( besiegt Klassik )
+
+Tile-Arten:
+-Musikrichtungen (Metal, Klassik, Techno), gehen kaputt nach 2-3 Sekunden falsche Musik
+-Neutral
+-Musik"batterien": Aufladbar mit Musikrichtung, spielen diese für kurze Zeit
+-Vibrationsblöcke
+-Gegner: Gleiche lassen in Frieden, besiegbare Gegner weichen aus, 
+ besiegende Gegner laufen auf Spieler zu
+
+-Mehrere normal lange Level
+
+
+-Charakter: Passende Kreatur mit Ghettoblaster

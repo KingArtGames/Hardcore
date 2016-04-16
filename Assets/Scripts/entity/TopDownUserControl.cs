@@ -4,39 +4,42 @@ using UnityEngine;
 using UnityStandardAssets.CrossPlatformInput;
 using Assets.Scripts.entity;
 using System.Collections.Generic;
+using TinyMessenger;
+using Assets.Scripts.message.custom;
 
 namespace UnityStandardAssets.Characters.ThirdPerson
 { 
     public class TopDownUserControl : MonoBehaviour
     {
         public float MovementSpeed;
-        public GameObject Type_Metal;
-        public GameObject Type_Techno;
-        public GameObject Type_Classic;
 
-
-        private TopDownCharacter m_Character; // A reference to the ThirdPersonCharacter on the object
-        private Dictionary<AudioSource, float> _activeAudioSources;
-
-        IEntityManager _entityManager;
+        private TopDownCharacter m_Character;
+        private IMessageBus _bus;
         
         private void Start()
         {
-            _entityManager =  Initialiser.Instance.GetService<IEntityManager>();
-            // get the third person character ( this should never be null due to require component )
             m_Character = GetComponentInChildren<TopDownCharacter>();
-            _activeAudioSources = new Dictionary<AudioSource,float>();
+            _bus = Initialiser.Instance.GetService<IMessageBus>();
         }
 
 
         private void Update()
         {
-            if(Input.GetKeyDown(KeyCode.Alpha1))
-                SwitchType(MusicTypes.Metal);
+            if (Input.GetKeyDown(KeyCode.Alpha1))
+            {
+                _bus.Publish(new PlayerChangedMusikTypeMessage(this, MusicTypes.Metal));
+                m_Character = GetComponentInChildren<TopDownCharacter>();
+            }
             if (Input.GetKeyDown(KeyCode.Alpha2))
-                SwitchType(MusicTypes.Classic);
+            {
+                _bus.Publish(new PlayerChangedMusikTypeMessage(this, MusicTypes.Classic));
+                m_Character = GetComponentInChildren<TopDownCharacter>();
+            }
             if (Input.GetKeyDown(KeyCode.Alpha3))
-                SwitchType(MusicTypes.Techno);
+            {
+                _bus.Publish(new PlayerChangedMusikTypeMessage(this, MusicTypes.Techno));
+                m_Character = GetComponentInChildren<TopDownCharacter>();
+            }
         }
 
 
@@ -64,53 +67,6 @@ namespace UnityStandardAssets.Characters.ThirdPerson
                 m_Character.MoveForeward(-v * MovementSpeed); 
             if(Input.GetKey(KeyCode.A) || Input.GetKey(KeyCode.D))
                 m_Character.MoveSidewards(h * MovementSpeed);
-        }
-
-        private void SwitchType(MusicTypes type)
-        {
-            if (m_Character != null)
-            {
-                Transform lastTransform = m_Character.transform;
-
-                if (!_activeAudioSources.ContainsKey(m_Character.AudioSource))
-                    _activeAudioSources.Add(m_Character.AudioSource, m_Character.AudioSource.time);
-                else
-                    _activeAudioSources[m_Character.AudioSource] = m_Character.AudioSource.time;
-
-                if (type == MusicTypes.Metal)
-                {
-                    Type_Metal.SetActive(true);
-                    Type_Classic.SetActive(false);
-                    Type_Techno.SetActive(false);
-                    m_Character = GetComponentInChildren<TopDownCharacter>();
-                }
-                if (type == MusicTypes.Classic)
-                {
-                    Type_Metal.SetActive(false);
-                    Type_Classic.SetActive(true);
-                    Type_Techno.SetActive(false);
-                    m_Character = GetComponentInChildren<TopDownCharacter>();
-                }
-                if (type == MusicTypes.Techno)
-                {
-                    Type_Metal.SetActive(false);
-                    Type_Classic.SetActive(false);
-                    Type_Techno.SetActive(true);
-                    m_Character = GetComponentInChildren<TopDownCharacter>();
-                }
-                m_Character.transform.position = lastTransform.position;
-                m_Character.transform.rotation = lastTransform.rotation;
-
-                GetAudioSourceTime();
-            }
-        }
-
-        private void GetAudioSourceTime()
-        {
-            float audioStartTime;
-            if (_activeAudioSources.TryGetValue(m_Character.AudioSource, out audioStartTime))
-               // if(!m_Character.AudioSource.isPlaying)
-                    m_Character.AudioSource.PlayScheduled(audioStartTime);     
         }
     }
 }

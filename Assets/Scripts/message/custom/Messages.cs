@@ -64,4 +64,14 @@ namespace Assets.Scripts.message.custom
         }
     }
 
+    public class PlayerChangedMusikTypeMessage : BaseMessage
+    {
+        public MusicTypes Type;
+        public PlayerChangedMusikTypeMessage(object sender, MusicTypes type)
+                :base(sender)
+        {
+            Type = type;
+        }
+    }
+
 }

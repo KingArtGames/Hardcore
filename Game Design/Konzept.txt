@@ -24,6 +24,14 @@ STEUERUNG:
 - A-Taste: Nahkampfangriff
 - D-Taste: Spezialangriff auslösen
 
+// CARO EDIT:
+- Maus: Blickrichtung in Mauszeiger
+- LMAUS: Angriff
+- RMAUS: Blöcke benutzen
+- Zahlentasten 123 Musikrichtung auswählen
+- WASD - Laufen
+
+
 
 GRAFIKEN:
 
@@ -42,9 +50,10 @@ Objekte:
 - Vibrationsblöcke (???)
 
 Items:
-- Batterien
+- Batterien / Powerpacks
 
 -Gegner: 
+// Caro: Abhängig von finalem Design (--> Axel, Jeanette)
 - Techno-Hamster
 - Metal-Igel
 - Klassik-Ente (???)
@@ -67,9 +76,10 @@ SPIELWELT:
 - Felder des Typs Metal, Klassik und Techno brechen nach 2-3 Sekunden weg, sofern der Spieler
 auf ihnen dauerhaft steht und währenddessen die falsche Musik hört. Die Felder verwandeln sich
 zu einem transparenten Feld.
+// Alternativ: Schmerzen AKA. Musikmeter fällt
 
 MECHANIKEN:
-- Startet das Level, läuft ein Timer von 120 Sekunden herab.
+- Startet das Level, läuft ein Timer von XXX (120?) Sekunden herab.
 - Betritt der Spieler ein transparentes, leeres Feld, steht der Timer auf 0 oder hat 0 Lebensenergie, stirbt er
 - Stirbt ein Spieler, startet das Level erneut.
 - Hört man den Track eines Gegners, lässt er einen in Ruhe.
@@ -98,3 +108,4 @@ Ist das Level abgeschlossen, wird ein Highscore aus folgenden Werten berechnet:
 
 SONSTIGE NOTIZEN ZUM SPIEL
 - Es git erstmal ein Level
+// Caro: Drei Level!

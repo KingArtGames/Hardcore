@@ -8,7 +8,7 @@ namespace Assets.Scripts.manager
 {
 
     #region entity manager
-    public interface IEntityManager
+    public interface IEntityManager : IInitialiser
     {
 
     }
@@ -31,7 +31,7 @@ namespace Assets.Scripts.manager
 
 
     #region effect manager
-    public interface IEffectManager
+    public interface IEffectManager : IInitialiser
     {
 
     }
@@ -54,7 +54,7 @@ namespace Assets.Scripts.manager
 
 
     #region base manager
-    public abstract class BaseManager : IInitialiser
+    public abstract class BaseManager
     {
         protected IMessageBus _bus;
 

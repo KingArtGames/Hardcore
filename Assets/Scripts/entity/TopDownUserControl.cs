@@ -50,23 +50,10 @@ namespace UnityStandardAssets.Characters.ThirdPerson
             float v = CrossPlatformInputManager.GetAxis("Vertical");
          
             // pass all parameters to the character control script
-            if(v != null)
-                m_Character.MoveForeward(-v*10, GetMousePosition(), m_Jump);
-            if(h != null)
-                m_Character.MoveSidewards(h*10, GetMousePosition(), m_Jump);
+            m_Character.MoveForeward(-v*10, m_Jump); 
+            m_Character.MoveSidewards(h*10, m_Jump);
 
             m_Jump = false;
-        }
-
-        private Quaternion GetMousePosition()
-        {
-            Vector3 mousePosition = Input.mousePosition;
-
-            Vector3 targetPosition = Camera.main.ScreenToWorldPoint(mousePosition);
-            Vector3 relativePos = targetPosition - transform.position;
-            relativePos.y = 90;
-            Quaternion rotation = Quaternion.LookRotation(relativePos);
-            return rotation;
         }
         }
 }

@@ -28,19 +28,18 @@ namespace UnityStandardAssets.Characters.ThirdPerson
 		}
 
 
-		public void MoveForeward(float move, Quaternion rotation, bool jump)
+		public void MoveForeward(float move, bool jump)
 		{
-            transform.rotation = rotation;
-            transform.localEulerAngles = new Vector3(90, transform.localEulerAngles.y, 0);
-            transform.Translate(transform.forward * move * Time.fixedDeltaTime);
-
-            //ApplyExtraTurnRotation();
+                transform.rotation = GetMousePosition();
+                transform.localEulerAngles = new Vector3(90, transform.localEulerAngles.y, 0);
+                transform.Translate(transform.forward * move * Time.fixedDeltaTime);
+                //ApplyExtraTurnRotation();
 		}
-        public void MoveSidewards(float move, Quaternion rotation, bool jump)
+        public void MoveSidewards(float move, bool jump)
         {
-            transform.rotation = rotation;
-            transform.localEulerAngles = new Vector3(90, transform.localEulerAngles.y, 0);
-            transform.Translate(transform.right * move * Time.fixedDeltaTime);
+           // transform.rotation = rotation;
+            //transform.localEulerAngles = new Vector3(90, transform.localEulerAngles.y, 0);
+            transform.Translate(new Vector3 (1,0,0) * move * Time.fixedDeltaTime);
         }
 
 		void ApplyExtraTurnRotation()
@@ -49,5 +48,16 @@ namespace UnityStandardAssets.Characters.ThirdPerson
 			//float turnSpeed = Mathf.Lerp(m_StationaryTurnSpeed, m_MovingTurnSpeed, m_ForwardAmount);
 			//transform.Rotate(0, m_TurnAmount * turnSpeed * Time.deltaTime, 0);
 		}
+
+        private Quaternion GetMousePosition()
+        {
+            Vector3 mousePosition = Input.mousePosition;
+
+            Vector3 targetPosition = Camera.main.ScreenToWorldPoint(mousePosition);
+            Vector3 relativePos = targetPosition - transform.position;
+            relativePos.y = 90;
+            Quaternion rotation = Quaternion.LookRotation(relativePos);
+            return rotation;
+        }
 	}
 }

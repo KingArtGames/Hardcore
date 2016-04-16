@@ -10,6 +10,9 @@ public class ObjectsRender : MonoBehaviour
 {
     private IMessageBus _bus;
 
+    public GameObject CharacterPrefab;
+    public GameObject EnemyPrefab;
+
 	void Start () 
     {
         _bus = Initialiser.Instance.GetService<IMessageBus>();

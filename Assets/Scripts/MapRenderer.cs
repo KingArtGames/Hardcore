@@ -1,4 +1,5 @@
-﻿using Assets.Scripts.manager;
+﻿using Assets.Scripts.entity;
+using Assets.Scripts.manager;
 using Assets.Scripts.map;
 using Assets.Scripts.message.custom;
 using System;
@@ -14,18 +15,26 @@ namespace Assets.Scripts
     public class MapRenderer : MonoBehaviour
     {
         private IMessageBus _bus;
-        private const string TILES = "Map/Tilesets/";
+        private IEntityManager _entityManger;
+        private const string TILES = "Tiles/";
 
         public GameObject TilePrefab;
 
         private Dictionary<string, Sprite> _tiles;
 
-        public void Start()
+        public void Awake()
         {
             _tiles = new Dictionary<string, Sprite>();
             _bus = Initialiser.Instance.GetService<IMessageBus>();
-
+            _entityManger = Initialiser.Instance.GetService<IEntityManager>();
             _bus.Subscribe<MapLoadedMessage>(OnMapLoaded);
+
+            StartCoroutine(WaitForLoad());
+        }
+
+        private IEnumerator<object> WaitForLoad()
+        {
+            yield return new WaitForSeconds(1);
             _bus.Publish<LoadMapMessage>(new LoadMapMessage(this));
         }
 
@@ -47,18 +56,24 @@ namespace Assets.Scripts
 
                     if(layer.data[i] - 1 >= 0)
                     {
-                        GameObject tile = Instantiate(TilePrefab);
-                        Vector3 pos = new Vector3(column * msg.Map.tilewidth * 0.01f, 0.1f, -row * msg.Map.tileheight * 0.01f);
-                        tile.transform.position = pos;
-                        tile.transform.SetParent(transform, false);
+                        GameObject go = Instantiate(TilePrefab);
+                        Vector3 pos = new Vector3(column * msg.Map.tilewidth * 0.01f, 0.1f, row * msg.Map.tileheight * 0.01f);
+                        go.transform.position = pos;
+                        go.transform.SetParent(transform, false);
 
                         string id = msg.Map.tilesets[0].name + "_" + (layer.data[i] - 1);
-                        tile.GetComponent<SpriteRenderer>().sprite = _tiles[id];
+                        go.GetComponent<SpriteRenderer>().sprite = _tiles[id];
+
+                        Tile tile = new Tile();
+                        // add tile module based on how tile is designed
+                        go.GetComponent<TileComponent>().Tile = tile;
                     }
                    
                     if (i % (msg.Map.width) == 0 && i > 0) row++;
                 }
             }
+            _bus.Publish<LoadEnemiesMessage>(new LoadEnemiesMessage(this, _entityManger.GetEnitiesOfType(new GameType(EntityTypes.Enemy.ToString()))));
+            _bus.Publish<LoadPlayerMessage>(new LoadPlayerMessage(this, _entityManger.GetEnitiesOfType(new GameType(EntityTypes.Player.ToString())).First()));
         }
 
     }

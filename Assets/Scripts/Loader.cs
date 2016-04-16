@@ -15,7 +15,7 @@ public class Loader : MonoBehaviour
     private const string CHARACTERS_PATH = "/Resources/Characters";
     private const string PLAYER = "/player.json";
     private const string ENEMIES = "/enemies.json";
-    private const string MAP = "/Resources/Map/Level1_V2.json";
+    private const string MAP = "/Resources/Map/Test/test.json";
 
 	// Use this for initialization
 	void Start() 
@@ -84,8 +84,8 @@ public class Loader : MonoBehaviour
 
     private void Load()
     {
-        _bus.Publish(new SpawnEnemiesMessage(this, GetEnemies()));
-        _bus.Publish(new SpawnPlayerMessage(this, GetPlayer()));
+        _bus.Publish(new LoadEnemiesMessage(this, GetEnemies()));
+        _bus.Publish(new LoadPlayerMessage(this, GetPlayer()));
     }
 
     private TileMap GetTiles()

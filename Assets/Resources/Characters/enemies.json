@@ -7,7 +7,7 @@
                     "y": 5.0
                 },
                 "CurrentMusicType": {
-                    "Value": "Metall"
+                    "Value": "Metal"
                 }
             },
             "Template": {
@@ -15,7 +15,7 @@
                     "Value": "Enemy"
                 },
                 "MusicType": {
-                    "Value": "Metall"
+                    "Value": "Metal"
                 },
                 "SpawnPosition": {
                     "x": 5.0,
@@ -30,7 +30,7 @@
                     "y": 5.0
                 },
                 "CurrentMusicType": {
-                    "Value": "Metall"
+                    "Value": "Metal"
                 }
             },
             "Template": {
@@ -38,7 +38,7 @@
                     "Value": "Enemy"
                 },
                 "MusicType": {
-                    "Value": "Metall"
+                    "Value": "Metal"
                 },
                 "SpawnPosition": {
                     "x": 5.0,

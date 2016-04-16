@@ -1,18 +1,16 @@
-﻿using System;
+﻿using Assets.Scripts.entity;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
-using UnityEngine;
 
-namespace Assets.Scripts.entity
+namespace Assets.Scripts.map
 {
-    public class GameEntity
+    public class Tile
     {
-        public GameType GameEntityType;
 
-        public GameEntity(GameType type)
+        public Tile()
         {
-            GameEntityType = type;
             _modules = new Dictionary<Type, BaseModule>();
         }
 
@@ -40,29 +38,4 @@ namespace Assets.Scripts.entity
         #endregion
 
     }
-
-    [Serializable]
-    public class GameType
-    {
-        [SerializeField]
-        public string Value;
-        public GameType(string value)
-        {
-            Value = value;
-        }
-    }
-
-    public enum MusicTypes
-    {
-        Metal,
-        Classic,
-        Techno
-    }
-
-    public enum EntityTypes
-    {
-        Player,
-        Enemy
-    }
-
 }

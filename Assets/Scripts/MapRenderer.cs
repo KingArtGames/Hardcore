@@ -16,7 +16,7 @@ namespace Assets.Scripts
     {
         private IMessageBus _bus;
         private IEntityManager _entityManger;
-        private const string TILES = "Map/Tilesets/";
+        private const string TILES = "Tiles/";
 
         public GameObject TilePrefab;
 
@@ -57,7 +57,7 @@ namespace Assets.Scripts
                     if(layer.data[i] - 1 >= 0)
                     {
                         GameObject go = Instantiate(TilePrefab);
-                        Vector3 pos = new Vector3(column * msg.Map.tilewidth * 0.01f, 0.1f, -row * msg.Map.tileheight * 0.01f);
+                        Vector3 pos = new Vector3(column * msg.Map.tilewidth * 0.01f, 0.1f, row * msg.Map.tileheight * 0.01f);
                         go.transform.position = pos;
                         go.transform.SetParent(transform, false);
 

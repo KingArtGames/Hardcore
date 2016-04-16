@@ -15,7 +15,7 @@ public class Loader : MonoBehaviour
     private const string CHARACTERS_PATH = "/Resources/Characters";
     private const string PLAYER = "/player.json";
     private const string ENEMIES = "/enemies.json";
-    private const string MAP = "/Resources/Map/Level1_V2.json";
+    private const string MAP = "/Resources/Map/Test/test.json";
 
 	// Use this for initialization
 	void Start() 

@@ -18,7 +18,7 @@ namespace UnityStandardAssets.Vehicles.Ball
 
         private void Awake()
         {
-            // Set up the reference.
+            // Set up the reference.d
             ball = GetComponent<Ball>();
 
 

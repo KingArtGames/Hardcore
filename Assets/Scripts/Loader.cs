@@ -7,6 +7,7 @@ using Assets.Scripts.entity;
 using System.Collections.Generic;
 using Assets.Scripts.entity.modules;
 using System.IO;
+using Assets.Scripts.map;
 
 public class Loader : MonoBehaviour 
 {
@@ -14,15 +15,22 @@ public class Loader : MonoBehaviour
     private const string CHARACTERS_PATH = "/Resources/Characters";
     private const string PLAYER = "/player.json";
     private const string ENEMIES = "/enemies.json";
+    private const string MAP = "/Resources/Map/Level1_V2.json";
 
 	// Use this for initialization
-	void Start () 
+	void Start() 
     {
         _bus = Initialiser.Instance.GetService<IMessageBus>();
+        _bus.Subscribe<LoadMapMessage>(OnLoadMap);
         //TestSavePlayer();
         //TestSaveEnemies();
         Load();
 	}
+
+    private void OnLoadMap(LoadMapMessage obj)
+    {
+        _bus.Publish(new MapLoadedMessage(this, GetTiles()));
+    }
 
     private void TestSaveEnemies()
     {
@@ -31,12 +39,12 @@ public class Loader : MonoBehaviour
         Connection enemy1 = new Connection();
         enemy1.Data = new Data()
         {
-            CurrentMusicType = new GameType(MusicTypes.Metall.ToString()),
+            CurrentMusicType = new GameType(MusicTypes.Metal.ToString()),
             CurrentPosition = new Vector2(5, 5)
         };
         enemy1.Template = new Template()
         {
-            MusicType = new GameType(MusicTypes.Metall.ToString()),
+            MusicType = new GameType(MusicTypes.Metal.ToString()),
             GameType = new GameType(EntityTypes.Enemy.ToString()),
             SpawnPosition = new Vector2(5, 5)
         };
@@ -44,12 +52,12 @@ public class Loader : MonoBehaviour
         Connection enemy2 = new Connection();
         enemy2.Data = new Data()
         {
-            CurrentMusicType = new GameType(MusicTypes.Metall.ToString()),
+            CurrentMusicType = new GameType(MusicTypes.Metal.ToString()),
             CurrentPosition = new Vector2(5, 5)
         };
         enemy2.Template = new Template()
         {
-            MusicType = new GameType(MusicTypes.Metall.ToString()),
+            MusicType = new GameType(MusicTypes.Metal.ToString()),
             GameType = new GameType(EntityTypes.Enemy.ToString()),
             SpawnPosition = new Vector2(5, 5)
         };
@@ -78,6 +86,12 @@ public class Loader : MonoBehaviour
     {
         _bus.Publish(new SpawnEnemiesMessage(this, GetEnemies()));
         _bus.Publish(new SpawnPlayerMessage(this, GetPlayer()));
+    }
+
+    private TileMap GetTiles()
+    {
+        TileMap map = JsonUtility.FromJson<TileMap>(File.ReadAllText(Application.dataPath + MAP));
+        return map;
     }
 
     private GameEntity GetPlayer()

@@ -84,8 +84,8 @@ public class Loader : MonoBehaviour
 
     private void Load()
     {
-        _bus.Publish(new SpawnEnemiesMessage(this, GetEnemies()));
-        _bus.Publish(new SpawnPlayerMessage(this, GetPlayer()));
+        _bus.Publish(new LoadEnemiesMessage(this, GetEnemies()));
+        _bus.Publish(new LoadPlayerMessage(this, GetPlayer()));
     }
 
     private TileMap GetTiles()

@@ -64,11 +64,45 @@ namespace Assets.Scripts.message.custom
         }
     }
 
+    public class StartGameMessage : BaseMessage
+    {
+
+        public StartGameMessage(object sender)
+            : base(sender)
+        {
+
+        }
+
+    }
+
+    public class LoadEnemiesMessage : BaseMessage
+    {
+        public IEnumerable<GameEntity> Enemies;
+
+        public LoadEnemiesMessage(object sender, IEnumerable<GameEntity> enemies)
+            : base(sender)
+        {
+            Enemies = enemies;
+        }
+    }
+
+    public class LoadPlayerMessage : BaseMessage
+    {
+        public GameEntity Player;
+
+        public LoadPlayerMessage(object sender, GameEntity player)
+            : base(sender)
+        {
+            Player = player;
+        }
+
+    }
+
     public class PlayerChangedMusikTypeMessage : BaseMessage
     {
         public MusicTypes Type;
         public PlayerChangedMusikTypeMessage(object sender, MusicTypes type)
-                :base(sender)
+            : base(sender)
         {
             Type = type;
         }

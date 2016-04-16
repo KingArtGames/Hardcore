@@ -1,0 +1,50 @@
+{
+    "Connections": [
+        {
+            "Data": {
+                "CurrentPosition": {
+                    "x": 5.0,
+                    "y": 5.0
+                },
+                "CurrentMusicType": {
+                    "Value": "Metall"
+                }
+            },
+            "Template": {
+                "GameType": {
+                    "Value": "Enemy"
+                },
+                "MusicType": {
+                    "Value": "Metall"
+                },
+                "SpawnPosition": {
+                    "x": 5.0,
+                    "y": 5.0
+                }
+            }
+        },
+        {
+            "Data": {
+                "CurrentPosition": {
+                    "x": 5.0,
+                    "y": 5.0
+                },
+                "CurrentMusicType": {
+                    "Value": "Metall"
+                }
+            },
+            "Template": {
+                "GameType": {
+                    "Value": "Enemy"
+                },
+                "MusicType": {
+                    "Value": "Metall"
+                },
+                "SpawnPosition": {
+                    "x": 5.0,
+                    "y": 5.0
+                }
+            }
+        }
+    ]
+}

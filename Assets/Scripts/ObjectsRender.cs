@@ -3,6 +3,8 @@ using System.Collections;
 using TinyMessenger;
 using Assets.Scripts.manager;
 using Assets.Scripts.message.custom;
+using Assets.Scripts.entity;
+using Assets.Scripts.entity.modules;
 
 public class ObjectsRender : MonoBehaviour 
 {
@@ -27,7 +29,10 @@ public class ObjectsRender : MonoBehaviour
 
     private void OnSpawnEnemies(SpawnEnemiesMessage msg)
     {
-        
+        foreach (GameEntity ent in msg.Enemies)
+        {
+            EnemyModule enemy = ent.GetModule<EnemyModule>();
+        }
     }
 
 }

@@ -37,5 +37,20 @@ namespace Assets.Scripts.manager
             throw new Exception(typeof(T).ToString() + " not found");
         }
 
+
+        #region singelton
+        public static Initialiser Instance
+        {
+            get
+            {
+                if (_instance == null)
+                    _instance = new Initialiser();
+                return _instance;
+            }
+        }
+        private static Initialiser _instance;
+
+        #endregion
+
     }
 }

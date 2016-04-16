@@ -42,6 +42,7 @@ GameObject:
   m_Component:
   - 4: {fileID: 440778}
   - 114: {fileID: 11434138}
+  - 114: {fileID: 11497840}
   m_Layer: 0
   m_Name: CharacterPrefab
   m_TagString: Untagged
@@ -133,7 +134,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!1 &128956
 GameObject:
   m_ObjectHideFlags: 1
@@ -359,7 +360,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 0
+  m_IsActive: 1
 --- !u!1 &194084
 GameObject:
   m_ObjectHideFlags: 1
@@ -1202,9 +1203,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   MovementSpeed: 10
-  Type_Metal: {fileID: 191370}
-  Type_Techno: {fileID: 127018}
-  Type_Classic: {fileID: 103018}
 --- !u!114 &11440714
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -1285,6 +1283,21 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   AttackRay: {fileID: 19879598}
   AudioSource: {fileID: 8224834}
+--- !u!114 &11497840
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 107802}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 4d2baeb2e4b8aff4a9fabe797805f16f, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  Type_Metal: {fileID: 191370}
+  Type_Techno: {fileID: 127018}
+  Type_Classic: {fileID: 103018}
+  ActiveType: {fileID: 0}
 --- !u!135 &13522402
 SphereCollider:
   m_ObjectHideFlags: 1
@@ -1327,7 +1340,7 @@ CapsuleCollider:
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 189502}
-  m_Material: {fileID: 0}
+  m_Material: {fileID: 13400000, guid: c2815a7ab32e42c4bb42f59caacb8ec1, type: 2}
   m_IsTrigger: 0
   m_Enabled: 1
   m_Radius: 1.28
@@ -1340,7 +1353,7 @@ CapsuleCollider:
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 144678}
-  m_Material: {fileID: 0}
+  m_Material: {fileID: 13400000, guid: c2815a7ab32e42c4bb42f59caacb8ec1, type: 2}
   m_IsTrigger: 0
   m_Enabled: 1
   m_Radius: 1.28
@@ -1353,7 +1366,7 @@ CapsuleCollider:
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 161804}
-  m_Material: {fileID: 0}
+  m_Material: {fileID: 13400000, guid: c2815a7ab32e42c4bb42f59caacb8ec1, type: 2}
   m_IsTrigger: 0
   m_Enabled: 1
   m_Radius: 1.28

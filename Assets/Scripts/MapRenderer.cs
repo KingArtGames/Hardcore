@@ -14,40 +14,49 @@ namespace Assets.Scripts
     public class MapRenderer : MonoBehaviour
     {
         private IMessageBus _bus;
-        private const string TILES = "";
+        private const string TILES = "Map/Tilesets/";
 
         public GameObject TilePrefab;
 
-        private Dictionary<int, Sprite> _tiles;
+        private Dictionary<string, Sprite> _tiles;
 
         public void Start()
         {
-            _tiles = new Dictionary<int, Sprite>();
+            _tiles = new Dictionary<string, Sprite>();
             _bus = Initialiser.Instance.GetService<IMessageBus>();
 
-            _bus.Subscribe<LoadMapMessage>(OnMapLoaded);
+            _bus.Subscribe<MapLoadedMessage>(OnMapLoaded);
+            _bus.Publish<LoadMapMessage>(new LoadMapMessage(this));
         }
 
-        private void OnMapLoaded(LoadMapMessage msg)
+        private void OnMapLoaded(MapLoadedMessage msg)
         {
+            Sprite[] all = Resources.LoadAll<Sprite>(TILES + msg.Map.tilesets[0].name);
+            foreach (Sprite sp in all)
+            {
+                _tiles[sp.name] = sp;
+            }
+
             foreach (TileLayer layer in msg.Map.layers)
             {
-                for (int i = 0; i < layer.width; i++ )
+                int row = 0;
+                int column = 0;
+                for (int i = 0; i < layer.data.Length; i++ )
                 {
-                    for(int j = 0; j < layer.height; j++)
+                    column = i % msg.Map.width;
+
+                    if(layer.data[i] - 1 >= 0)
                     {
                         GameObject tile = Instantiate(TilePrefab);
-                        tile.transform.SetParent(transform, true);
-                        tile.transform.position = new Vector2(i * layer.width, j * layer.height);
+                        Vector3 pos = new Vector3(column * msg.Map.tilewidth * 0.01f, 0.1f, -row * msg.Map.tileheight * 0.01f);
+                        tile.transform.position = pos;
+                        tile.transform.SetParent(transform, false);
 
-                        int id = layer.data[i*j];
-                        if (!_tiles.ContainsKey(id))
-                        {
-                            _tiles[id] = Resources.Load<Sprite>(TILES + msg.Map.tilesets[0].name + "_" + id);
-                        }
-
-                        tile.GetComponent<Image>().sprite = _tiles[id];
+                        string id = msg.Map.tilesets[0].name + "_" + (layer.data[i] - 1);
+                        tile.GetComponent<SpriteRenderer>().sprite = _tiles[id];
                     }
+                   
+                    if (i % (msg.Map.width) == 0 && i > 0) row++;
                 }
             }
         }

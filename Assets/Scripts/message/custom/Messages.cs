@@ -44,16 +44,24 @@ namespace Assets.Scripts.message.custom
 
     }
 
-    public class LoadMapMessage : BaseMessage
+    public class MapLoadedMessage : BaseMessage
     {
         public TileMap Map;
 
-        public LoadMapMessage(object sender, TileMap map) 
+        public MapLoadedMessage(object sender, TileMap map) 
             : base(sender)
         {
             Map = map;
         }
 
+    }
+
+    public class LoadMapMessage : BaseMessage
+    {
+        public LoadMapMessage(object sender) 
+            : base(sender)
+        {
+        }
     }
 
 }

@@ -17,13 +17,15 @@ Der Spieler bewegt seinen Charakter nun durch ein Level, welches er nur meistert
 er in den richtigen Momenten zwischen den Tracks wechselt. Das
 Spiel ist gewonnen, wenn der Spieler vor Ablauf des Zeitlimits das Ende erreicht.
 
-Es gibt unterschiedliche Spielelemente mit denen der Spieler interagieren kann: Gewisse Blöcke können mit Musik in ihre Eigenfrequenz gebracht werden und so zerstört,
-anderen kann der spieler für kurze Zeit seine Musik übergeben, um so die Gegner von sich abzulenken. 
+Es gibt unterschiedliche Spielelemente mit denen der Spieler interagieren kann: Gewisse Blöcke können mit Musik in ihre 
+Eigenfrequenz gebracht werden und so zerstört, anderen kann der spieler für kurze Zeit seine Musik übergeben, 
+um so die Gegner von sich abzulenken. 
 
-Der Spieler muss auf zwei zeitliche Konstanten achten: Einerseits seinen "Musikwert", ein Balken, der sich füllt, solange der Charakter dieselbe Musikrichtung inne hat und wieder
-auf null fällt, wenn er wechselt, und andererseits einen Energiewert, der quasi das zeitliche Limit darstellt, und mit Energiepacks wieder aufgefüllt werden kann. 
-Der Musikwert ist gleichzeitig die Lebensenergie für den Spieler: Berührungen mit Gegnern verletzen ihn und wenn sich der Spieler außerhalb seines Musikbereiches befindet, 
-sinkt der Wert gegen 0 ( = Tod)
+Der Spieler muss auf zwei zeitliche Konstanten achten: Einerseits seinen "Musikwert", ein Balken, der sich füllt, solange 
+der Charakter dieselbe Musikrichtung inne hat und wieder auf null fällt, wenn er wechselt, und andererseits 
+einen Energiewert, der quasi das zeitliche Limit darstellt, und mit Energiepacks wieder aufgefüllt werden kann. Der 
+Musikwert ist gleichzeitig die Lebensenergie für den Spieler: Berührungen mit Gegnern verletzen ihn und wenn sich der 
+Spieler außerhalb seines Musikbereiches befindet, sinkt der Wert gegen 0 ( = Tod)
 
 Ein Hauptelement des Spiels ist der Musikbereich um die Musikquelle - in der Regel also dem Charakter. Bewegt sich der Spieler außerhalb des bereiches, verliert er schnell 
 
@@ -37,7 +39,7 @@ STEUERUNG:
 - Zahlentasten 123 Musikrichtung auswählen
 - WASD - Laufen
 
-- Limitbreak wenn 
+- Limitbreak wenn Musikmeter vollgelaufen ist
 
 
 

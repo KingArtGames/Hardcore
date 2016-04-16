@@ -1,4 +1,4 @@
-Metal ( besiegt Techno )
+﻿Metal ( besiegt Techno )
 Klassik ( besiegt Metal )
 Techno ( besiegt Klassik )
 
@@ -30,3 +30,5 @@ Tile-Arten:
 	- übrige Zeit
 	- übrige Batterie
 	- Anzahl Limitbreaks?
+
+Titelscreeen: keyvisual, Musik, Text

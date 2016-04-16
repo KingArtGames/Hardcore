@@ -12,5 +12,21 @@ Tile-Arten:
 
 -Mehrere normal lange Level
 
+-Lebensenergie == Musikmeter
+- wenn Musikmeter voll Limit Break Attack
+	- Metal-Schallwelle, wirft Gegner weg
+	- Technostrahl, betäubt Gegner (machen keinen Schaden, schiebbar, reagieren nicht)
+	- Klassik - Violinenschlüssel-Schlag: Rundumschlag mit Violinenschlüssel vor Charakter
+
+	- Batterieanzeige für Ghettoblaster
+	- Batteriepacks einsammeln
+	
+- absolutes Zeitlimit für Level
 
 -Charakter: Passende Kreatur mit Ghettoblaster
+
+- Score-System berechnet aus 
+	- getöteten Gegnern
+	- übrige Zeit
+	- übrige Batterie
+	- Anzahl Limitbreaks?

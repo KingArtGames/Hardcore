@@ -1,0 +1,23 @@
+{
+    "Data": {
+        "CurrentPosition": {
+            "x": 0.0,
+            "y": 0.0
+        },
+        "CurrentMusicType": {
+            "Value": "Classic"
+        }
+    },
+    "Template": {
+        "GameType": {
+            "Value": "Player"
+        },
+        "MusicType": {
+            "Value": "Classic"
+        },
+        "SpawnPosition": {
+            "x": 0.0,
+            "y": 0.0
+        }
+    }
+}

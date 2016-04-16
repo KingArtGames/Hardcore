@@ -608,15 +608,15 @@ Prefab:
     m_Modifications:
     - target: {fileID: 440778, guid: 728f24368faba8643a0991a4eec27739, type: 2}
       propertyPath: m_LocalPosition.x
-      value: -0.87531495
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 440778, guid: 728f24368faba8643a0991a4eec27739, type: 2}
       propertyPath: m_LocalPosition.y
-      value: 0.35734797
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 440778, guid: 728f24368faba8643a0991a4eec27739, type: 2}
       propertyPath: m_LocalPosition.z
-      value: -0.6928768
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 440778, guid: 728f24368faba8643a0991a4eec27739, type: 2}
       propertyPath: m_LocalRotation.x
@@ -774,7 +774,54 @@ Prefab:
       propertyPath: InheritVelocityModule.m_Curve.scalar
       value: 1
       objectReference: {fileID: 0}
-    m_RemovedComponents: []
+    - target: {fileID: 11455826, guid: 728f24368faba8643a0991a4eec27739, type: 2}
+      propertyPath: LightMultiplyer
+      value: 100
+      objectReference: {fileID: 0}
+    - target: {fileID: 11440714, guid: 728f24368faba8643a0991a4eec27739, type: 2}
+      propertyPath: LightMultiplyer
+      value: 100
+      objectReference: {fileID: 0}
+    - target: {fileID: 11461886, guid: 728f24368faba8643a0991a4eec27739, type: 2}
+      propertyPath: LightMultiplyer
+      value: 100
+      objectReference: {fileID: 0}
+    - target: {fileID: 19870874, guid: 728f24368faba8643a0991a4eec27739, type: 2}
+      propertyPath: InitialModule.startColor.maxColor.rgba
+      value: 4278190335
+      objectReference: {fileID: 0}
+    - target: {fileID: 10817622, guid: 728f24368faba8643a0991a4eec27739, type: 2}
+      propertyPath: m_BounceIntensity
+      value: 1.39
+      objectReference: {fileID: 0}
+    - target: {fileID: 10817622, guid: 728f24368faba8643a0991a4eec27739, type: 2}
+      propertyPath: m_DrawHalo
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 10817622, guid: 728f24368faba8643a0991a4eec27739, type: 2}
+      propertyPath: m_RenderMode
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 191370, guid: 728f24368faba8643a0991a4eec27739, type: 2}
+      propertyPath: m_IsActive
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 103018, guid: 728f24368faba8643a0991a4eec27739, type: 2}
+      propertyPath: m_IsActive
+      value: 0
+      objectReference: {fileID: 0}
+    m_RemovedComponents:
+    - {fileID: 5444114, guid: 728f24368faba8643a0991a4eec27739, type: 2}
+    - {fileID: 9505848, guid: 728f24368faba8643a0991a4eec27739, type: 2}
+    - {fileID: 9596238, guid: 728f24368faba8643a0991a4eec27739, type: 2}
+    - {fileID: 13668010, guid: 728f24368faba8643a0991a4eec27739, type: 2}
+    - {fileID: 13695258, guid: 728f24368faba8643a0991a4eec27739, type: 2}
+    - {fileID: 5420166, guid: 728f24368faba8643a0991a4eec27739, type: 2}
+    - {fileID: 5469546, guid: 728f24368faba8643a0991a4eec27739, type: 2}
+    - {fileID: 21203322, guid: 728f24368faba8643a0991a4eec27739, type: 2}
+    - {fileID: 13651598, guid: 728f24368faba8643a0991a4eec27739, type: 2}
+    - {fileID: 21229786, guid: 728f24368faba8643a0991a4eec27739, type: 2}
+    - {fileID: 9531578, guid: 728f24368faba8643a0991a4eec27739, type: 2}
   m_ParentPrefab: {fileID: 100100000, guid: 728f24368faba8643a0991a4eec27739, type: 2}
   m_IsPrefabParent: 0
 --- !u!1 &1251769951
@@ -927,6 +974,37 @@ MeshFilter:
   m_PrefabInternal: {fileID: 0}
   m_GameObject: {fileID: 1345939609}
   m_Mesh: {fileID: 10209, guid: 0000000000000000e000000000000000, type: 0}
+--- !u!1 &1773074666 stripped
+GameObject:
+  m_PrefabParentObject: {fileID: 107802, guid: 728f24368faba8643a0991a4eec27739, type: 2}
+  m_PrefabInternal: {fileID: 1137843565}
+--- !u!135 &1773074667
+SphereCollider:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 1773074666}
+  m_Material: {fileID: 13400000, guid: e52fb17f9b1e7fd48b8955f1391d3688, type: 2}
+  m_IsTrigger: 0
+  m_Enabled: 1
+  serializedVersion: 2
+  m_Radius: 2
+  m_Center: {x: 0, y: 0, z: 0}
+--- !u!54 &1773074668
+Rigidbody:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 1773074666}
+  serializedVersion: 2
+  m_Mass: 1
+  m_Drag: 0
+  m_AngularDrag: 0.05
+  m_UseGravity: 1
+  m_IsKinematic: 0
+  m_Interpolate: 1
+  m_Constraints: 0
+  m_CollisionDetection: 0
 --- !u!1 &1784666261
 GameObject:
   m_ObjectHideFlags: 0

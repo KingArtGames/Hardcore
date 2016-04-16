@@ -2,8 +2,6 @@ using UnityEngine;
 
 namespace UnityStandardAssets.Characters.ThirdPerson
 {
-	[RequireComponent(typeof(CapsuleCollider))]
-	[RequireComponent(typeof(Animator))]
 	public class TopDownCharacter : MonoBehaviour
 	{
 		float m_CapsuleHeight;

@@ -278,18 +278,22 @@ Prefab:
       propertyPath: AudioListener
       value: 
       objectReference: {fileID: 433108358}
-    - target: {fileID: 148262, guid: 728f24368faba8643a0991a4eec27739, type: 2}
-      propertyPath: m_Name
-      value: ActiveAudioSource
+    - target: {fileID: 21291020, guid: 728f24368faba8643a0991a4eec27739, type: 2}
+      propertyPath: m_Sprite
+      value: 
       objectReference: {fileID: 0}
-    - target: {fileID: 11442184, guid: 728f24368faba8643a0991a4eec27739, type: 2}
-      propertyPath: MorphSoundDelayed
+    - target: {fileID: 9589948, guid: 728f24368faba8643a0991a4eec27739, type: 2}
+      propertyPath: m_Enabled
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 428610, guid: 728f24368faba8643a0991a4eec27739, type: 2}
+      propertyPath: m_RootOrder
       value: 3
       objectReference: {fileID: 0}
     - target: {fileID: 11442184, guid: 728f24368faba8643a0991a4eec27739, type: 2}
       propertyPath: HeadSprite
       value: 
-      objectReference: {fileID: 1179564519}
+      objectReference: {fileID: 807228981}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: 728f24368faba8643a0991a4eec27739, type: 2}
   m_IsPrefabParent: 0
@@ -543,6 +547,65 @@ MeshFilter:
   m_PrefabInternal: {fileID: 0}
   m_GameObject: {fileID: 535625899}
   m_Mesh: {fileID: 10209, guid: 0000000000000000e000000000000000, type: 0}
+--- !u!1 &807228979
+GameObject:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 106206, guid: 728f24368faba8643a0991a4eec27739, type: 2}
+  m_PrefabInternal: {fileID: 0}
+  serializedVersion: 4
+  m_Component:
+  - 4: {fileID: 807228980}
+  - 212: {fileID: 807228981}
+  m_Layer: 8
+  m_Name: SpriteHead_nonNaimator
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &807228980
+Transform:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 449430, guid: 728f24368faba8643a0991a4eec27739, type: 2}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 807228979}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 0.5, y: 0.49999997, z: 0.49999997}
+  m_Children: []
+  m_Father: {fileID: 855678990}
+  m_RootOrder: 2
+--- !u!212 &807228981
+SpriteRenderer:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 21291020, guid: 728f24368faba8643a0991a4eec27739,
+    type: 2}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 807228979}
+  m_Enabled: 1
+  m_CastShadows: 0
+  m_ReceiveShadows: 0
+  m_Materials:
+  - {fileID: 10754, guid: 0000000000000000e000000000000000, type: 0}
+  m_SubsetIndices: 
+  m_StaticBatchRoot: {fileID: 0}
+  m_UseLightProbes: 0
+  m_ReflectionProbeUsage: 0
+  m_ProbeAnchor: {fileID: 0}
+  m_ScaleInLightmap: 1
+  m_PreserveUVs: 0
+  m_IgnoreNormalsForChartDetection: 0
+  m_ImportantGI: 0
+  m_MinimumChartSize: 4
+  m_AutoUVMaxDistance: 0.5
+  m_AutoUVMaxAngle: 89
+  m_LightmapParameters: {fileID: 0}
+  m_SortingLayerID: 0
+  m_SortingOrder: 1
+  m_Sprite: {fileID: 0}
+  m_Color: {r: 1, g: 1, b: 1, a: 1}
+  m_FlipX: 0
+  m_FlipY: 0
 --- !u!4 &855678990 stripped
 Transform:
   m_PrefabParentObject: {fileID: 407770, guid: 728f24368faba8643a0991a4eec27739, type: 2}
@@ -657,11 +720,6 @@ Transform:
   - {fileID: 2034411150}
   m_Father: {fileID: 0}
   m_RootOrder: 3
---- !u!212 &1179564519 stripped
-SpriteRenderer:
-  m_PrefabParentObject: {fileID: 21291020, guid: 728f24368faba8643a0991a4eec27739,
-    type: 2}
-  m_PrefabInternal: {fileID: 366261142}
 --- !u!1 &1251769951
 GameObject:
   m_ObjectHideFlags: 0

@@ -54,7 +54,7 @@ public class PlayerComponent : MonoBehaviour
         _gameEntity.AddModule<PlayerModule>(new PlayerModule(_gameEntity, _bus, new Data() { CurrentMusicType = new GameType(MusicTypes.metal.ToString()) }, new Template()));
 
         SwitchType(MusicTypes.metal);
-        CoolDownTimer = 3;
+        CoolDownTimer = 13;
     }
 
     private void Update()

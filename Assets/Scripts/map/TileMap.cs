@@ -61,6 +61,6 @@ namespace Assets.Scripts.map
     public class TileProperty
     {
         public int id;
-        public string musicType;
+        public string tileType;
     }
 }

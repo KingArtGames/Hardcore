@@ -39,6 +39,8 @@ namespace Assets.Scripts.entity
         public Vector3 CurrentPosition;
         [SerializeField]
         public GameType CurrentMusicType;
+        [SerializeField]
+        public int MusicHealthMeter = 0;
     }
     [Serializable]public class Template
     {

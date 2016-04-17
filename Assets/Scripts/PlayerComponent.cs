@@ -8,6 +8,7 @@ using TinyMessenger;
 using Assets.Scripts.message.custom;
 using UnityEngine.Audio;
 using UnityStandardAssets.Utility;
+using Assets.Scripts.entity.modules;
 
 public class PlayerComponent : MonoBehaviour 
 {
@@ -18,6 +19,7 @@ public class PlayerComponent : MonoBehaviour
     public AudioSource AudioSource;
     public float MorphSoundDelayed;
     public SpriteRenderer HeadSprite;
+    public MeterFillScript UiFillBar;
 
     [HideInInspector]
     public ParticleSystem activeAttack;
@@ -46,6 +48,9 @@ public class PlayerComponent : MonoBehaviour
         _activeAudioSources = new Dictionary<AudioClip, float>();
         _mixer = Resources.Load<AudioMixer>("Audio/Master");
         SwitchType(MusicTypes.metal);
+
+        _gameEntity = new GameEntity(new GameType(EntityTypes.player.ToString()));
+        _gameEntity.AddModule<PlayerModule>(new PlayerModule(_gameEntity, _bus,new Data(){ CurrentMusicType = new GameType(MusicTypes.metal.ToString())}, new Template()));
     }
 
     private void Update()
@@ -56,7 +61,18 @@ public class PlayerComponent : MonoBehaviour
         if (transform.position.y < -10)
             _bus.Publish(new GameOverMessage(this));
 
-        Debug.Log(PlayerIsInMusicBubble);
+        if (PlayerIsInMusicBubble)
+        {
+            if (_gameEntity.GetModule<PlayerModule>().BaseData.MusicHealthMeter <=100)
+                _gameEntity.GetModule<PlayerModule>().BaseData.MusicHealthMeter += 1;
+            UiFillBar.increaseByAmount(0.1f);
+        }
+        else
+        {
+            if (_gameEntity.GetModule<PlayerModule>().BaseData.MusicHealthMeter >= 0)
+                _gameEntity.GetModule<PlayerModule>().BaseData.MusicHealthMeter -= 1;
+            UiFillBar.reduceByAmount(0.1f);
+        }
     }
     private void Refresh()
     {
@@ -118,13 +134,11 @@ public class PlayerComponent : MonoBehaviour
         float audioStartTime;
         if (_activeAudioSources.TryGetValue(AudioSource.clip, out audioStartTime))
         {
-            AudioSource.SetScheduledStartTime(MorphSoundDelayed);
-            AudioSource.PlayScheduled(MorphSoundDelayed);
+            AudioSource.Play();
         }
         else if (!AudioSource.isPlaying)
         {
-            AudioSource.SetScheduledStartTime(MorphSoundDelayed);
-            AudioSource.PlayDelayed(MorphSoundDelayed);
+            AudioSource.Play();
         }
     }
 
@@ -197,7 +211,7 @@ public class PlayerComponent : MonoBehaviour
             Spotlight.GetComponent<FollowTarget>().target = null;
             musicIsDropped = true;
         }
-        else
+        else if(PlayerIsInMusicBubble)
         {
             Spotlight.GetComponent<FollowTarget>().target = transform;
             Spotlight.transform.position = Vector3.zero;

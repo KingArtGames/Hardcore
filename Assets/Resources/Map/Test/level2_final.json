@@ -53,6 +53,25 @@
                  "width":896,
                  "x":44080,
                  "y":4640
+                }, 
+                {
+                 "height":2032,
+                 "id":43,
+                 "name":"START",
+                 "properties":
+                    {
+                     "special_tile":"end"
+                    },
+                 "propertytypes":
+                    {
+                     "special_tile":"string"
+                    },
+                 "rotation":0,
+                 "type":"",
+                 "visible":true,
+                 "width":1020,
+                 "x":492,
+                 "y":21000
                 }],
          "offsetx":16,
          "offsety":0,
@@ -63,7 +82,7 @@
          "x":0,
          "y":0
         }],
- "nextobjectid":43,
+ "nextobjectid":44,
  "orientation":"orthogonal",
  "renderorder":"right-down",
  "tileheight":512,

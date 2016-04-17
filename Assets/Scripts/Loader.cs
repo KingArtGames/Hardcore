@@ -64,7 +64,7 @@ public class Loader : MonoBehaviour
         enemies.Connections[1] = enemy2;
 
         string jsonEnemies = JsonUtility.ToJson(enemies, true);
-        File.WriteAllText(Application.dataPath + CHARACTERS_PATH + "/enemies.json", jsonEnemies);
+        File.WriteAllText(Application.dataPath + CHARACTERS_PATH + ENEMIES, jsonEnemies);
     }
 
     private void TestSavePlayer()
@@ -76,7 +76,7 @@ public class Loader : MonoBehaviour
                                         GameType = new GameType(EntityTypes.player.ToString()) };
 
         string jsonPlayer = JsonUtility.ToJson(player, true);
-        File.WriteAllText(Application.dataPath + CHARACTERS_PATH + "/player.json", jsonPlayer);
+        File.WriteAllText(Application.dataPath + CHARACTERS_PATH + PLAYER, jsonPlayer);
     }
 
     private void Load()

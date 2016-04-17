@@ -55,7 +55,7 @@ namespace Assets.Scripts
                 {
                     foreach (TileProperty tp in set.tileproperties)
                     {
-                        musicTypes[tp.id] = new Template() { GameType = new GameType(EntityTypes.Tile.ToString()), MusicType = new GameType(tp.musicType) };
+                        musicTypes[tp.id] = new Template() { GameType = new GameType(EntityTypes.tile.ToString()), MusicType = new GameType(tp.musicType) };
                     }
                     break;
                 }
@@ -90,7 +90,7 @@ namespace Assets.Scripts
                             string sprite = msg.Map.tilesets[0].name + "_" + id;
                             go.GetComponent<SpriteRenderer>().sprite = _tiles.ContainsKey(sprite) ? _tiles[sprite] : null;
 
-                            GameEntity tile = new GameEntity(new GameType(EntityTypes.Tile.ToString()));
+                            GameEntity tile = new GameEntity(new GameType(EntityTypes.tile.ToString()));
                             // add tile module based on how tile is designed
                             tile.AddModule<TileModule>(GetTileModule(tile, musicTypes.ContainsKey(id) ? musicTypes[id] : new Template()));
                             go.GetComponent<TileComponent>().Tile = tile;
@@ -101,7 +101,7 @@ namespace Assets.Scripts
 
             }
             _bus.Publish<LoadEnemiesMessage>(new LoadEnemiesMessage(this, enemies));
-            _bus.Publish<LoadPlayerMessage>(new LoadPlayerMessage(this, _entityManger.GetEnitiesOfType(new GameType(EntityTypes.Player.ToString())).First()));
+            _bus.Publish<LoadPlayerMessage>(new LoadPlayerMessage(this, _entityManger.GetEnitiesOfType(new GameType(EntityTypes.player.ToString())).First()));
         }
 
         private TileModule GetTileModule(GameEntity tile, Template template)

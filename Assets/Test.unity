@@ -278,6 +278,18 @@ Prefab:
       propertyPath: AudioListener
       value: 
       objectReference: {fileID: 433108358}
+    - target: {fileID: 148262, guid: 728f24368faba8643a0991a4eec27739, type: 2}
+      propertyPath: m_Name
+      value: ActiveAudioSource
+      objectReference: {fileID: 0}
+    - target: {fileID: 11442184, guid: 728f24368faba8643a0991a4eec27739, type: 2}
+      propertyPath: MorphSoundDelayed
+      value: 3
+      objectReference: {fileID: 0}
+    - target: {fileID: 11442184, guid: 728f24368faba8643a0991a4eec27739, type: 2}
+      propertyPath: HeadSprite
+      value: 
+      objectReference: {fileID: 1179564519}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: 728f24368faba8643a0991a4eec27739, type: 2}
   m_IsPrefabParent: 0
@@ -645,6 +657,11 @@ Transform:
   - {fileID: 2034411150}
   m_Father: {fileID: 0}
   m_RootOrder: 3
+--- !u!212 &1179564519 stripped
+SpriteRenderer:
+  m_PrefabParentObject: {fileID: 21291020, guid: 728f24368faba8643a0991a4eec27739,
+    type: 2}
+  m_PrefabInternal: {fileID: 366261142}
 --- !u!1 &1251769951
 GameObject:
   m_ObjectHideFlags: 0

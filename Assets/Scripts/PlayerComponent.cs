@@ -15,6 +15,8 @@ public class PlayerComponent : MonoBehaviour
 
     public Light Spotlight;
     public AudioSource AudioSource;
+    public float MorphSoundDelayed;
+    public SpriteRenderer HeadSprite;
 
     [HideInInspector]
     public ParticleSystem activeAttack;
@@ -55,6 +57,7 @@ public class PlayerComponent : MonoBehaviour
         else if(AudioSource.clip != null)
             _activeAudioSources[AudioSource.clip] = AudioSource.time;
 
+        AudioSource.Stop();
         switchAnimation(_activeMusikType, musikType);
 
         if (musikType == MusicTypes.metal)
@@ -90,17 +93,35 @@ public class PlayerComponent : MonoBehaviour
         float audioStartTime;
         if (_activeAudioSources.TryGetValue(AudioSource.clip, out audioStartTime))
         {
-            AudioSource.SetScheduledStartTime(audioStartTime);
-            AudioSource.PlayScheduled(audioStartTime);
+            AudioSource.SetScheduledStartTime(MorphSoundDelayed);
+            AudioSource.PlayScheduled(MorphSoundDelayed);
         }
-        else if(!AudioSource.isPlaying)
-            AudioSource.Play();
+        else if (!AudioSource.isPlaying)
+        {
+            AudioSource.SetScheduledStartTime(MorphSoundDelayed);
+            AudioSource.PlayDelayed(MorphSoundDelayed);
+        }
     }
 
     private void switchAnimation(MusicTypes lastType, MusicTypes activeType)
     {
         Debug.Log(lastType.ToString() + "_to_" + activeType.ToString());
         SpriteAnimator.SetTrigger(lastType.ToString() + "_to_" + activeType.ToString());
+        PlayMusicSwitchSound();
+        Sprite sprite = Resources.Load<Sprite>("Animation/"+ activeType);
+        if(sprite != null)
+            StartCoroutine(LateSetSpriteAfterAnimation(sprite, 2.5f));
+    }
+
+    private void PlayMusicSwitchSound()
+    {
+        AudioSource warpSource = Instantiate<AudioSource>(Resources.Load<AudioSource>("Audio/AudioSource"));
+        warpSource.clip = Resources.Load<AudioClip>("Audio/sfx/warp");
+        warpSource.outputAudioMixerGroup = _mixer.FindMatchingGroups("sfx")[0];
+        warpSource.transform.SetParent(gameObject.transform);
+        if (!warpSource.isPlaying)
+            warpSource.Play();
+        StartCoroutine(DestroyObjectAfterTime(warpSource.gameObject));
     }
 
     private void InstantiateParticleEffect(MusicTypes type)
@@ -142,5 +163,16 @@ public class PlayerComponent : MonoBehaviour
         relativePos.y = 90;
         Quaternion rotation = Quaternion.LookRotation(relativePos);
         return rotation;
+    }
+
+    IEnumerator DestroyObjectAfterTime(GameObject obj)
+    {
+        yield return new WaitForSeconds(1);
+        Destroy(obj);
+    }
+    IEnumerator LateSetSpriteAfterAnimation(Sprite sprite, float duration)
+    {
+        yield return new WaitForSeconds(duration);
+        HeadSprite.sprite = sprite;
     }
 }

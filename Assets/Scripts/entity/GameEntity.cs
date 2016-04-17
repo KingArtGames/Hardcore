@@ -62,7 +62,8 @@ namespace Assets.Scripts.entity
     public enum EntityTypes
     {
         Player,
-        Enemy
+        Enemy,
+        Tile
     }
 
 }

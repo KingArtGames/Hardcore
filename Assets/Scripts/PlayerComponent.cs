@@ -68,18 +68,30 @@ public class PlayerComponent : MonoBehaviour
         if (musikType == MusicTypes.metal)
         {
             Spotlight.color = Color.blue;
+            foreach (Light sp in Spotlight.GetComponentsInChildren<Light>())
+            {
+                sp.color = Color.blue;
+            }
             AudioSource.clip = Resources.Load<AudioClip>("Audio/music/metal");
             AudioSource.outputAudioMixerGroup = _mixer.FindMatchingGroups("music_metal")[0];
         }
         if (musikType == MusicTypes.classic)
         {
             Spotlight.color = Color.red;
+            foreach(Light sp in Spotlight.GetComponentsInChildren<Light>())
+            {
+                sp.color = Color.red;
+            }
             AudioSource.clip = Resources.Load<AudioClip>("Audio/music/classic");
             AudioSource.outputAudioMixerGroup = _mixer.FindMatchingGroups("music_classic")[0];
         }
         if (musikType == MusicTypes.techno)
         {
             Spotlight.color = Color.green;
+            foreach (Light sp in Spotlight.GetComponentsInChildren<Light>())
+            {
+                sp.color = Color.green;
+            }
             AudioSource.clip = Resources.Load<AudioClip>("Audio/music/electro");
             AudioSource.outputAudioMixerGroup = _mixer.FindMatchingGroups("music_techno")[0];
         }

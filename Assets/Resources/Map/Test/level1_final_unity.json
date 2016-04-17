@@ -79,11 +79,11 @@
                  "name":"metal_enemy",
                  "properties":
                     {
-                     "enemytype":"metal"
+                     "enemyType":"metal"
                     },
                  "propertytypes":
                     {
-                     "enemytype":"string"
+                     "enemyType":"string"
                     },
                  "rotation":0,
                  "type":"",
@@ -231,11 +231,11 @@
                  "name":"metal_enemy",
                  "properties":
                     {
-                     "enemytype":"metal"
+                     "enemyType":"metal"
                     },
                  "propertytypes":
                     {
-                     "enemytype":"string"
+                     "enemyType":"string"
                     },
                  "rotation":0,
                  "type":"",
@@ -326,11 +326,11 @@
                  "name":"metal_enemy",
                  "properties":
                     {
-                     "enemytype":"metal"
+                     "enemyType":"metal"
                     },
                  "propertytypes":
                     {
-                     "enemytype":"string"
+                     "enemyType":"string"
                     },
                  "rotation":0,
                  "type":"",
@@ -345,11 +345,11 @@
                  "name":"metal_enemy",
                  "properties":
                     {
-                     "enemytype":"metal"
+                     "enemyType":"metal"
                     },
                  "propertytypes":
                     {
-                     "enemytype":"string"
+                     "enemyType":"string"
                     },
                  "rotation":0,
                  "type":"",
@@ -364,11 +364,11 @@
                  "name":"metal_enemy",
                  "properties":
                     {
-                     "enemytype":"metal"
+                     "enemyType":"metal"
                     },
                  "propertytypes":
                     {
-                     "enemytype":"string"
+                     "enemyType":"string"
                     },
                  "rotation":0,
                  "type":"",
@@ -516,11 +516,11 @@
                  "name":"metal_enemy",
                  "properties":
                     {
-                     "enemytype":"metal"
+                     "enemyType":"metal"
                     },
                  "propertytypes":
                     {
-                     "enemytype":"string"
+                     "enemyType":"string"
                     },
                  "rotation":0,
                  "type":"",
@@ -535,11 +535,11 @@
                  "name":"metal_enemy",
                  "properties":
                     {
-                     "enemytype":"metal"
+                     "enemyType":"metal"
                     },
                  "propertytypes":
                     {
-                     "enemytype":"string"
+                     "enemyType":"string"
                     },
                  "rotation":0,
                  "type":"",
@@ -554,11 +554,11 @@
                  "name":"metal_enemy",
                  "properties":
                     {
-                     "enemytype":"metal"
+                     "enemyType":"metal"
                     },
                  "propertytypes":
                     {
-                     "enemytype":"string"
+                     "enemyType":"string"
                     },
                  "rotation":0,
                  "type":"",
@@ -573,11 +573,11 @@
                  "name":"metal_enemy",
                  "properties":
                     {
-                     "enemytype":"metal"
+                     "enemyType":"metal"
                     },
                  "propertytypes":
                     {
-                     "enemytype":"string"
+                     "enemyType":"string"
                     },
                  "rotation":0,
                  "type":"",
@@ -592,11 +592,11 @@
                  "name":"metal_enemy",
                  "properties":
                     {
-                     "enemytype":"metal"
+                     "enemyType":"metal"
                     },
                  "propertytypes":
                     {
-                     "enemytype":"string"
+                     "enemyType":"string"
                     },
                  "rotation":0,
                  "type":"",

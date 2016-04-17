@@ -28,6 +28,25 @@ namespace Assets.Scripts.map
         public int width;
         public int x;
         public int y;
+        public TiledObject[] objects;
+    }
+
+    [Serializable]
+    public class TiledObject
+    {
+        public int width;
+        public int height;
+        public int x;
+        public int y;
+        public Property properties;
+        public string name;
+    }
+
+    [Serializable]
+    public class Property
+    {
+        public string enemyType;
+        public string special_tile;
     }
 
     [Serializable]
@@ -35,5 +54,13 @@ namespace Assets.Scripts.map
     {
         public string image;
         public string name;
+        public TileProperty[] tileproperties;
+    }
+
+    [Serializable]
+    public class TileProperty
+    {
+        public int id;
+        public string musicType;
     }
 }

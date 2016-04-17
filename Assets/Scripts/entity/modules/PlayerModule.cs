@@ -1,4 +1,5 @@
-﻿using System;
+﻿using Assets.Scripts.message.custom;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -17,5 +18,15 @@ namespace Assets.Scripts.entity.modules
             _template = template;
         }
 
+        public override void RegisterSubscriptions()
+        {
+            _bus.Subscribe<TileEnteredMessage>(OnTileEntered);
+        }
+
+        private void OnTileEntered(TileEnteredMessage msg)
+        {
+            //if (msg.Tile.BaseTemplate.MusicType.Value == _data.CurrentMusicType.Value)
+            //    Debug.Log("same music type");
+        }
     }
 }

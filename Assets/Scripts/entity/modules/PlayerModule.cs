@@ -26,9 +26,13 @@ namespace Assets.Scripts.entity.modules
 
         private void OnTileEntered(TileEnteredMessage msg)
         {
-            if (msg.Tile.BaseTemplate.MusicType.Value != _data.CurrentMusicType.Value)
+            if (msg.Tile.IsDestroyable() && msg.Tile.BaseTemplate.MusicType.Value != _data.CurrentMusicType.Value && !msg.Tile.IsObstacle())
             {
-                ((TileComponent)msg.Sender).StartDropping();
+                ((TileComponent)msg.Sender).StartDropping(1);
+            }
+            else if (msg.Tile.IsObstacle() && msg.Tile.BaseTemplate.MusicType.Value.Contains(_data.CurrentMusicType.Value))
+            {
+                ((TileComponent)msg.Sender).StartDropping(2);
             }
         }
     }

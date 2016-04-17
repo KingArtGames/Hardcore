@@ -9,7 +9,7 @@ GameObject:
   m_Component:
   - 4: {fileID: 463660}
   - 212: {fileID: 21254446}
-  m_Layer: 8
+  m_Layer: 9
   m_Name: SpriteHead
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -25,7 +25,7 @@ GameObject:
   m_Component:
   - 4: {fileID: 491548}
   - 82: {fileID: 8262864}
-  m_Layer: 8
+  m_Layer: 9
   m_Name: AudioSource
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -40,7 +40,7 @@ GameObject:
   serializedVersion: 4
   m_Component:
   - 4: {fileID: 450690}
-  m_Layer: 8
+  m_Layer: 9
   m_Name: EffectContainer
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -58,7 +58,7 @@ GameObject:
   - 33: {fileID: 3342012}
   - 135: {fileID: 13511880}
   - 114: {fileID: 11440364}
-  m_Layer: 8
+  m_Layer: 9
   m_Name: Sphere
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -79,7 +79,8 @@ GameObject:
   - 95: {fileID: 9514050}
   - 114: {fileID: 11440534}
   - 212: {fileID: 21272072}
-  m_Layer: 8
+  - 114: {fileID: 11472152}
+  m_Layer: 9
   m_Name: CharacterComponent
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -97,7 +98,7 @@ GameObject:
   - 108: {fileID: 10865612}
   - 114: {fileID: 11412080}
   - 114: {fileID: 11461344}
-  m_Layer: 8
+  m_Layer: 9
   m_Name: SpotLight
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -112,7 +113,7 @@ GameObject:
   serializedVersion: 4
   m_Component:
   - 4: {fileID: 487176}
-  m_Layer: 8
+  m_Layer: 9
   m_Name: EnemyClassicPrefab
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -427,8 +428,20 @@ MonoBehaviour:
   AudioSource: {fileID: 8262864}
   MorphSoundDelayed: 0
   HeadSprite: {fileID: 21254446}
+  UiFillBar: {fileID: 0}
   activeAttack: {fileID: 0}
   isWalking: 0
+--- !u!114 &11472152
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 149090}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: b63a1001446a9f840a0a15ae488ab92f, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!135 &13511880
 SphereCollider:
   m_ObjectHideFlags: 1
@@ -479,7 +492,7 @@ SpriteRenderer:
   m_LightmapParameters: {fileID: 0}
   m_SortingLayerID: 0
   m_SortingOrder: 1
-  m_Sprite: {fileID: 21300000, guid: 1ba4e805ad213f247962b3237628e463, type: 3}
+  m_Sprite: {fileID: 21300000, guid: e0add0001b3b38348af31b49c0dad0f6, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0
   m_FlipY: 0
@@ -519,7 +532,11 @@ Prefab:
   serializedVersion: 2
   m_Modification:
     m_TransformParent: {fileID: 0}
-    m_Modifications: []
+    m_Modifications:
+    - target: {fileID: 0}
+      propertyPath: m_Layer
+      value: 9
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 0}
   m_RootGameObject: {fileID: 190816}

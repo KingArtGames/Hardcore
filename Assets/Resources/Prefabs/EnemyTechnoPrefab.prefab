@@ -8,7 +8,7 @@ GameObject:
   serializedVersion: 4
   m_Component:
   - 4: {fileID: 418212}
-  m_Layer: 8
+  m_Layer: 9
   m_Name: EffectContainer
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -24,7 +24,7 @@ GameObject:
   m_Component:
   - 4: {fileID: 426578}
   - 212: {fileID: 21229250}
-  m_Layer: 8
+  m_Layer: 9
   m_Name: SpriteHead
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -40,7 +40,7 @@ GameObject:
   m_Component:
   - 4: {fileID: 434328}
   - 82: {fileID: 8250394}
-  m_Layer: 8
+  m_Layer: 9
   m_Name: AudioSource
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -58,7 +58,7 @@ GameObject:
   - 108: {fileID: 10875946}
   - 114: {fileID: 11480120}
   - 114: {fileID: 11447780}
-  m_Layer: 8
+  m_Layer: 9
   m_Name: SpotLight
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -73,7 +73,9 @@ GameObject:
   serializedVersion: 4
   m_Component:
   - 4: {fileID: 464844}
-  m_Layer: 8
+  - 114: {fileID: 11455666}
+  - 135: {fileID: 13548442}
+  m_Layer: 9
   m_Name: EnemyTechnoPrefab
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -91,7 +93,7 @@ GameObject:
   - 33: {fileID: 3370798}
   - 135: {fileID: 13522876}
   - 114: {fileID: 11442102}
-  m_Layer: 8
+  m_Layer: 9
   m_Name: Sphere
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -112,7 +114,7 @@ GameObject:
   - 95: {fileID: 9586254}
   - 114: {fileID: 11459632}
   - 212: {fileID: 21263232}
-  m_Layer: 8
+  m_Layer: 9
   m_Name: CharacterComponent
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -373,6 +375,7 @@ MonoBehaviour:
   AudioSource: {fileID: 8250394}
   MorphSoundDelayed: 0
   HeadSprite: {fileID: 21229250}
+  UiFillBar: {fileID: 0}
   activeAttack: {fileID: 0}
   isWalking: 0
 --- !u!114 &11442102
@@ -405,6 +408,17 @@ MonoBehaviour:
   delay: 0.07
   SpotLight: {fileID: 10875946}
   LightMultiplyer: 100
+--- !u!114 &11455666
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 179390}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: b63a1001446a9f840a0a15ae488ab92f, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!114 &11459632
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -450,6 +464,18 @@ SphereCollider:
   m_Material: {fileID: 0}
   m_IsTrigger: 0
   m_Enabled: 0
+  serializedVersion: 2
+  m_Radius: 0.5
+  m_Center: {x: 0, y: 0, z: 0}
+--- !u!135 &13548442
+SphereCollider:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 179390}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 1
+  m_Enabled: 1
   serializedVersion: 2
   m_Radius: 0.5
   m_Center: {x: 0, y: 0, z: 0}
@@ -519,7 +545,11 @@ Prefab:
   serializedVersion: 2
   m_Modification:
     m_TransformParent: {fileID: 0}
-    m_Modifications: []
+    m_Modifications:
+    - target: {fileID: 0}
+      propertyPath: m_Layer
+      value: 9
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 0}
   m_RootGameObject: {fileID: 179390}

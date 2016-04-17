@@ -87,6 +87,7 @@ namespace Assets.Scripts
                             GameObject go = Instantiate(EnemyPrefab);
                             go.transform.position = spawnPosition *= _scale;
                             go.transform.SetParent(transform, false);
+                            go.GetComponentInChildren<EnemyComponent>().GameEntity = enemy;
                         }
                         else if (to.name.Contains("START"))
                         {

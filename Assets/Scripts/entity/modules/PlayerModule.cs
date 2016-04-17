@@ -28,7 +28,11 @@ namespace Assets.Scripts.entity.modules
         {
             if (msg.Tile.BaseTemplate.MusicType.Value != _data.CurrentMusicType.Value)
             {
-                ((TileComponent)msg.Sender).StartDropping();
+                ((TileComponent)msg.Sender).StartDropping(1);
+            }
+            if (msg.Tile.IsObstacle() && msg.Tile.BaseTemplate.MusicType.Value.Contains(_data.CurrentMusicType.Value))
+            {
+                ((TileComponent)msg.Sender).StartDropping(2);
             }
         }
     }

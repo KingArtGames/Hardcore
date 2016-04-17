@@ -62,6 +62,8 @@ public class PlayerComponent : MonoBehaviour
     {
         Refresh();
 
+        GameEntity.GetModule<PlayerModule>().BaseData.CurrentMusicType.Value = musikType.ToString();
+
         if (AudioSource.clip != null && !_activeAudioSources.ContainsKey(AudioSource.clip))
             _activeAudioSources.Add(AudioSource.clip, AudioSource.time);
         else if(AudioSource.clip != null)

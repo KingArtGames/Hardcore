@@ -26,11 +26,11 @@ namespace UnityStandardAssets.Characters.ThirdPerson
         private void Update()
         {
             if (Input.GetKeyDown(KeyCode.Alpha1))
-                _bus.Publish(new PlayerChangedMusikTypeMessage(this, MusicTypes.Metal));
+                _bus.Publish(new PlayerChangedMusikTypeMessage(this, MusicTypes.metal));
             if (Input.GetKeyDown(KeyCode.Alpha2))
-                _bus.Publish(new PlayerChangedMusikTypeMessage(this, MusicTypes.Classic));
+                _bus.Publish(new PlayerChangedMusikTypeMessage(this, MusicTypes.classic));
             if (Input.GetKeyDown(KeyCode.Alpha3))
-                _bus.Publish(new PlayerChangedMusikTypeMessage(this, MusicTypes.Techno));
+                _bus.Publish(new PlayerChangedMusikTypeMessage(this, MusicTypes.techno));
         }
 
 

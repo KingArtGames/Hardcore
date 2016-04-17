@@ -1,0 +1,281 @@
+fileFormatVersion: 2
+guid: 782cd0b52935c1e42a82cc54c4f566ad
+timeCreated: 1460880544
+licenseType: Free
+TextureImporter:
+  fileIDToRecycleName:
+    21300000: Hardcore_texture_tiles2_0
+    21300002: Hardcore_texture_tiles2_1
+    21300004: Hardcore_texture_tiles2_2
+    21300006: Hardcore_texture_tiles2_3
+    21300008: Hardcore_texture_tiles2_4
+    21300010: Hardcore_texture_tiles2_5
+    21300012: Hardcore_texture_tiles2_6
+    21300014: Hardcore_texture_tiles2_7
+    21300016: Hardcore_texture_tiles2_8
+    21300018: Hardcore_texture_tiles2_9
+    21300020: Hardcore_texture_tiles2_10
+    21300022: Hardcore_texture_tiles2_11
+    21300024: Hardcore_texture_tiles2_12
+    21300026: Hardcore_texture_tiles2_13
+  serializedVersion: 2
+  mipmaps:
+    mipMapMode: 0
+    enableMipMap: 1
+    linearTexture: 0
+    correctGamma: 0
+    fadeOut: 0
+    borderMipMap: 0
+    mipMapFadeDistanceStart: 1
+    mipMapFadeDistanceEnd: 3
+  bumpmap:
+    convertToNormalMap: 0
+    externalNormalMap: 0
+    heightScale: 0.25
+    normalMapFilter: 0
+  isReadable: 0
+  grayScaleToAlpha: 0
+  generateCubemap: 0
+  cubemapConvolution: 0
+  cubemapConvolutionSteps: 7
+  cubemapConvolutionExponent: 1.5
+  seamlessCubemap: 0
+  textureFormat: -1
+  maxTextureSize: 2048
+  textureSettings:
+    filterMode: 0
+    aniso: 16
+    mipBias: -1
+    wrapMode: 1
+  nPOTScale: 0
+  lightmap: 0
+  rGBM: 0
+  compressionQuality: 50
+  allowsAlphaSplitting: 0
+  spriteMode: 2
+  spriteExtrude: 1
+  spriteMeshType: 1
+  alignment: 0
+  spritePivot: {x: 0.5, y: 0.5}
+  spriteBorder: {x: 0, y: 0, z: 0, w: 0}
+  spritePixelsToUnits: 100
+  alphaIsTransparency: 1
+  textureType: 8
+  buildTargetSettings: []
+  spriteSheet:
+    sprites:
+    - name: Hardcore_texture_tiles2_0
+      rect:
+        serializedVersion: 2
+        x: 0
+        y: 512
+        width: 512
+        height: 512
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline:
+      - - {x: -146.5, y: 147}
+        - {x: -146.5, y: -146}
+        - {x: 146.5, y: -146}
+        - {x: 146.5, y: 147}
+    - name: Hardcore_texture_tiles2_1
+      rect:
+        serializedVersion: 2
+        x: 512
+        y: 512
+        width: 512
+        height: 512
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline:
+      - - {x: -146, y: 147}
+        - {x: -146, y: -146}
+        - {x: 147, y: -146}
+        - {x: 147, y: 147}
+    - name: Hardcore_texture_tiles2_2
+      rect:
+        serializedVersion: 2
+        x: 1024
+        y: 512
+        width: 512
+        height: 512
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline:
+      - - {x: -146.5, y: 147}
+        - {x: -146.5, y: -146}
+        - {x: 146.5, y: -146}
+        - {x: 146.5, y: 147}
+    - name: Hardcore_texture_tiles2_3
+      rect:
+        serializedVersion: 2
+        x: 1536
+        y: 512
+        width: 512
+        height: 512
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline:
+      - - {x: -146, y: 147}
+        - {x: -146, y: -146}
+        - {x: 147, y: -146}
+        - {x: 147, y: 147}
+    - name: Hardcore_texture_tiles2_4
+      rect:
+        serializedVersion: 2
+        x: 2048
+        y: 512
+        width: 512
+        height: 512
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline:
+      - - {x: -146.5, y: 147}
+        - {x: -146.5, y: -146}
+        - {x: 146.5, y: -146}
+        - {x: 146.5, y: 147}
+    - name: Hardcore_texture_tiles2_5
+      rect:
+        serializedVersion: 2
+        x: 2560
+        y: 512
+        width: 512
+        height: 512
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline:
+      - - {x: -146, y: 147}
+        - {x: -146, y: -146}
+        - {x: 147, y: -146}
+        - {x: 147, y: 147}
+    - name: Hardcore_texture_tiles2_6
+      rect:
+        serializedVersion: 2
+        x: 3072
+        y: 512
+        width: 512
+        height: 512
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline:
+      - - {x: -146.5, y: 147}
+        - {x: -146.5, y: -146}
+        - {x: 146.5, y: -146}
+        - {x: 146.5, y: 147}
+    - name: Hardcore_texture_tiles2_7
+      rect:
+        serializedVersion: 2
+        x: 0
+        y: 0
+        width: 512
+        height: 512
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline:
+      - - {x: -146.5, y: 146.5}
+        - {x: -146.5, y: -146.5}
+        - {x: 146.5, y: -146.5}
+        - {x: 146.5, y: 146.5}
+    - name: Hardcore_texture_tiles2_8
+      rect:
+        serializedVersion: 2
+        x: 512
+        y: 0
+        width: 512
+        height: 512
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline:
+      - - {x: -146, y: 146.5}
+        - {x: -146, y: -146.5}
+        - {x: 147, y: -146.5}
+        - {x: 147, y: 146.5}
+    - name: Hardcore_texture_tiles2_9
+      rect:
+        serializedVersion: 2
+        x: 1024
+        y: 0
+        width: 512
+        height: 512
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline:
+      - - {x: -146.5, y: 146.5}
+        - {x: -146.5, y: -146.5}
+        - {x: 146.5, y: -146.5}
+        - {x: 146.5, y: 146.5}
+    - name: Hardcore_texture_tiles2_10
+      rect:
+        serializedVersion: 2
+        x: 1536
+        y: 0
+        width: 512
+        height: 512
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline:
+      - - {x: -146, y: 146.5}
+        - {x: -146, y: -146.5}
+        - {x: 147, y: -146.5}
+        - {x: 147, y: 146.5}
+    - name: Hardcore_texture_tiles2_11
+      rect:
+        serializedVersion: 2
+        x: 2048
+        y: 0
+        width: 512
+        height: 512
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline:
+      - - {x: -146.5, y: 146.5}
+        - {x: -146.5, y: -146.5}
+        - {x: 146.5, y: -146.5}
+        - {x: 146.5, y: 146.5}
+    - name: Hardcore_texture_tiles2_12
+      rect:
+        serializedVersion: 2
+        x: 2560
+        y: 0
+        width: 512
+        height: 512
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline:
+      - - {x: -146, y: 146.5}
+        - {x: -146, y: -146.5}
+        - {x: 147, y: -146.5}
+        - {x: 147, y: 146.5}
+    - name: Hardcore_texture_tiles2_13
+      rect:
+        serializedVersion: 2
+        x: 3072
+        y: 0
+        width: 512
+        height: 512
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline:
+      - - {x: -146.5, y: 146.5}
+        - {x: -146.5, y: -146.5}
+        - {x: 146.5, y: -146.5}
+        - {x: 146.5, y: 146.5}
+    outline: []
+  spritePackingTag: 
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 

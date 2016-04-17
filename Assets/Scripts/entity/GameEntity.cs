@@ -54,9 +54,10 @@ namespace Assets.Scripts.entity
 
     public enum MusicTypes
     {
-        Metal,
-        Classic,
-        Techno
+        metal,
+        classic,
+        techno,
+        Neutral
     }
 
     public enum EntityTypes

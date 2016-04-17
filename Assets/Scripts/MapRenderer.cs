@@ -48,6 +48,19 @@ namespace Assets.Scripts
                 _tiles[sp.name] = sp;
             }
 
+            Dictionary<int, Template> musicTypes = new Dictionary<int,Template>();
+            foreach (TileSet set in msg.Map.tilesets)
+            {
+                if(set.tileproperties != null)
+                {
+                    foreach (TileProperty tp in set.tileproperties)
+                    {
+                        musicTypes[tp.id] = new Template() { GameType = new GameType(EntityTypes.Tile.ToString()), MusicType = new GameType(tp.musicType) };
+                    }
+                    break;
+                }
+            }
+
             foreach (TileLayer layer in msg.Map.layers)
             {
                 if (layer.name == "GameObjects")
@@ -64,23 +77,25 @@ namespace Assets.Scripts
                     for (int i = 0; i < layer.data.Length; i++)
                     {
                         column = i % msg.Map.width;
-                        if (layer.data[i] - 1 >= 0)
+                        if (i % (msg.Map.width) == 0 && i > 0) row++;
+                        int id = layer.data[i] - 1;
+
+                        if (id >= 0)
                         {
                             GameObject go = Instantiate(TilePrefab);
-                            Vector3 pos = new Vector3(column * msg.Map.tilewidth * 0.01f, 0.1f, row * msg.Map.tileheight * 0.01f);
+                            Vector3 pos = new Vector3(column * msg.Map.tilewidth * 0.01f, 0.1f, -row * msg.Map.tileheight * 0.01f);
                             go.transform.position = pos;
                             go.transform.SetParent(transform, false);
 
-                            string id = msg.Map.tilesets[0].name + "_" + (layer.data[i] - 1);
-                            go.GetComponent<SpriteRenderer>().sprite = _tiles[id];
+                            string sprite = msg.Map.tilesets[0].name + "_" + id;
+                            go.GetComponent<SpriteRenderer>().sprite = _tiles.ContainsKey(sprite) ? _tiles[sprite] : null;
 
                             GameEntity tile = new GameEntity(new GameType(EntityTypes.Tile.ToString()));
                             // add tile module based on how tile is designed
-                            tile.AddModule<TileModule>(GetTileModule(tile, new Data(), new Template()));
+                            tile.AddModule<TileModule>(GetTileModule(tile, musicTypes.ContainsKey(id) ? musicTypes[id] : new Template()));
                             go.GetComponent<TileComponent>().Tile = tile;
                         }
 
-                        if (i % (msg.Map.width) == 0 && i > 0) row++;
                     }
                 }
 
@@ -89,9 +104,9 @@ namespace Assets.Scripts
             _bus.Publish<LoadPlayerMessage>(new LoadPlayerMessage(this, _entityManger.GetEnitiesOfType(new GameType(EntityTypes.Player.ToString())).First()));
         }
 
-        private TileModule GetTileModule(GameEntity tile, Data data, Template template)
+        private TileModule GetTileModule(GameEntity tile, Template template)
         {
-            TileModule result = new TileModule(tile, _bus, data, template);
+            TileModule result = new TileModule(tile, _bus, new Data() { CurrentMusicType = template.MusicType }, template);
             return result;
         }
 

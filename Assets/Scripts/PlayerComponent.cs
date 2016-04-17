@@ -6,7 +6,6 @@ using System.Collections.Generic;
 using UnityStandardAssets.Characters.ThirdPerson;
 using TinyMessenger;
 using Assets.Scripts.message.custom;
-using UnityEngine.Audio;
 
 public class PlayerComponent : MonoBehaviour 
 {
@@ -24,10 +23,6 @@ public class PlayerComponent : MonoBehaviour
     private IMessageBus _bus;
 
     private MusicTypes _activeMusikType;
-    private AudioMixer _mixer;
-    private AudioMixerSnapshot _metalSnapShot;
-    private AudioMixerSnapshot _classicSnapShot;
-    private AudioMixerSnapshot _TechnoSnapShot;
 
     private GameEntity _gameEntity;
     public GameEntity GameEntity
@@ -42,7 +37,7 @@ public class PlayerComponent : MonoBehaviour
         _bus.Subscribe<PlayerChangedMusikTypeMessage>(OnSwitchType);
         _activeAudioSources = new Dictionary<AudioClip, float>();
         _mixer = Resources.Load<AudioMixer>("Audio/Master");
-        SwitchType(MusicTypes.Metal);
+        SwitchType(MusicTypes.metal);
     }
 
     private void Refresh()
@@ -60,23 +55,20 @@ public class PlayerComponent : MonoBehaviour
 
         switchAnimation(_activeMusikType, musikType);
 
-        if (musikType == MusicTypes.Metal)
+        if (musikType == MusicTypes.metal)
         {
             Spotlight.color = Color.blue;
             AudioSource.clip = Resources.Load<AudioClip>("Audio/music/metal");
-            AudioSource.outputAudioMixerGroup = _mixer.FindMatchingGroups("music_metal")[0];
         }
-        if (musikType == MusicTypes.Classic)
+        if (musikType == MusicTypes.classic)
         {
             Spotlight.color = Color.red;
             AudioSource.clip = Resources.Load<AudioClip>("Audio/music/classic");
-            AudioSource.outputAudioMixerGroup = _mixer.FindMatchingGroups("music_classic")[0];
         }
-        if (musikType == MusicTypes.Techno)
+        if (musikType == MusicTypes.techno)
         {
             Spotlight.color = Color.green;
             AudioSource.clip = Resources.Load<AudioClip>("Audio/music/electro");
-            AudioSource.outputAudioMixerGroup = _mixer.FindMatchingGroups("music_techno")[0];
         }
         _activeMusikType = musikType;
         InstantiateParticleEffect(musikType);

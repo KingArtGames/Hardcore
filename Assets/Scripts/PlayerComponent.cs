@@ -6,6 +6,7 @@ using System.Collections.Generic;
 using UnityStandardAssets.Characters.ThirdPerson;
 using TinyMessenger;
 using Assets.Scripts.message.custom;
+using UnityEngine.Audio;
 
 public class PlayerComponent : MonoBehaviour 
 {
@@ -23,6 +24,7 @@ public class PlayerComponent : MonoBehaviour
     private IMessageBus _bus;
 
     private MusicTypes _activeMusikType;
+    private AudioMixer _mixer; 
 
     private GameEntity _gameEntity;
     public GameEntity GameEntity
@@ -59,16 +61,19 @@ public class PlayerComponent : MonoBehaviour
         {
             Spotlight.color = Color.blue;
             AudioSource.clip = Resources.Load<AudioClip>("Audio/music/metal");
+            AudioSource.outputAudioMixerGroup = _mixer.FindMatchingGroups("music_metal")[0];
         }
         if (musikType == MusicTypes.classic)
         {
             Spotlight.color = Color.red;
             AudioSource.clip = Resources.Load<AudioClip>("Audio/music/classic");
+            AudioSource.outputAudioMixerGroup = _mixer.FindMatchingGroups("music_classic")[0];
         }
         if (musikType == MusicTypes.techno)
         {
             Spotlight.color = Color.green;
             AudioSource.clip = Resources.Load<AudioClip>("Audio/music/electro");
+            AudioSource.outputAudioMixerGroup = _mixer.FindMatchingGroups("music_techno")[0];
         }
         _activeMusikType = musikType;
         InstantiateParticleEffect(musikType);
@@ -94,8 +99,8 @@ public class PlayerComponent : MonoBehaviour
 
     private void switchAnimation(MusicTypes lastType, MusicTypes activeType)
     {
-        Debug.Log(lastType.ToString() + "To" + activeType.ToString());
-        SpriteAnimator.SetTrigger(lastType.ToString() + "To" + activeType.ToString());
+        Debug.Log(lastType.ToString() + "_to_" + activeType.ToString());
+        SpriteAnimator.SetTrigger(lastType.ToString() + "_to_" + activeType.ToString());
     }
 
     private void InstantiateParticleEffect(MusicTypes type)

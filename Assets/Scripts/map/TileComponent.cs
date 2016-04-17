@@ -1,8 +1,11 @@
 ﻿using Assets.Scripts.entity;
+using Assets.Scripts.manager;
+using Assets.Scripts.message.custom;
 using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
+using TinyMessenger;
 using UnityEngine;
 
 namespace Assets.Scripts.map
@@ -23,8 +26,9 @@ namespace Assets.Scripts.map
 
         public void OnCollisionEnter(Collision collision)
         {
-            Debug.Log("collision");
+            Initialiser.Instance.GetService<IMessageBus>().Publish(new TileEnteredMessage(this, _tile.GetModule<TileModule>()));
         }
+
 
     }
 }

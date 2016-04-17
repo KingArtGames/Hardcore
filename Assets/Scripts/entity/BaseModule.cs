@@ -11,11 +11,14 @@ namespace Assets.Scripts.entity
     {
         protected Data _data;
         protected Template _template;
+        protected IMessageBus _bus;
 
         public BaseModule(GameEntity owner, IMessageBus bus, Data data, Template template)
         {
             _data = data;
             _template = template;
+            _bus = bus;
+            RegisterSubscriptions();
         }
 
         public Data BaseData
@@ -26,6 +29,8 @@ namespace Assets.Scripts.entity
         {
             get { return _template; }
         }
+
+        public abstract void RegisterSubscriptions();
     }
 
     [Serializable]public class Data

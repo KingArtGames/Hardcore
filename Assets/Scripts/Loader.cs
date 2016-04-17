@@ -45,7 +45,7 @@ public class Loader : MonoBehaviour
         enemy1.Template = new Template()
         {
             MusicType = new GameType(MusicTypes.metal.ToString()),
-            GameType = new GameType(EntityTypes.Enemy.ToString()),
+            GameType = new GameType(EntityTypes.enemy.ToString()),
             SpawnPosition = new Vector2(5, 5)
         };
 
@@ -58,7 +58,7 @@ public class Loader : MonoBehaviour
         enemy2.Template = new Template()
         {
             MusicType = new GameType(MusicTypes.metal.ToString()),
-            GameType = new GameType(EntityTypes.Enemy.ToString()),
+            GameType = new GameType(EntityTypes.enemy.ToString()),
             SpawnPosition = new Vector2(5, 5)
         };
 
@@ -76,7 +76,7 @@ public class Loader : MonoBehaviour
                                 CurrentPosition = new Vector2(0, 0) };
         player.Template = new Template() { MusicType = new GameType(MusicTypes.classic.ToString()), 
                                         SpawnPosition = new Vector2(0, 0), 
-                                        GameType = new GameType(EntityTypes.Player.ToString()) };
+                                        GameType = new GameType(EntityTypes.player.ToString()) };
 
         string jsonPlayer = JsonUtility.ToJson(player, true);
         File.WriteAllText(Application.dataPath + CHARACTERS_PATH + "/player.json", jsonPlayer);

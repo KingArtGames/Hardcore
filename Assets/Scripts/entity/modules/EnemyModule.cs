@@ -17,6 +17,10 @@ namespace Assets.Scripts.entity.modules
             _template = template;
         }
 
+        public override void RegisterSubscriptions()
+        {
+            
+        }
     }
 
 }

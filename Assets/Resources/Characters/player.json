@@ -5,15 +5,15 @@
             "y": 0.0
         },
         "CurrentMusicType": {
-            "Value": "Classic"
+            "Value": "classic"
         }
     },
     "Template": {
         "GameType": {
-            "Value": "Player"
+            "Value": "player"
         },
         "MusicType": {
-            "Value": "Classic"
+            "Value": "classic"
         },
         "SpawnPosition": {
             "x": 0.0,

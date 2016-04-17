@@ -108,4 +108,13 @@ namespace Assets.Scripts.message.custom
         }
     }
 
+    public class TileEnteredMessage : BaseMessage
+    {
+        public TileModule Tile;
+        public TileEnteredMessage(object sender, TileModule tile)
+            : base(sender)
+        {
+            Tile = tile;
+        }
+    }
 }

@@ -17,5 +17,9 @@ namespace Assets.Scripts.map
             _template = template;
         }
 
+        public override void RegisterSubscriptions()
+        {
+            
+        }
     }
 }

@@ -16,7 +16,7 @@ namespace Assets.Scripts
     {
         private IMessageBus _bus;
         private IEntityManager _entityManger;
-        private const string TILES = "Tiles/";
+        private const string TILES = "Map/Tilesets/";
 
         public GameObject TilePrefab;
 
@@ -40,6 +40,8 @@ namespace Assets.Scripts
 
         private void OnMapLoaded(MapLoadedMessage msg)
         {
+            List<GameEntity> enemies = new List<GameEntity>();
+
             Sprite[] all = Resources.LoadAll<Sprite>(TILES + msg.Map.tilesets[0].name);
             foreach (Sprite sp in all)
             {
@@ -48,32 +50,49 @@ namespace Assets.Scripts
 
             foreach (TileLayer layer in msg.Map.layers)
             {
-                int row = 0;
-                int column = 0;
-                for (int i = 0; i < layer.data.Length; i++ )
+                if (layer.name == "GameObjects")
                 {
-                    column = i % msg.Map.width;
-
-                    if(layer.data[i] - 1 >= 0)
+                    foreach (TiledObject to in layer.objects)
                     {
-                        GameObject go = Instantiate(TilePrefab);
-                        Vector3 pos = new Vector3(column * msg.Map.tilewidth * 0.01f, 0.1f, row * msg.Map.tileheight * 0.01f);
-                        go.transform.position = pos;
-                        go.transform.SetParent(transform, false);
-
-                        string id = msg.Map.tilesets[0].name + "_" + (layer.data[i] - 1);
-                        go.GetComponent<SpriteRenderer>().sprite = _tiles[id];
-
-                        Tile tile = new Tile();
-                        // add tile module based on how tile is designed
-                        go.GetComponent<TileComponent>().Tile = tile;
+                        // add enemies based on the json file/object names
                     }
-                   
-                    if (i % (msg.Map.width) == 0 && i > 0) row++;
                 }
+                else if(layer.name == "Background")
+                {
+                    int row = 0;
+                    int column = 0;
+                    for (int i = 0; i < layer.data.Length; i++)
+                    {
+                        column = i % msg.Map.width;
+                        if (layer.data[i] - 1 >= 0)
+                        {
+                            GameObject go = Instantiate(TilePrefab);
+                            Vector3 pos = new Vector3(column * msg.Map.tilewidth * 0.01f, 0.1f, row * msg.Map.tileheight * 0.01f);
+                            go.transform.position = pos;
+                            go.transform.SetParent(transform, false);
+
+                            string id = msg.Map.tilesets[0].name + "_" + (layer.data[i] - 1);
+                            go.GetComponent<SpriteRenderer>().sprite = _tiles[id];
+
+                            GameEntity tile = new GameEntity(new GameType(EntityTypes.Tile.ToString()));
+                            // add tile module based on how tile is designed
+                            tile.AddModule<TileModule>(GetTileModule(tile, new Data(), new Template()));
+                            go.GetComponent<TileComponent>().Tile = tile;
+                        }
+
+                        if (i % (msg.Map.width) == 0 && i > 0) row++;
+                    }
+                }
+
             }
-            _bus.Publish<LoadEnemiesMessage>(new LoadEnemiesMessage(this, _entityManger.GetEnitiesOfType(new GameType(EntityTypes.Enemy.ToString()))));
+            _bus.Publish<LoadEnemiesMessage>(new LoadEnemiesMessage(this, enemies));
             _bus.Publish<LoadPlayerMessage>(new LoadPlayerMessage(this, _entityManger.GetEnitiesOfType(new GameType(EntityTypes.Player.ToString())).First()));
+        }
+
+        private TileModule GetTileModule(GameEntity tile, Data data, Template template)
+        {
+            TileModule result = new TileModule(tile, _bus, data, template);
+            return result;
         }
 
     }

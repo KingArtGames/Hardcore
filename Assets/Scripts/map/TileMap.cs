@@ -28,6 +28,24 @@ namespace Assets.Scripts.map
         public int width;
         public int x;
         public int y;
+        public TiledObject[] objects;
+    }
+
+    [Serializable]
+    public class TiledObject
+    {
+        public int width;
+        public int height;
+        public int x;
+        public int y;
+        public Property properties;
+    }
+
+    [Serializable]
+    public class Property
+    {
+        public string enemySpawn;
+        public string testProperty;
     }
 
     [Serializable]

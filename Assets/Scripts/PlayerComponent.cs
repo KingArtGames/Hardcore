@@ -16,6 +16,7 @@ public class PlayerComponent : MonoBehaviour
     public Light Spotlight;
     public AudioSource AudioSource;
     public float MorphSoundDelayed;
+    public SpriteRenderer HeadSprite;
 
     [HideInInspector]
     public ParticleSystem activeAttack;
@@ -107,6 +108,9 @@ public class PlayerComponent : MonoBehaviour
         Debug.Log(lastType.ToString() + "_to_" + activeType.ToString());
         SpriteAnimator.SetTrigger(lastType.ToString() + "_to_" + activeType.ToString());
         PlayMusicSwitchSound();
+        Sprite sprite = Resources.Load<Sprite>("Animation/"+ activeType);
+        if(sprite != null)
+            StartCoroutine(LateSetSpriteAfterAnimation(sprite, 2.5f));
     }
 
     private void PlayMusicSwitchSound()
@@ -165,5 +169,10 @@ public class PlayerComponent : MonoBehaviour
     {
         yield return new WaitForSeconds(1);
         Destroy(obj);
+    }
+    IEnumerator LateSetSpriteAfterAnimation(Sprite sprite, float duration)
+    {
+        yield return new WaitForSeconds(duration);
+        HeadSprite.sprite = sprite;
     }
 }

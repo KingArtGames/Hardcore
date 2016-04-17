@@ -7,6 +7,7 @@ using UnityStandardAssets.Characters.ThirdPerson;
 using TinyMessenger;
 using Assets.Scripts.message.custom;
 using UnityEngine.Audio;
+using Assets.Scripts.entity.modules;
 
 public class PlayerComponent : MonoBehaviour 
 {
@@ -42,6 +43,10 @@ public class PlayerComponent : MonoBehaviour
         _bus.Subscribe<PlayerChangedMusikTypeMessage>(OnSwitchType);
         _activeAudioSources = new Dictionary<AudioClip, float>();
         _mixer = Resources.Load<AudioMixer>("Audio/Master");
+
+        GameEntity = new GameEntity(new GameType(EntityTypes.player.ToString()));
+        GameEntity.AddModule<PlayerModule>(new PlayerModule(GameEntity, _bus, new Data() { CurrentMusicType = new GameType(MusicTypes.metal.ToString()) }, new Template()));
+
         SwitchType(MusicTypes.metal);
     }
 

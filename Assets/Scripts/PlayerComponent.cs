@@ -20,6 +20,7 @@ public class PlayerComponent : MonoBehaviour
     public float MorphSoundDelayed;
     public SpriteRenderer HeadSprite;
     public MeterFillScript UiFillBar;
+    public float CoolDownTimer;
 
     [HideInInspector]
     public ParticleSystem activeAttack;
@@ -30,6 +31,7 @@ public class PlayerComponent : MonoBehaviour
     private IMessageBus _bus;
     private bool musicIsDropped = false;
     private bool PlayerIsInMusicBubble;
+    private Time _startTime;
 
     private MusicTypes _activeMusikType;
     private AudioMixer _mixer; 
@@ -52,6 +54,7 @@ public class PlayerComponent : MonoBehaviour
         _gameEntity.AddModule<PlayerModule>(new PlayerModule(_gameEntity, _bus, new Data() { CurrentMusicType = new GameType(MusicTypes.metal.ToString()) }, new Template()));
 
         SwitchType(MusicTypes.metal);
+        CoolDownTimer = 13;
     }
 
     private void Update()
@@ -74,58 +77,69 @@ public class PlayerComponent : MonoBehaviour
                 _gameEntity.GetModule<PlayerModule>().BaseData.MusicHealthMeter -= 1;
             UiFillBar.reduceByAmount(0.1f);
         }
+
+        if(CoolDownTimer >=0)
+            CoolDownTimer -= Time.deltaTime;
     }
     private void Refresh()
     {
     }
     private void SwitchType(MusicTypes musikType)
     {
-        Refresh();
-
-        GameEntity.GetModule<PlayerModule>().BaseData.CurrentMusicType.Value = musikType.ToString();
-
-        if (AudioSource.clip != null && !_activeAudioSources.ContainsKey(AudioSource.clip))
-            _activeAudioSources.Add(AudioSource.clip, AudioSource.time);
-        else if(AudioSource.clip != null)
-            _activeAudioSources[AudioSource.clip] = AudioSource.time;
-
-        AudioSource.Stop();
-        switchAnimation(_activeMusikType, musikType);
-
-        if (musikType == MusicTypes.metal)
+        Debug.Log(CoolDownTimer);
+        if (musikType != _activeMusikType && CoolDownTimer < 0)
         {
-            Spotlight.color = Color.blue;
-            foreach (Light sp in Spotlight.GetComponentsInChildren<Light>())
-            {
-                sp.color = new Color(0.0f, 0.082f, 1.0f, 1.0f);
-            }
-            AudioSource.clip = Resources.Load<AudioClip>("Audio/music/metal");
-            AudioSource.outputAudioMixerGroup = _mixer.FindMatchingGroups("music_metal")[0];
-        }
-        if (musikType == MusicTypes.classic)
-        {
-            Spotlight.color = Color.red;
-            foreach(Light sp in Spotlight.GetComponentsInChildren<Light>())
-            {
-                sp.color = new Color(0.992f, 0.102f, 0.102f, 1.0f);
-            }
-            AudioSource.clip = Resources.Load<AudioClip>("Audio/music/classic");
-            AudioSource.outputAudioMixerGroup = _mixer.FindMatchingGroups("music_classic")[0];
-        }
-        if (musikType == MusicTypes.techno)
-        {
-            Spotlight.color = Color.green;
-            foreach (Light sp in Spotlight.GetComponentsInChildren<Light>())
-            {
-                sp.color = new Color(0.176f, 0.659f, 0.176f, 1.0f);
-            }
-            AudioSource.clip = Resources.Load<AudioClip>("Audio/music/electro");
-            AudioSource.outputAudioMixerGroup = _mixer.FindMatchingGroups("music_techno")[0];
-        }
-        _activeMusikType = musikType;
-        InstantiateParticleEffect(musikType);
+            Refresh();
 
-        GetAudioSourceTime();      
+            GameEntity.GetModule<PlayerModule>().BaseData.CurrentMusicType.Value = musikType.ToString();
+
+            if (AudioSource.clip != null && !_activeAudioSources.ContainsKey(AudioSource.clip))
+                _activeAudioSources.Add(AudioSource.clip, AudioSource.time);
+            else if (AudioSource.clip != null)
+                _activeAudioSources[AudioSource.clip] = AudioSource.time;
+
+            AudioSource.Stop();
+            switchAnimation(_activeMusikType, musikType);
+
+            if (musikType == MusicTypes.metal)
+            {
+                Spotlight.color = Color.blue;
+                foreach (Light sp in Spotlight.GetComponentsInChildren<Light>())
+                {
+                    sp.color = new Color(0.0f, 0.082f, 1.0f, 1.0f);
+                }
+                AudioSource.clip = Resources.Load<AudioClip>("Audio/music/metal");
+                AudioSource.outputAudioMixerGroup = _mixer.FindMatchingGroups("music_metal")[0];
+            }
+            if (musikType == MusicTypes.classic)
+            {
+                Spotlight.color = Color.red;
+                foreach (Light sp in Spotlight.GetComponentsInChildren<Light>())
+                {
+                    sp.color = new Color(0.992f, 0.102f, 0.102f, 1.0f);
+                }
+                AudioSource.clip = Resources.Load<AudioClip>("Audio/music/classic");
+                AudioSource.outputAudioMixerGroup = _mixer.FindMatchingGroups("music_classic")[0];
+            }
+            if (musikType == MusicTypes.techno)
+            {
+                Spotlight.color = Color.green;
+                foreach (Light sp in Spotlight.GetComponentsInChildren<Light>())
+                {
+                    sp.color = new Color(0.176f, 0.659f, 0.176f, 1.0f);
+                }
+                AudioSource.clip = Resources.Load<AudioClip>("Audio/music/electro");
+                AudioSource.outputAudioMixerGroup = _mixer.FindMatchingGroups("music_techno")[0];
+            }
+            _activeMusikType = musikType;
+            InstantiateParticleEffect(musikType);
+
+            GetAudioSourceTime();
+
+            _gameEntity.GetModule<PlayerModule>().BaseData.MusicHealthMeter = 0;
+            UiFillBar.setFillAmount(0);
+            CoolDownTimer = 3;
+        }
     }
 
     public void OnSwitchType(PlayerChangedMusikTypeMessage msg)

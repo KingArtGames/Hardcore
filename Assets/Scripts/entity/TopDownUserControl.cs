@@ -68,6 +68,9 @@ namespace UnityStandardAssets.Characters.ThirdPerson
                 _player.MoveSidewards(h * MovementSpeed);
                 _player.isWalking = true;
             }
+
+            if (Input.GetKeyDown(KeyCode.Space))
+                _player.ToggleDropMusic();
         }
     }
 }

@@ -7,6 +7,7 @@ using UnityStandardAssets.Characters.ThirdPerson;
 using TinyMessenger;
 using Assets.Scripts.message.custom;
 using UnityEngine.Audio;
+using UnityStandardAssets.Utility;
 using Assets.Scripts.entity.modules;
 
 public class PlayerComponent : MonoBehaviour 
@@ -18,6 +19,7 @@ public class PlayerComponent : MonoBehaviour
     public AudioSource AudioSource;
     public float MorphSoundDelayed;
     public SpriteRenderer HeadSprite;
+    public MeterFillScript UiFillBar;
 
     [HideInInspector]
     public ParticleSystem activeAttack;
@@ -26,6 +28,8 @@ public class PlayerComponent : MonoBehaviour
     private IEntityManager _entityManager;
     private Dictionary<AudioClip, float> _activeAudioSources;
     private IMessageBus _bus;
+    private bool musicIsDropped = false;
+    private bool PlayerIsInMusicBubble;
 
     private MusicTypes _activeMusikType;
     private AudioMixer _mixer; 
@@ -43,17 +47,32 @@ public class PlayerComponent : MonoBehaviour
         _bus.Subscribe<PlayerChangedMusikTypeMessage>(OnSwitchType);
         _activeAudioSources = new Dictionary<AudioClip, float>();
         _mixer = Resources.Load<AudioMixer>("Audio/Master");
-
-        GameEntity = new GameEntity(new GameType(EntityTypes.player.ToString()));
-        GameEntity.AddModule<PlayerModule>(new PlayerModule(GameEntity, _bus, new Data() { CurrentMusicType = new GameType(MusicTypes.metal.ToString()) }, new Template()));
-
         SwitchType(MusicTypes.metal);
+
+        _gameEntity = new GameEntity(new GameType(EntityTypes.player.ToString()));
+        _gameEntity.AddModule<PlayerModule>(new PlayerModule(_gameEntity, _bus,new Data(){ CurrentMusicType = new GameType(MusicTypes.metal.ToString())}, new Template()));
     }
 
     private void Update()
     {
         if (!SpriteAnimator.GetCurrentAnimatorStateInfo(0).IsName("Walk"))
             SpriteAnimator.SetBool("isWalking", isWalking);
+
+        if (transform.position.y < -10)
+            _bus.Publish(new GameOverMessage(this));
+
+        if (PlayerIsInMusicBubble)
+        {
+            if (_gameEntity.GetModule<PlayerModule>().BaseData.MusicHealthMeter <=100)
+                _gameEntity.GetModule<PlayerModule>().BaseData.MusicHealthMeter += 1;
+            UiFillBar.increaseByAmount(0.1f);
+        }
+        else
+        {
+            if (_gameEntity.GetModule<PlayerModule>().BaseData.MusicHealthMeter >= 0)
+                _gameEntity.GetModule<PlayerModule>().BaseData.MusicHealthMeter -= 1;
+            UiFillBar.reduceByAmount(0.1f);
+        }
     }
     private void Refresh()
     {
@@ -117,13 +136,11 @@ public class PlayerComponent : MonoBehaviour
         float audioStartTime;
         if (_activeAudioSources.TryGetValue(AudioSource.clip, out audioStartTime))
         {
-            AudioSource.SetScheduledStartTime(MorphSoundDelayed);
-            AudioSource.PlayScheduled(MorphSoundDelayed);
+            AudioSource.Play();
         }
         else if (!AudioSource.isPlaying)
         {
-            AudioSource.SetScheduledStartTime(MorphSoundDelayed);
-            AudioSource.PlayDelayed(MorphSoundDelayed);
+            AudioSource.Play();
         }
     }
 
@@ -189,6 +206,20 @@ public class PlayerComponent : MonoBehaviour
         Quaternion rotation = Quaternion.LookRotation(relativePos);
         return rotation;
     }
+    public void ToggleDropMusic()
+    {
+        if (!musicIsDropped)
+        {
+            Spotlight.GetComponent<FollowTarget>().target = null;
+            musicIsDropped = true;
+        }
+        else if(PlayerIsInMusicBubble)
+        {
+            Spotlight.GetComponent<FollowTarget>().target = transform;
+            Spotlight.transform.position = Vector3.zero;
+            musicIsDropped = false;
+        }
+    }
 
     IEnumerator DestroyObjectAfterTime(GameObject obj)
     {
@@ -201,5 +232,16 @@ public class PlayerComponent : MonoBehaviour
         yield return new WaitForSeconds(SpriteAnimator.GetCurrentAnimatorClipInfo(0).Length + 0.75f);
         HeadSprite.gameObject.SetActive(true); 
         HeadSprite.sprite = sprite;
+    }
+
+    void OnTriggerStay(Collider other)
+    {
+        if(!PlayerIsInMusicBubble)
+            PlayerIsInMusicBubble = true;
+    }
+    void OnTriggerExit(Collider other)
+    {
+        if(PlayerIsInMusicBubble)
+            PlayerIsInMusicBubble = false;
     }
 }

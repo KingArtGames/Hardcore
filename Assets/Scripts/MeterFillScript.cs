@@ -1,6 +1,7 @@
 ﻿using UnityEngine;
 using System.Collections;
 using UnityEngine.UI;
+using Assets.Scripts.entity;
 
 public class MeterFillScript : MonoBehaviour {
 
@@ -24,19 +25,19 @@ public class MeterFillScript : MonoBehaviour {
 
 	}
 
-    void reduceByAmount(int amount)
+    public void reduceByAmount(float amount)
     {
         this.fillAmount -= amount;
         fillImage.fillAmount -= amount / MAXAMOUNT;
     }
 
-    void increaseByAmount(int amount)
+    public void increaseByAmount(float amount)
     {
         this.fillAmount += amount;
         fillImage.fillAmount += amount / MAXAMOUNT;
     }
 
-    void changeMusicStyle(int newStyle)
+    public void changeMusicStyle(int newStyle)
     {
         musicState = newStyle;
         // TODO: Change icon according to music style

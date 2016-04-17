@@ -1,4 +1,5 @@
-﻿using Assets.Scripts.message.custom;
+﻿using Assets.Scripts.map;
+using Assets.Scripts.message.custom;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -25,8 +26,10 @@ namespace Assets.Scripts.entity.modules
 
         private void OnTileEntered(TileEnteredMessage msg)
         {
-            //if (msg.Tile.BaseTemplate.MusicType.Value == _data.CurrentMusicType.Value)
-            //    Debug.Log("same music type");
+            if (msg.Tile.BaseTemplate.MusicType.Value != _data.CurrentMusicType.Value)
+            {
+                ((TileComponent)msg.Sender).StartDropping();
+            }
         }
     }
 }

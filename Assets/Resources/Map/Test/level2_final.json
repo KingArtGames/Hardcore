@@ -53,6 +53,25 @@
                  "width":896,
                  "x":44080,
                  "y":4640
+                }, 
+                {
+                 "height":2032,
+                 "id":43,
+                 "name":"START",
+                 "properties":
+                    {
+                     "special_tile":"end"
+                    },
+                 "propertytypes":
+                    {
+                     "special_tile":"string"
+                    },
+                 "rotation":0,
+                 "type":"",
+                 "visible":true,
+                 "width":1020,
+                 "x":492,
+                 "y":21000
                 }],
          "offsetx":16,
          "offsety":0,
@@ -63,7 +82,7 @@
          "x":0,
          "y":0
         }],
- "nextobjectid":43,
+ "nextobjectid":44,
  "orientation":"orthogonal",
  "renderorder":"right-down",
  "tileheight":512,
@@ -89,6 +108,18 @@
                 {
                  "musicType":"metal"
                 },
+             "10":
+                {
+                 "specialTile":"musicBattery"
+                },
+             "11":
+                {
+                 "musicType":"neutral"
+                },
+             "12":
+                {
+                 "blocked":true
+                },
              "2":
                 {
                  "musicType":"metal"
@@ -108,6 +139,18 @@
              "6":
                 {
                  "musicType":"classic"
+                },
+             "7":
+                {
+                 "vibratingBlock":"metal"
+                },
+             "8":
+                {
+                 "vibratingTile":"classic"
+                },
+             "9":
+                {
+                 "vibratingTile":"techno"
                 }
             },
          "tilepropertytypes":
@@ -119,6 +162,18 @@
              "1":
                 {
                  "musicType":"string"
+                },
+             "10":
+                {
+                 "specialTile":"string"
+                },
+             "11":
+                {
+                 "musicType":"string"
+                },
+             "12":
+                {
+                 "blocked":"bool"
                 },
              "2":
                 {
@@ -139,6 +194,18 @@
              "6":
                 {
                  "musicType":"string"
+                },
+             "7":
+                {
+                 "vibratingBlock":"string"
+                },
+             "8":
+                {
+                 "vibratingTile":"string"
+                },
+             "9":
+                {
+                 "vibratingTile":"string"
                 }
             },
          "tilewidth":512

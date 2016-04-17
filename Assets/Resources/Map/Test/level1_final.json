@@ -640,6 +640,18 @@
                 {
                  "musicType":"metal"
                 },
+             "10":
+                {
+                 "specialTile":"musicBattery"
+                },
+             "11":
+                {
+                 "musicType":"neutral"
+                },
+             "12":
+                {
+                 "blocked":true
+                },
              "2":
                 {
                  "musicType":"metal"
@@ -659,6 +671,18 @@
              "6":
                 {
                  "musicType":"classic"
+                },
+             "7":
+                {
+                 "vibratingBlock":"metal"
+                },
+             "8":
+                {
+                 "vibratingBlock":"classic"
+                },
+             "9":
+                {
+                 "vibratingBlock":"techno"
                 }
             },
          "tilepropertytypes":
@@ -670,6 +694,18 @@
              "1":
                 {
                  "musicType":"string"
+                },
+             "10":
+                {
+                 "specialTile":"string"
+                },
+             "11":
+                {
+                 "musicType":"string"
+                },
+             "12":
+                {
+                 "blocked":"bool"
                 },
              "2":
                 {
@@ -690,6 +726,18 @@
              "6":
                 {
                  "musicType":"string"
+                },
+             "7":
+                {
+                 "vibratingBlock":"string"
+                },
+             "8":
+                {
+                 "vibratingBlock":"string"
+                },
+             "9":
+                {
+                 "vibratingBlock":"string"
                 }
             },
          "tilewidth":512

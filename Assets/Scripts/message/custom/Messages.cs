@@ -117,4 +117,21 @@ namespace Assets.Scripts.message.custom
             Tile = tile;
         }
     }
+
+
+    public class GoalReachedMessage : BaseMessage
+    {
+        public GoalReachedMessage(object sender)
+            : base(sender)
+        {
+
+        }
+    }
+    public class GameOverMessage : BaseMessage
+    {
+        public GameOverMessage (object sender)
+            : base(sender)
+        {
+        }
+    }
 }

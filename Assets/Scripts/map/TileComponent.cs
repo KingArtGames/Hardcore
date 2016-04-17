@@ -26,17 +26,15 @@ namespace Assets.Scripts.map
 
         private void Refresh()
         {
-            _destroyable = _tile.GetModule<TileModule>().IsDestroyable();
             _blocked = _tile.GetModule<TileModule>().IsBlocked();
             if (_blocked)
                 GetComponent<BoxCollider>().size = new Vector3(5, 5, 5);
-
-            _isObstacle = _tile.GetModule<TileModule>().IsObstacle();
         }
 
         public void OnCollisionEnter(Collision collision)
         {
-            if(_destroyable || _isObstacle)
+            _destroyable = _tile.GetModule<TileModule>().IsDestroyable();
+            if (_destroyable || _tile.GetModule<TileModule>().IsObstacle())
                 Initialiser.Instance.GetService<IMessageBus>().Publish(new TileEnteredMessage(this, _tile.GetModule<TileModule>()));
         }
 
@@ -61,7 +59,7 @@ namespace Assets.Scripts.map
 
         private IEnumerator<object> DropTile()
         {
-            yield return new WaitForSeconds(3);
+            yield return new WaitForSeconds(2);
             if(_destroyable)
                 Destroy(gameObject);
         }

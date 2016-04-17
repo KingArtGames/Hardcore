@@ -77,6 +77,7 @@ GameObject:
   m_Component:
   - 224: {fileID: 22411816}
   - 222: {fileID: 22296846}
+  - 114: {fileID: 11419890}
   m_Layer: 5
   m_Name: PowerMeter
   m_TagString: Untagged
@@ -112,7 +113,7 @@ GameObject:
   - 222: {fileID: 22203006}
   - 114: {fileID: 11403112}
   m_Layer: 5
-  m_Name: InnerBackground (1)
+  m_Name: InnerFill
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -137,14 +138,29 @@ MonoBehaviour:
       m_Calls: []
     m_TypeName: UnityEngine.UI.MaskableGraphic+CullStateChangedEvent, UnityEngine.UI,
       Version=1.0.0.0, Culture=neutral, PublicKeyToken=null
-  m_Sprite: {fileID: 21300000, guid: cd7f9756c085af14d95826b852b693c7, type: 3}
-  m_Type: 0
+  m_Sprite: {fileID: 21300000, guid: 872fa5cdb535574468195e38732851ef, type: 3}
+  m_Type: 3
   m_PreserveAspect: 1
   m_FillCenter: 1
-  m_FillMethod: 4
+  m_FillMethod: 1
   m_FillAmount: 1
   m_FillClockwise: 1
   m_FillOrigin: 0
+--- !u!114 &11419890
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 158780}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: d66e6eb134a462c49b9303c89c77b2f8, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  gameTimer: 0
+  fillAmount: 30
+  fillImage: {fileID: 11403112}
+  timeImage: {fileID: 11453164}
 --- !u!114 &11429146
 MonoBehaviour:
   m_ObjectHideFlags: 1

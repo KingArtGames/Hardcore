@@ -789,6 +789,7 @@ MonoBehaviour:
   MorphSoundDelayed: 3
   HeadSprite: {fileID: 21291020}
   UiFillBar: {fileID: 0}
+  CoolDownTimer: 0
   activeAttack: {fileID: 0}
   isWalking: 0
 --- !u!114 &11459728

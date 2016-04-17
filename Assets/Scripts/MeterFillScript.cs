@@ -37,6 +37,11 @@ public class MeterFillScript : MonoBehaviour {
         fillImage.fillAmount += amount / MAXAMOUNT;
     }
 
+    public void setFillAmount(float amount)
+    {
+        fillImage.fillAmount = amount;
+    }
+
     public void changeMusicStyle(int newStyle)
     {
         musicState = newStyle;

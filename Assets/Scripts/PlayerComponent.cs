@@ -9,15 +9,18 @@ using Assets.Scripts.message.custom;
 
 public class PlayerComponent : MonoBehaviour 
 {
-    public GameObject Type_Metal;
-    public GameObject Type_Techno;
-    public GameObject Type_Classic;
+    public TopDownCharacter Type_Metal;
+    public TopDownCharacter Type_Classic;
+    public TopDownCharacter Type_Techno;
+
+    public Light Spotlight;
+    public AudioSource AudioSource;
 
     [HideInInspector]
     public TopDownCharacter ActiveType;
 
     private IEntityManager _entityManager;
-    private Dictionary<AudioSource, float> _activeAudioSources = new Dictionary<AudioSource, float>();
+    private Dictionary<AudioClip, float> _activeAudioSources;
     private TopDownCharacter m_Character; // A reference to the ThirdPersonCharacter on the object
     private IMessageBus _bus;
 
@@ -31,7 +34,9 @@ public class PlayerComponent : MonoBehaviour
     public void Start ()
     {
         _bus = Initialiser.Instance.GetService<IMessageBus>();
-        _bus.Subscribe<PlayerChangedMusikTypeMessage>(SwitchType);
+        _bus.Subscribe<PlayerChangedMusikTypeMessage>(OnSwitchType);
+        _activeAudioSources = new Dictionary<AudioClip, float>();
+        SwitchType(MusicTypes.Metal);
     }
 
     private void Refresh()
@@ -39,53 +44,60 @@ public class PlayerComponent : MonoBehaviour
         ActiveType = GetComponentInChildren<TopDownCharacter>();
     }
 
-    private void SwitchType(PlayerChangedMusikTypeMessage msg)
+    private void SwitchType(MusicTypes musikType)
     {
         Refresh();
-        if (ActiveType != null)
+
+        if (AudioSource.clip != null && !_activeAudioSources.ContainsKey(AudioSource.clip))
+            _activeAudioSources.Add(AudioSource.clip, AudioSource.time);
+        else if(AudioSource.clip != null)
+            _activeAudioSources[AudioSource.clip] = AudioSource.time;
+
+        if (musikType == MusicTypes.Metal)
         {
-            Transform lastTransform = ActiveType.transform;
-
-            if (!_activeAudioSources.ContainsKey(ActiveType.AudioSource))
-                _activeAudioSources.Add(ActiveType.AudioSource, ActiveType.AudioSource.time);
-            else
-                _activeAudioSources[ActiveType.AudioSource] = ActiveType.AudioSource.time;
-
-            if (msg.Type == MusicTypes.Metal)
-            {
-                Type_Metal.SetActive(true);
-                Type_Classic.SetActive(false);
-                Type_Techno.SetActive(false);
-                ActiveType = GetComponentInChildren<TopDownCharacter>();
-            }
-            if (msg.Type == MusicTypes.Classic)
-            {
-                Type_Metal.SetActive(false);
-                Type_Classic.SetActive(true);
-                Type_Techno.SetActive(false);
-                ActiveType = GetComponentInChildren<TopDownCharacter>();
-            }
-            if (msg.Type == MusicTypes.Techno)
-            {
-                Type_Metal.SetActive(false);
-                Type_Classic.SetActive(false);
-                Type_Techno.SetActive(true);
-                ActiveType = GetComponentInChildren<TopDownCharacter>();
-            }
-            ActiveType.transform.position = lastTransform.position;
-            ActiveType.transform.rotation = lastTransform.rotation;
-
-            GetAudioSourceTime();
+            Spotlight.color = Color.blue;
+            AudioSource.clip = Resources.Load<AudioClip>("Audio/music/metal");
+            Type_Metal.gameObject.SetActive(true);
+            Type_Classic.gameObject.SetActive(false);
+            Type_Techno.gameObject.SetActive(false);
+            ActiveType = Type_Metal;
         }
+        if (musikType == MusicTypes.Classic)
+        {
+            Spotlight.color = Color.red;
+            AudioSource.clip = Resources.Load<AudioClip>("Audio/music/classic");
+            Type_Metal.gameObject.SetActive(false);
+            Type_Classic.gameObject.SetActive(true);
+            Type_Techno.gameObject.SetActive(false);
+            ActiveType = Type_Classic;
+        }
+        if (musikType == MusicTypes.Techno)
+        {
+            Spotlight.color = Color.green;
+            AudioSource.clip = Resources.Load<AudioClip>("Audio/music/electro");
+            Type_Metal.gameObject.SetActive(false);
+            Type_Classic.gameObject.SetActive(false);
+            Type_Techno.gameObject.SetActive(true);
+            ActiveType = Type_Techno;
+        }
+
+        GetAudioSourceTime();      
+    }
+
+    public void OnSwitchType(PlayerChangedMusikTypeMessage msg)
+    {
+        SwitchType(msg.Type);
     }
     private void GetAudioSourceTime()
     {
         float audioStartTime;
-        if (_activeAudioSources.TryGetValue(ActiveType.AudioSource, out audioStartTime))
+        if (_activeAudioSources.TryGetValue(AudioSource.clip, out audioStartTime))
         {
-            ActiveType.AudioSource.SetScheduledStartTime(audioStartTime);
-            ActiveType.AudioSource.PlayScheduled(audioStartTime);
+            AudioSource.SetScheduledStartTime(audioStartTime);
+            AudioSource.PlayScheduled(audioStartTime);
         }
+        else if(!AudioSource.isPlaying)
+            AudioSource.Play();
     }
     public void FollowMouse()
     {

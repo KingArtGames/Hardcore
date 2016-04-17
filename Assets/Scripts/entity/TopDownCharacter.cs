@@ -9,7 +9,5 @@ namespace UnityStandardAssets.Characters.ThirdPerson
 		CapsuleCollider m_Capsule;
 
         public ParticleSystem AttackRay;
-        public AudioSource AudioSource;
-
 	}
 }

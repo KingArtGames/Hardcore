@@ -36,7 +36,7 @@ namespace Assets.Scripts.map
 
         public void OnCollisionEnter(Collision collision)
         {
-            if(_destroyable)
+            if(_destroyable || _isObstacle)
                 Initialiser.Instance.GetService<IMessageBus>().Publish(new TileEnteredMessage(this, _tile.GetModule<TileModule>()));
         }
 

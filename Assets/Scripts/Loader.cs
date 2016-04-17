@@ -15,7 +15,7 @@ public class Loader : MonoBehaviour
     private const string CHARACTERS_PATH = "/Resources/Characters";
     private const string PLAYER = "/player.json";
     private const string ENEMIES = "/enemies.json";
-    private const string MAP = "/Resources/Map/Test/level1_final_unity.json";
+    private const string MAP = "Map/Test/level1_final_unity";
 
 	// Use this for initialization
 	void Start() 
@@ -87,7 +87,8 @@ public class Loader : MonoBehaviour
 
     private TileMap GetTiles()
     {
-        TileMap map = JsonUtility.FromJson<TileMap>(File.ReadAllText(Application.dataPath + MAP));
+        TextAsset m = Resources.Load<TextAsset>(MAP);
+        TileMap map = JsonUtility.FromJson<TileMap>(m.text);
         return map;
     }
 

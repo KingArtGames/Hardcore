@@ -598,7 +598,7 @@ Transform:
   - {fileID: 476161449}
   - {fileID: 2034411150}
   m_Father: {fileID: 0}
-  m_RootOrder: 3
+  m_RootOrder: 4
 --- !u!1001 &1137843565
 Prefab:
   m_ObjectHideFlags: 0
@@ -650,6 +650,26 @@ Prefab:
       propertyPath: AudioListener
       value: 
       objectReference: {fileID: 433108358}
+    - target: {fileID: 103018, guid: 728f24368faba8643a0991a4eec27739, type: 2}
+      propertyPath: m_IsActive
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 8203854, guid: 728f24368faba8643a0991a4eec27739, type: 2}
+      propertyPath: m_Pitch
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 8203854, guid: 728f24368faba8643a0991a4eec27739, type: 2}
+      propertyPath: spreadCustomCurve.m_RotationOrder
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 8211514, guid: 728f24368faba8643a0991a4eec27739, type: 2}
+      propertyPath: spreadCustomCurve.m_RotationOrder
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 8224834, guid: 728f24368faba8643a0991a4eec27739, type: 2}
+      propertyPath: spreadCustomCurve.m_RotationOrder
+      value: 0
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: 728f24368faba8643a0991a4eec27739, type: 2}
   m_IsPrefabParent: 0

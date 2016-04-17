@@ -57,14 +57,14 @@ namespace Assets.Scripts.entity
         metal,
         classic,
         techno,
-        Neutral
+        neutral
     }
 
     public enum EntityTypes
     {
-        Player,
-        Enemy,
-        Tile
+        player,
+        enemy,
+        tile
     }
 
 }

@@ -15,6 +15,8 @@ public class PlayerComponent : MonoBehaviour
 
     public Light Spotlight;
     public AudioSource AudioSource;
+    public float MorphSoundDelayed;
+    public SpriteRenderer HeadSprite;
 
     [HideInInspector]
     public ParticleSystem activeAttack;
@@ -55,6 +57,7 @@ public class PlayerComponent : MonoBehaviour
         else if(AudioSource.clip != null)
             _activeAudioSources[AudioSource.clip] = AudioSource.time;
 
+        AudioSource.Stop();
         switchAnimation(_activeMusikType, musikType);
 
         if (musikType == MusicTypes.metal)
@@ -90,11 +93,14 @@ public class PlayerComponent : MonoBehaviour
         float audioStartTime;
         if (_activeAudioSources.TryGetValue(AudioSource.clip, out audioStartTime))
         {
-            AudioSource.SetScheduledStartTime(audioStartTime);
-            AudioSource.PlayScheduled(audioStartTime);
+            AudioSource.SetScheduledStartTime(MorphSoundDelayed);
+            AudioSource.PlayScheduled(MorphSoundDelayed);
         }
-        else if(!AudioSource.isPlaying)
-            AudioSource.Play();
+        else if (!AudioSource.isPlaying)
+        {
+            AudioSource.SetScheduledStartTime(MorphSoundDelayed);
+            AudioSource.PlayDelayed(MorphSoundDelayed);
+        }
     }
 
     private void switchAnimation(MusicTypes lastType, MusicTypes activeType)
@@ -102,6 +108,9 @@ public class PlayerComponent : MonoBehaviour
         Debug.Log(lastType.ToString() + "_to_" + activeType.ToString());
         SpriteAnimator.SetTrigger(lastType.ToString() + "_to_" + activeType.ToString());
         PlayMusicSwitchSound();
+        Sprite sprite = Resources.Load<Sprite>("Animation/"+ activeType);
+        if(sprite != null)
+            StartCoroutine(LateSetSpriteAfterAnimation(sprite, 2.5f));
     }
 
     private void PlayMusicSwitchSound()
@@ -160,5 +169,10 @@ public class PlayerComponent : MonoBehaviour
     {
         yield return new WaitForSeconds(1);
         Destroy(obj);
+    }
+    IEnumerator LateSetSpriteAfterAnimation(Sprite sprite, float duration)
+    {
+        yield return new WaitForSeconds(duration);
+        HeadSprite.sprite = sprite;
     }
 }

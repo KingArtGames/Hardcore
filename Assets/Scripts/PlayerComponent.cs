@@ -9,20 +9,20 @@ using Assets.Scripts.message.custom;
 
 public class PlayerComponent : MonoBehaviour 
 {
-    public TopDownCharacter Type_Metal;
-    public TopDownCharacter Type_Classic;
-    public TopDownCharacter Type_Techno;
+    public GameObject EffectContainer;
+    public Animator SpriteAnimator;
 
     public Light Spotlight;
     public AudioSource AudioSource;
 
     [HideInInspector]
-    public TopDownCharacter ActiveType;
+    public ParticleSystem activeAttack;
 
     private IEntityManager _entityManager;
     private Dictionary<AudioClip, float> _activeAudioSources;
-    private TopDownCharacter m_Character; // A reference to the ThirdPersonCharacter on the object
     private IMessageBus _bus;
+
+    private MusicTypes _activeMusikType;
 
     private GameEntity _gameEntity;
     public GameEntity GameEntity
@@ -41,7 +41,6 @@ public class PlayerComponent : MonoBehaviour
 
     private void Refresh()
     {
-        ActiveType = GetComponentInChildren<TopDownCharacter>();
     }
 
     private void SwitchType(MusicTypes musikType)
@@ -53,33 +52,29 @@ public class PlayerComponent : MonoBehaviour
         else if(AudioSource.clip != null)
             _activeAudioSources[AudioSource.clip] = AudioSource.time;
 
+<<<<<<< HEAD
         if (musikType == MusicTypes.metal)
+=======
+        switchAnimation(_activeMusikType, musikType);
+
+        if (musikType == MusicTypes.Metal)
+>>>>>>> 56b69ed5d4200b66a9de338845263b9e66c732b4
         {
             Spotlight.color = Color.blue;
             AudioSource.clip = Resources.Load<AudioClip>("Audio/music/metal");
-            Type_Metal.gameObject.SetActive(true);
-            Type_Classic.gameObject.SetActive(false);
-            Type_Techno.gameObject.SetActive(false);
-            ActiveType = Type_Metal;
         }
         if (musikType == MusicTypes.classic)
         {
             Spotlight.color = Color.red;
             AudioSource.clip = Resources.Load<AudioClip>("Audio/music/classic");
-            Type_Metal.gameObject.SetActive(false);
-            Type_Classic.gameObject.SetActive(true);
-            Type_Techno.gameObject.SetActive(false);
-            ActiveType = Type_Classic;
         }
         if (musikType == MusicTypes.techno)
         {
             Spotlight.color = Color.green;
             AudioSource.clip = Resources.Load<AudioClip>("Audio/music/electro");
-            Type_Metal.gameObject.SetActive(false);
-            Type_Classic.gameObject.SetActive(false);
-            Type_Techno.gameObject.SetActive(true);
-            ActiveType = Type_Techno;
         }
+        _activeMusikType = musikType;
+        InstantiateParticleEffect(musikType);
 
         GetAudioSourceTime();      
     }
@@ -98,6 +93,24 @@ public class PlayerComponent : MonoBehaviour
         }
         else if(!AudioSource.isPlaying)
             AudioSource.Play();
+    }
+
+    private void switchAnimation(MusicTypes lastType, MusicTypes activeType)
+    {
+        Debug.Log(lastType.ToString() + "To" + activeType.ToString());
+        SpriteAnimator.SetTrigger(lastType.ToString() + "To" + activeType.ToString());
+    }
+
+    private void InstantiateParticleEffect(MusicTypes type)
+    {
+        if(activeAttack != null)
+            Destroy(activeAttack.gameObject);
+        ParticleSystem resource = Resources.Load<ParticleSystem>("Effects/Attacks/" + type.ToString());
+        activeAttack = Instantiate<ParticleSystem>(resource);
+        activeAttack.transform.SetParent(EffectContainer.transform);
+        activeAttack.transform.localEulerAngles = new Vector3(270, 0, 0);
+        activeAttack.transform.localPosition = Vector3.zero;
+
     }
     public void FollowMouse()
     {

@@ -37,17 +37,17 @@ namespace UnityStandardAssets.Characters.ThirdPerson
         // Fixed update is called in sync with physics
         private void FixedUpdate()
         {
-            if (_player.ActiveType != null)
+            if (_player != null && _player.activeAttack != null)
             {
                 if (Input.GetMouseButton(0))
                 {
-                    if (!_player.ActiveType.AttackRay.isPlaying)
-                        _player.ActiveType.AttackRay.Play();
+                    if (!_player.activeAttack.isPlaying)
+                        _player.activeAttack.Play();
                 }
                 else if (!Input.GetMouseButton(0))
                 {
-                    if (!_player.ActiveType.AttackRay.isStopped)
-                        _player.ActiveType.AttackRay.Stop();
+                    if (_player.activeAttack.isStopped)
+                        _player.activeAttack.Stop();
                 }
             }
             // read inputs

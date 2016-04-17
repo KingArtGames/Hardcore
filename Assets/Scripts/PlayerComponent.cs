@@ -7,6 +7,7 @@ using UnityStandardAssets.Characters.ThirdPerson;
 using TinyMessenger;
 using Assets.Scripts.message.custom;
 using UnityEngine.Audio;
+using UnityStandardAssets.Utility;
 
 public class PlayerComponent : MonoBehaviour 
 {
@@ -25,6 +26,8 @@ public class PlayerComponent : MonoBehaviour
     private IEntityManager _entityManager;
     private Dictionary<AudioClip, float> _activeAudioSources;
     private IMessageBus _bus;
+    private bool musicIsDropped = false;
+    private bool PlayerIsInMusicBubble;
 
     private MusicTypes _activeMusikType;
     private AudioMixer _mixer; 
@@ -49,6 +52,11 @@ public class PlayerComponent : MonoBehaviour
     {
         if (!SpriteAnimator.GetCurrentAnimatorStateInfo(0).IsName("Walk"))
             SpriteAnimator.SetBool("isWalking", isWalking);
+
+        if (transform.position.y < -10)
+            _bus.Publish(new GameOverMessage(this));
+
+        Debug.Log(PlayerIsInMusicBubble);
     }
     private void Refresh()
     {
@@ -182,6 +190,20 @@ public class PlayerComponent : MonoBehaviour
         Quaternion rotation = Quaternion.LookRotation(relativePos);
         return rotation;
     }
+    public void ToggleDropMusic()
+    {
+        if (!musicIsDropped)
+        {
+            Spotlight.GetComponent<FollowTarget>().target = null;
+            musicIsDropped = true;
+        }
+        else
+        {
+            Spotlight.GetComponent<FollowTarget>().target = transform;
+            Spotlight.transform.position = Vector3.zero;
+            musicIsDropped = false;
+        }
+    }
 
     IEnumerator DestroyObjectAfterTime(GameObject obj)
     {
@@ -194,5 +216,16 @@ public class PlayerComponent : MonoBehaviour
         yield return new WaitForSeconds(SpriteAnimator.GetCurrentAnimatorClipInfo(0).Length + 0.75f);
         HeadSprite.gameObject.SetActive(true); 
         HeadSprite.sprite = sprite;
+    }
+
+    void OnTriggerStay(Collider other)
+    {
+        if(!PlayerIsInMusicBubble)
+            PlayerIsInMusicBubble = true;
+    }
+    void OnTriggerExit(Collider other)
+    {
+        if(PlayerIsInMusicBubble)
+            PlayerIsInMusicBubble = false;
     }
 }

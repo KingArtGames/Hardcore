@@ -24,7 +24,7 @@ public class Loader : MonoBehaviour
         _bus.Subscribe<LoadMapMessage>(OnLoadMap);
         //TestSavePlayer();
         //TestSaveEnemies();
-        Load();
+        //Load();
 	}
 
     private void OnLoadMap(LoadMapMessage obj)

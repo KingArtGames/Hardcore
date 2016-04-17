@@ -117,4 +117,12 @@ namespace Assets.Scripts.message.custom
             Tile = tile;
         }
     }
+
+    public class GameOverMessage : BaseMessage
+    {
+        public GameOverMessage (object sender)
+            : base(sender)
+        {
+        }
+    }
 }

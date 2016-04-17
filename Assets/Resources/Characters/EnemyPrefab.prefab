@@ -427,7 +427,6 @@ MonoBehaviour:
   AudioSource: {fileID: 8220008}
   MorphSoundDelayed: 0
   HeadSprite: {fileID: 21277852}
-  UiFillBar: {fileID: 0}
   activeAttack: {fileID: 0}
   isWalking: 0
 --- !u!114 &11483286
@@ -441,6 +440,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: b63a1001446a9f840a0a15ae488ab92f, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  SpriteAnimator: {fileID: 9525106}
+  Spotlight: {fileID: 10864842}
+  HeadSprite: {fileID: 21277852}
 --- !u!135 &13525728
 SphereCollider:
   m_ObjectHideFlags: 1

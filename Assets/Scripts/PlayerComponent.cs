@@ -47,10 +47,11 @@ public class PlayerComponent : MonoBehaviour
         _bus.Subscribe<PlayerChangedMusikTypeMessage>(OnSwitchType);
         _activeAudioSources = new Dictionary<AudioClip, float>();
         _mixer = Resources.Load<AudioMixer>("Audio/Master");
-        SwitchType(MusicTypes.metal);
 
         _gameEntity = new GameEntity(new GameType(EntityTypes.player.ToString()));
-        _gameEntity.AddModule<PlayerModule>(new PlayerModule(_gameEntity, _bus,new Data(){ CurrentMusicType = new GameType(MusicTypes.metal.ToString())}, new Template()));
+        _gameEntity.AddModule<PlayerModule>(new PlayerModule(_gameEntity, _bus, new Data() { CurrentMusicType = new GameType(MusicTypes.metal.ToString()) }, new Template()));
+
+        SwitchType(MusicTypes.metal);
     }
 
     private void Update()

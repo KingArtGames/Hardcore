@@ -44,8 +44,7 @@ namespace Assets.Scripts.map
     [Serializable]
     public class Property
     {
-        public string enemySpawn;
-        public string testProperty;
+        public string enemyType;
     }
 
     [Serializable]
@@ -53,5 +52,13 @@ namespace Assets.Scripts.map
     {
         public string image;
         public string name;
+        public TileProperty[] tileproperties;
+    }
+
+    [Serializable]
+    public class TileProperty
+    {
+        public int id;
+        public string musicType;
     }
 }

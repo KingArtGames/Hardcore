@@ -36,7 +36,7 @@ public class PlayerComponent : MonoBehaviour
         _bus = Initialiser.Instance.GetService<IMessageBus>();
         _bus.Subscribe<PlayerChangedMusikTypeMessage>(OnSwitchType);
         _activeAudioSources = new Dictionary<AudioClip, float>();
-        SwitchType(MusicTypes.Metal);
+        SwitchType(MusicTypes.metal);
     }
 
     private void Refresh()
@@ -53,7 +53,7 @@ public class PlayerComponent : MonoBehaviour
         else if(AudioSource.clip != null)
             _activeAudioSources[AudioSource.clip] = AudioSource.time;
 
-        if (musikType == MusicTypes.Metal)
+        if (musikType == MusicTypes.metal)
         {
             Spotlight.color = Color.blue;
             AudioSource.clip = Resources.Load<AudioClip>("Audio/music/metal");
@@ -62,7 +62,7 @@ public class PlayerComponent : MonoBehaviour
             Type_Techno.gameObject.SetActive(false);
             ActiveType = Type_Metal;
         }
-        if (musikType == MusicTypes.Classic)
+        if (musikType == MusicTypes.classic)
         {
             Spotlight.color = Color.red;
             AudioSource.clip = Resources.Load<AudioClip>("Audio/music/classic");
@@ -71,7 +71,7 @@ public class PlayerComponent : MonoBehaviour
             Type_Techno.gameObject.SetActive(false);
             ActiveType = Type_Classic;
         }
-        if (musikType == MusicTypes.Techno)
+        if (musikType == MusicTypes.techno)
         {
             Spotlight.color = Color.green;
             AudioSource.clip = Resources.Load<AudioClip>("Audio/music/electro");

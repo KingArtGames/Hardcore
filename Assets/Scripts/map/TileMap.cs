@@ -39,12 +39,14 @@ namespace Assets.Scripts.map
         public int x;
         public int y;
         public Property properties;
+        public string name;
     }
 
     [Serializable]
     public class Property
     {
         public string enemyType;
+        public string special_tile;
     }
 
     [Serializable]

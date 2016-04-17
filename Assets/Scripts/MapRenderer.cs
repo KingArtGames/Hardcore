@@ -1,4 +1,5 @@
 ﻿using Assets.Scripts.entity;
+using Assets.Scripts.entity.modules;
 using Assets.Scripts.manager;
 using Assets.Scripts.map;
 using Assets.Scripts.message.custom;
@@ -19,8 +20,11 @@ namespace Assets.Scripts
         private const string TILES = "Map/Tilesets/";
 
         public GameObject TilePrefab;
+        public GameObject EnemyPrefab;
+        public GameObject CharacterPrefab;
 
         private Dictionary<string, Sprite> _tiles;
+        private const float _scale = 0.01f;
 
         public void Awake()
         {
@@ -48,26 +52,47 @@ namespace Assets.Scripts
                 _tiles[sp.name] = sp;
             }
 
-            Dictionary<int, Template> musicTypes = new Dictionary<int,Template>();
+            Dictionary<int, Template> musicTemplates = new Dictionary<int,Template>();
             foreach (TileSet set in msg.Map.tilesets)
             {
                 if(set.tileproperties != null)
                 {
                     foreach (TileProperty tp in set.tileproperties)
                     {
-                        musicTypes[tp.id] = new Template() { GameType = new GameType(EntityTypes.tile.ToString()), MusicType = new GameType(tp.musicType) };
+                        musicTemplates[tp.id] = new Template() { GameType = new GameType(EntityTypes.tile.ToString()), MusicType = new GameType(tp.musicType) };
                     }
                     break;
                 }
             }
 
+            Dictionary<string, Template> _enemyTemplates = new Dictionary<string, Template>();
+            _enemyTemplates[MusicTypes.classic.ToString()] = new Template(){ GameType = new GameType(MusicTypes.classic.ToString()), MusicType = new GameType(MusicTypes.classic.ToString()) };
+            _enemyTemplates[MusicTypes.metal.ToString()] = new Template(){ GameType = new GameType(MusicTypes.metal.ToString()), MusicType = new GameType(MusicTypes.metal.ToString()) };
+            _enemyTemplates[MusicTypes.techno.ToString()] = new Template(){ GameType = new GameType(MusicTypes.techno.ToString()), MusicType = new GameType(MusicTypes.techno.ToString()) };
+
             foreach (TileLayer layer in msg.Map.layers)
             {
-                if (layer.name == "GameObjects")
+                if (layer.name == "Objektebene 1")
                 {
                     foreach (TiledObject to in layer.objects)
                     {
                         // add enemies based on the json file/object names
+                        if (to.name.Contains("enemy"))
+                        {
+                            GameEntity enemy = new GameEntity(new GameType(EntityTypes.enemy.ToString()));
+                            Vector3 spawnPosition = new Vector3(to.x, 1000, -to.y);
+                            enemy.AddModule<EnemyModule>(GetEnemyModule(enemy, _enemyTemplates[to.properties.enemyType], spawnPosition));
+                            enemies.Add(enemy);
+
+                            GameObject go = Instantiate(EnemyPrefab);
+                            go.transform.position = spawnPosition *= _scale;
+                            go.transform.SetParent(transform, false);
+                        }
+                        else if (to.name.Contains("START"))
+                        {
+                            Vector3 spawnPosition = new Vector3(to.x, 1000, -to.y);
+                            CharacterPrefab.transform.position = spawnPosition *= _scale;
+                        }
                     }
                 }
                 else if(layer.name == "Background")
@@ -83,7 +108,7 @@ namespace Assets.Scripts
                         if (id >= 0)
                         {
                             GameObject go = Instantiate(TilePrefab);
-                            Vector3 pos = new Vector3(column * msg.Map.tilewidth * 0.01f, 0.1f, -row * msg.Map.tileheight * 0.01f);
+                            Vector3 pos = new Vector3(column * msg.Map.tilewidth * _scale, 0.1f, -row * msg.Map.tileheight * _scale);
                             go.transform.position = pos;
                             go.transform.SetParent(transform, false);
 
@@ -92,7 +117,7 @@ namespace Assets.Scripts
 
                             GameEntity tile = new GameEntity(new GameType(EntityTypes.tile.ToString()));
                             // add tile module based on how tile is designed
-                            tile.AddModule<TileModule>(GetTileModule(tile, musicTypes.ContainsKey(id) ? musicTypes[id] : new Template()));
+                            tile.AddModule<TileModule>(GetTileModule(tile, musicTemplates.ContainsKey(id) ? musicTemplates[id] : new Template()));
                             go.GetComponent<TileComponent>().Tile = tile;
                         }
 
@@ -102,6 +127,13 @@ namespace Assets.Scripts
             }
             _bus.Publish<LoadEnemiesMessage>(new LoadEnemiesMessage(this, enemies));
             _bus.Publish<LoadPlayerMessage>(new LoadPlayerMessage(this, _entityManger.GetEnitiesOfType(new GameType(EntityTypes.player.ToString())).First()));
+        }
+
+        private EnemyModule GetEnemyModule(GameEntity enemy, Template template, Vector3 spawnPosition)
+        {
+            Data data = new Data() { CurrentPosition = spawnPosition, CurrentMusicType = template.MusicType };
+            EnemyModule result = new EnemyModule(enemy, _bus, data, template);
+            return result;
         }
 
         private TileModule GetTileModule(GameEntity tile, Template template)

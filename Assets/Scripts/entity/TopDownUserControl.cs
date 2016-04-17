@@ -46,7 +46,7 @@ namespace UnityStandardAssets.Characters.ThirdPerson
                 }
                 else if (!Input.GetMouseButton(0))
                 {
-                    if (_player.activeAttack.isStopped)
+                    if (!_player.activeAttack.isStopped)
                         _player.activeAttack.Stop();
                 }
             }

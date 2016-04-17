@@ -6,6 +6,7 @@ using System.Collections.Generic;
 using UnityStandardAssets.Characters.ThirdPerson;
 using TinyMessenger;
 using Assets.Scripts.message.custom;
+using UnityEngine.Audio;
 
 public class PlayerComponent : MonoBehaviour 
 {
@@ -23,6 +24,10 @@ public class PlayerComponent : MonoBehaviour
     private IMessageBus _bus;
 
     private MusicTypes _activeMusikType;
+    private AudioMixer _mixer;
+    private AudioMixerSnapshot _metalSnapShot;
+    private AudioMixerSnapshot _classicSnapShot;
+    private AudioMixerSnapshot _TechnoSnapShot;
 
     private GameEntity _gameEntity;
     public GameEntity GameEntity
@@ -36,6 +41,7 @@ public class PlayerComponent : MonoBehaviour
         _bus = Initialiser.Instance.GetService<IMessageBus>();
         _bus.Subscribe<PlayerChangedMusikTypeMessage>(OnSwitchType);
         _activeAudioSources = new Dictionary<AudioClip, float>();
+        _mixer = Resources.Load<AudioMixer>("Audio/Master");
         SwitchType(MusicTypes.Metal);
     }
 
@@ -58,16 +64,19 @@ public class PlayerComponent : MonoBehaviour
         {
             Spotlight.color = Color.blue;
             AudioSource.clip = Resources.Load<AudioClip>("Audio/music/metal");
+            AudioSource.outputAudioMixerGroup = _mixer.FindMatchingGroups("music_metal")[0];
         }
         if (musikType == MusicTypes.Classic)
         {
             Spotlight.color = Color.red;
             AudioSource.clip = Resources.Load<AudioClip>("Audio/music/classic");
+            AudioSource.outputAudioMixerGroup = _mixer.FindMatchingGroups("music_classic")[0];
         }
         if (musikType == MusicTypes.Techno)
         {
             Spotlight.color = Color.green;
             AudioSource.clip = Resources.Load<AudioClip>("Audio/music/electro");
+            AudioSource.outputAudioMixerGroup = _mixer.FindMatchingGroups("music_techno")[0];
         }
         _activeMusikType = musikType;
         InstantiateParticleEffect(musikType);

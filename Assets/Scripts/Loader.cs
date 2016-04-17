@@ -15,7 +15,7 @@ public class Loader : MonoBehaviour
     private const string CHARACTERS_PATH = "/Resources/Characters";
     private const string PLAYER = "/player.json";
     private const string ENEMIES = "/enemies.json";
-    private const string MAP = "/Resources/Map/Level1_V2.json";
+    private const string MAP = "/Resources/Map/Test/test_final_unity.json";
 
 	// Use this for initialization
 	void Start() 
@@ -39,12 +39,12 @@ public class Loader : MonoBehaviour
         Connection enemy1 = new Connection();
         enemy1.Data = new Data()
         {
-            CurrentMusicType = new GameType(MusicTypes.Metal.ToString()),
+            CurrentMusicType = new GameType(MusicTypes.metal.ToString()),
             CurrentPosition = new Vector2(5, 5)
         };
         enemy1.Template = new Template()
         {
-            MusicType = new GameType(MusicTypes.Metal.ToString()),
+            MusicType = new GameType(MusicTypes.metal.ToString()),
             GameType = new GameType(EntityTypes.Enemy.ToString()),
             SpawnPosition = new Vector2(5, 5)
         };
@@ -52,12 +52,12 @@ public class Loader : MonoBehaviour
         Connection enemy2 = new Connection();
         enemy2.Data = new Data()
         {
-            CurrentMusicType = new GameType(MusicTypes.Metal.ToString()),
+            CurrentMusicType = new GameType(MusicTypes.metal.ToString()),
             CurrentPosition = new Vector2(5, 5)
         };
         enemy2.Template = new Template()
         {
-            MusicType = new GameType(MusicTypes.Metal.ToString()),
+            MusicType = new GameType(MusicTypes.metal.ToString()),
             GameType = new GameType(EntityTypes.Enemy.ToString()),
             SpawnPosition = new Vector2(5, 5)
         };
@@ -72,9 +72,9 @@ public class Loader : MonoBehaviour
     private void TestSavePlayer()
     {
         Connection player = new Connection();
-        player.Data = new Data() { CurrentMusicType = new GameType(MusicTypes.Classic.ToString()), 
+        player.Data = new Data() { CurrentMusicType = new GameType(MusicTypes.classic.ToString()), 
                                 CurrentPosition = new Vector2(0, 0) };
-        player.Template = new Template() { MusicType = new GameType(MusicTypes.Classic.ToString()), 
+        player.Template = new Template() { MusicType = new GameType(MusicTypes.classic.ToString()), 
                                         SpawnPosition = new Vector2(0, 0), 
                                         GameType = new GameType(EntityTypes.Player.ToString()) };
 

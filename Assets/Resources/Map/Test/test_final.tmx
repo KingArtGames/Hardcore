@@ -1,0 +1,55 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<map version="1.0" orientation="orthogonal" renderorder="right-down" width="10" height="10" tilewidth="512" tileheight="512" nextobjectid="1">
+ <tileset firstgid="1" name="Hardcore_texture_tiles2" tilewidth="512" tileheight="512" tilecount="14" columns="7">
+  <image source="../Tilesets/Hardcore_texture_tiles2.png" width="3584" height="1024"/>
+  <tile id="0">
+   <properties>
+    <property name="musicType" value="metal"/>
+   </properties>
+  </tile>
+  <tile id="1">
+   <properties>
+    <property name="musicType" value="metal"/>
+   </properties>
+  </tile>
+  <tile id="2">
+   <properties>
+    <property name="musicType" value="metal"/>
+   </properties>
+  </tile>
+  <tile id="3">
+   <properties>
+    <property name="musicType" value="techno"/>
+   </properties>
+  </tile>
+  <tile id="4">
+   <properties>
+    <property name="musicType" value="techno"/>
+   </properties>
+  </tile>
+  <tile id="5">
+   <properties>
+    <property name="musicType" value="classic"/>
+   </properties>
+  </tile>
+  <tile id="6">
+   <properties>
+    <property name="musicType" value="classic"/>
+   </properties>
+  </tile>
+ </tileset>
+ <layer name="Background" width="10" height="10">
+  <data encoding="csv">
+14,14,1,1,1,1,12,12,12,12,
+14,14,1,1,1,1,1,1,1,1,
+1,1,1,1,1,1,1,1,1,1,
+1,1,1,6,6,1,1,4,4,1,
+6,6,6,6,6,1,1,4,4,4,
+1,6,6,6,6,1,1,4,4,4,
+1,6,6,6,6,1,1,1,1,1,
+1,1,1,1,1,1,9,9,1,1,
+1,1,1,1,1,1,9,9,1,1,
+1,1,1,1,1,1,1,1,1,1
+</data>
+ </layer>
+</map>

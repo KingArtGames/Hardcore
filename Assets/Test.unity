@@ -128,7 +128,11 @@ Prefab:
       propertyPath: AudioListener
       value: 
       objectReference: {fileID: 433108358}
-    - target: {fileID: 11459728, guid: 728f24368faba8643a0991a4eec27739, type: 2}
+    - target: {fileID: 11442184, guid: 728f24368faba8643a0991a4eec27739, type: 2}
+      propertyPath: UiFillBar
+      value: 
+      objectReference: {fileID: 745111386}
+    - target: {fileID: 11429348, guid: 728f24368faba8643a0991a4eec27739, type: 2}
       propertyPath: AudioListener
       value: 
       objectReference: {fileID: 433108358}
@@ -136,86 +140,14 @@ Prefab:
       propertyPath: AudioListener
       value: 
       objectReference: {fileID: 433108358}
-    - target: {fileID: 11429348, guid: 728f24368faba8643a0991a4eec27739, type: 2}
+    - target: {fileID: 11459728, guid: 728f24368faba8643a0991a4eec27739, type: 2}
       propertyPath: AudioListener
       value: 
       objectReference: {fileID: 433108358}
-    - target: {fileID: 455890, guid: 728f24368faba8643a0991a4eec27739, type: 2}
-      propertyPath: m_LocalScale.x
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 455890, guid: 728f24368faba8643a0991a4eec27739, type: 2}
-      propertyPath: m_LocalScale.y
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 455890, guid: 728f24368faba8643a0991a4eec27739, type: 2}
-      propertyPath: m_LocalScale.z
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 10865708, guid: 728f24368faba8643a0991a4eec27739, type: 2}
-      propertyPath: m_SpotAngle
-      value: 20
-      objectReference: {fileID: 0}
-    - target: {fileID: 8236224, guid: 728f24368faba8643a0991a4eec27739, type: 2}
-      propertyPath: panLevelCustomCurve.m_Curve.Array.data[0].value
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 8236224, guid: 728f24368faba8643a0991a4eec27739, type: 2}
-      propertyPath: MinDistance
-      value: 30
-      objectReference: {fileID: 0}
-    - target: {fileID: 8236224, guid: 728f24368faba8643a0991a4eec27739, type: 2}
-      propertyPath: BypassListenerEffects
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 8236224, guid: 728f24368faba8643a0991a4eec27739, type: 2}
-      propertyPath: rolloffMode
-      value: 2
-      objectReference: {fileID: 0}
-    - target: {fileID: 8236224, guid: 728f24368faba8643a0991a4eec27739, type: 2}
-      propertyPath: MaxDistance
-      value: 60
-      objectReference: {fileID: 0}
-    - target: {fileID: 8236224, guid: 728f24368faba8643a0991a4eec27739, type: 2}
-      propertyPath: rolloffCustomCurve.m_Curve.Array.data[0].time
-      value: 0.5
-      objectReference: {fileID: 0}
-    - target: {fileID: 8236224, guid: 728f24368faba8643a0991a4eec27739, type: 2}
-      propertyPath: rolloffCustomCurve.m_Curve.Array.data[0].outSlope
-      value: -2
-      objectReference: {fileID: 0}
-    - target: {fileID: 8236224, guid: 728f24368faba8643a0991a4eec27739, type: 2}
-      propertyPath: rolloffCustomCurve.m_Curve.Array.data[1].inSlope
-      value: -2
-      objectReference: {fileID: 0}
-    - target: {fileID: 8236224, guid: 728f24368faba8643a0991a4eec27739, type: 2}
-      propertyPath: rolloffCustomCurve.m_RotationOrder
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 8236224, guid: 728f24368faba8643a0991a4eec27739, type: 2}
-      propertyPath: rolloffCustomCurve.m_Curve.Array.data[0].value
-      value: 1.0115789
-      objectReference: {fileID: 0}
-    - target: {fileID: 8236224, guid: 728f24368faba8643a0991a4eec27739, type: 2}
-      propertyPath: rolloffCustomCurve.m_Curve.Array.data[1].value
-      value: 0.09263158
-      objectReference: {fileID: 0}
-    - target: {fileID: 8236224, guid: 728f24368faba8643a0991a4eec27739, type: 2}
-      propertyPath: rolloffCustomCurve.m_Curve.Array.data[1].time
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 11442184, guid: 728f24368faba8643a0991a4eec27739, type: 2}
-      propertyPath: UiFillBar
+    - target: {fileID: 11479520, guid: 728f24368faba8643a0991a4eec27739, type: 2}
+      propertyPath: AudioListener
       value: 
-      objectReference: {fileID: 745111386}
-    - target: {fileID: 10865708, guid: 728f24368faba8643a0991a4eec27739, type: 2}
-      propertyPath: m_Range
-      value: 50
-      objectReference: {fileID: 0}
-    - target: {fileID: 11430536, guid: 728f24368faba8643a0991a4eec27739, type: 2}
-      propertyPath: MovementSpeed
-      value: 30
-      objectReference: {fileID: 0}
+      objectReference: {fileID: 433108358}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: 728f24368faba8643a0991a4eec27739, type: 2}
   m_IsPrefabParent: 0

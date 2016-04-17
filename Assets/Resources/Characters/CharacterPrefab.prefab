@@ -77,6 +77,23 @@ GameObject:
   - 108: {fileID: 10824256}
   - 114: {fileID: 11425316}
   m_Layer: 8
+  m_Name: SpotLight (4)
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!1 &137842
+GameObject:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  serializedVersion: 4
+  m_Component:
+  - 4: {fileID: 442870}
+  - 108: {fileID: 10889758}
+  - 114: {fileID: 11479520}
+  m_Layer: 8
   m_Name: SpotLight (2)
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -242,8 +259,9 @@ Transform:
   m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
-  - {fileID: 484584}
+  - {fileID: 442870}
   - {fileID: 492294}
+  - {fileID: 484584}
   m_Father: {fileID: 444882}
   m_RootOrder: 3
 --- !u!4 &423266
@@ -283,6 +301,18 @@ Transform:
   - {fileID: 444882}
   - {fileID: 407770}
   m_Father: {fileID: 0}
+  m_RootOrder: 0
+--- !u!4 &442870
+Transform:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 137842}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_Children: []
+  m_Father: {fileID: 422414}
   m_RootOrder: 0
 --- !u!4 &444882
 Transform:
@@ -332,7 +362,7 @@ Transform:
   m_GameObject: {fileID: 118450}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 10}
-  m_LocalScale: {x: 20, y: 20, z: 20}
+  m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 444882}
   m_RootOrder: 0
@@ -371,7 +401,7 @@ Transform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 422414}
-  m_RootOrder: 0
+  m_RootOrder: 2
 --- !u!4 &492294
 Transform:
   m_ObjectHideFlags: 1
@@ -425,34 +455,34 @@ AudioSource:
   Spatialize: 0
   Priority: 128
   DopplerLevel: 1
-  MinDistance: 1
-  MaxDistance: 500
+  MinDistance: 30
+  MaxDistance: 60
   Pan2D: 0
-  rolloffMode: 0
+  rolloffMode: 2
   BypassEffects: 0
   BypassListenerEffects: 0
   BypassReverbZones: 0
   rolloffCustomCurve:
     serializedVersion: 2
     m_Curve:
-    - time: 0
-      value: 1
+    - time: 0.5
+      value: 1.0115789
       inSlope: 0
-      outSlope: 0
+      outSlope: -2
       tangentMode: 0
     - time: 1
-      value: 0
-      inSlope: 0
+      value: 0.09263158
+      inSlope: -2
       outSlope: 0
       tangentMode: 0
     m_PreInfinity: 2
     m_PostInfinity: 2
-    m_RotationOrder: 4
+    m_RotationOrder: 0
   panLevelCustomCurve:
     serializedVersion: 2
     m_Curve:
     - time: 0
-      value: 0
+      value: 1
       inSlope: 0
       outSlope: 0
       tangentMode: 0
@@ -509,7 +539,7 @@ Light:
   m_Type: 0
   m_Color: {r: 1, g: 0, b: 0, a: 1}
   m_Intensity: 8
-  m_Range: 20
+  m_Range: 100
   m_SpotAngle: 100
   m_CookieSize: 10
   m_Shadows:
@@ -542,7 +572,7 @@ Light:
   m_Type: 0
   m_Color: {r: 1, g: 0, b: 0, a: 1}
   m_Intensity: 8
-  m_Range: 20
+  m_Range: 100
   m_SpotAngle: 100
   m_CookieSize: 10
   m_Shadows:
@@ -575,8 +605,8 @@ Light:
   m_Type: 0
   m_Color: {r: 1, g: 0, b: 0, a: 1}
   m_Intensity: 8
-  m_Range: 20
-  m_SpotAngle: 100
+  m_Range: 150
+  m_SpotAngle: 150
   m_CookieSize: 10
   m_Shadows:
     m_Type: 0
@@ -593,7 +623,7 @@ Light:
     serializedVersion: 2
     m_Bits: 4294967295
   m_Lightmapping: 4
-  m_BounceIntensity: 1.39
+  m_BounceIntensity: 0
   m_ShadowRadius: 0
   m_ShadowAngle: 0
   m_AreaSize: {x: 1, y: 1}
@@ -608,7 +638,40 @@ Light:
   m_Type: 0
   m_Color: {r: 1, g: 0, b: 0, a: 1}
   m_Intensity: 8
-  m_Range: 20
+  m_Range: 350
+  m_SpotAngle: 150
+  m_CookieSize: 10
+  m_Shadows:
+    m_Type: 0
+    m_Resolution: -1
+    m_Strength: 1
+    m_Bias: 0.05
+    m_NormalBias: 0.4
+    m_NearPlane: 0.2
+  m_Cookie: {fileID: 0}
+  m_DrawHalo: 0
+  m_Flare: {fileID: 0}
+  m_RenderMode: 0
+  m_CullingMask:
+    serializedVersion: 2
+    m_Bits: 4294967295
+  m_Lightmapping: 4
+  m_BounceIntensity: 0
+  m_ShadowRadius: 0
+  m_ShadowAngle: 0
+  m_AreaSize: {x: 1, y: 1}
+--- !u!108 &10889758
+Light:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 137842}
+  m_Enabled: 1
+  serializedVersion: 6
+  m_Type: 0
+  m_Color: {r: 1, g: 0, b: 0, a: 1}
+  m_Intensity: 8
+  m_Range: 100
   m_SpotAngle: 100
   m_CookieSize: 10
   m_Shadows:
@@ -647,7 +710,7 @@ MonoBehaviour:
   Amplitude: 0.1
   delay: 0.07
   SpotLight: {fileID: 10824256}
-  LightMultiplyer: 50
+  LightMultiplyer: 80
 --- !u!114 &11427354
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -689,7 +752,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: f8a7f760a9bbde1429117c0d9c067597, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  MovementSpeed: 10
+  MovementSpeed: 30
 --- !u!114 &11440714
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -707,7 +770,7 @@ MonoBehaviour:
   Amplitude: 0.1
   delay: 0.07
   SpotLight: {fileID: 10802742}
-  LightMultiplyer: 50
+  LightMultiplyer: 80
 --- !u!114 &11442184
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -725,6 +788,7 @@ MonoBehaviour:
   AudioSource: {fileID: 8236224}
   MorphSoundDelayed: 3
   HeadSprite: {fileID: 21291020}
+  UiFillBar: {fileID: 0}
   activeAttack: {fileID: 0}
   isWalking: 0
 --- !u!114 &11459728
@@ -745,6 +809,24 @@ MonoBehaviour:
   delay: 0.07
   SpotLight: {fileID: 10865708}
   LightMultiplyer: 120
+--- !u!114 &11479520
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 137842}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 46cdbcfcdc39df74f85f3f90f239086e, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  AudioSource: {fileID: 8236224}
+  AudioListener: {fileID: 0}
+  Detail: 10
+  Amplitude: 0.1
+  delay: 0.07
+  SpotLight: {fileID: 10889758}
+  LightMultiplyer: 80
 --- !u!114 &11494976
 MonoBehaviour:
   m_ObjectHideFlags: 1

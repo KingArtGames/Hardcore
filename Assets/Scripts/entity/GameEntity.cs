@@ -57,7 +57,12 @@ namespace Assets.Scripts.entity
         metal,
         classic,
         techno,
-        neutral
+        neutral,
+        metal_vibrating,
+        classic_vibrating,
+        techno_vibrating,
+        musicBattery,
+        blocked
     }
 
     public enum EntityTypes

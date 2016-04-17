@@ -7,6 +7,7 @@ using UnityStandardAssets.Characters.ThirdPerson;
 using TinyMessenger;
 using Assets.Scripts.message.custom;
 using UnityEngine.Audio;
+using Assets.Scripts.entity.modules;
 
 public class PlayerComponent : MonoBehaviour 
 {
@@ -42,6 +43,10 @@ public class PlayerComponent : MonoBehaviour
         _bus.Subscribe<PlayerChangedMusikTypeMessage>(OnSwitchType);
         _activeAudioSources = new Dictionary<AudioClip, float>();
         _mixer = Resources.Load<AudioMixer>("Audio/Master");
+
+        GameEntity = new GameEntity(new GameType(EntityTypes.player.ToString()));
+        GameEntity.AddModule<PlayerModule>(new PlayerModule(GameEntity, _bus, new Data() { CurrentMusicType = new GameType(MusicTypes.metal.ToString()) }, new Template()));
+
         SwitchType(MusicTypes.metal);
     }
 
@@ -68,18 +73,30 @@ public class PlayerComponent : MonoBehaviour
         if (musikType == MusicTypes.metal)
         {
             Spotlight.color = Color.blue;
+            foreach (Light sp in Spotlight.GetComponentsInChildren<Light>())
+            {
+                sp.color = Color.blue;
+            }
             AudioSource.clip = Resources.Load<AudioClip>("Audio/music/metal");
             AudioSource.outputAudioMixerGroup = _mixer.FindMatchingGroups("music_metal")[0];
         }
         if (musikType == MusicTypes.classic)
         {
             Spotlight.color = Color.red;
+            foreach(Light sp in Spotlight.GetComponentsInChildren<Light>())
+            {
+                sp.color = Color.red;
+            }
             AudioSource.clip = Resources.Load<AudioClip>("Audio/music/classic");
             AudioSource.outputAudioMixerGroup = _mixer.FindMatchingGroups("music_classic")[0];
         }
         if (musikType == MusicTypes.techno)
         {
             Spotlight.color = Color.green;
+            foreach (Light sp in Spotlight.GetComponentsInChildren<Light>())
+            {
+                sp.color = Color.green;
+            }
             AudioSource.clip = Resources.Load<AudioClip>("Audio/music/electro");
             AudioSource.outputAudioMixerGroup = _mixer.FindMatchingGroups("music_techno")[0];
         }

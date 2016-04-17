@@ -19,30 +19,40 @@ namespace Assets.Scripts.map
             set { _tile = value; Refresh(); } 
         }
 
-        private bool _onTile;
+        private bool _destroyable;
+        private bool _blocked;
+        private bool _isObstacle;
 
         private void Refresh()
         {
-            
+            _destroyable = _tile.GetModule<TileModule>().IsDestroyable();
+            _blocked = _tile.GetModule<TileModule>().IsBlocked();
+            if (_blocked)
+                GetComponent<BoxCollider>().size = new Vector3(5, 5, 5);
+
+            _isObstacle = _tile.GetModule<TileModule>().IsObstacle();
         }
 
         public void OnCollisionEnter(Collision collision)
         {
-            _onTile = true;
-            Initialiser.Instance.GetService<IMessageBus>().Publish(new TileEnteredMessage(this, _tile.GetModule<TileModule>()));
-            StartCoroutine(DropTile());
+            if(_destroyable)
+                Initialiser.Instance.GetService<IMessageBus>().Publish(new TileEnteredMessage(this, _tile.GetModule<TileModule>()));
         }
 
         public void OnCollisionExit(Collision collision)
         {
-            _onTile = false;
+            _destroyable = false;
         }
 
+        public void StartDropping()
+        {
+            StartCoroutine(DropTile());
+        }
 
         private IEnumerator<object> DropTile()
         {
             yield return new WaitForSeconds(3);
-            if(_onTile)
+            if(_destroyable)
                 Destroy(gameObject);
         }
 

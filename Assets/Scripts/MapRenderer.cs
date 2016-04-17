@@ -24,7 +24,7 @@ namespace Assets.Scripts
         public GameObject CharacterPrefab;
 
         private Dictionary<string, Sprite> _tiles;
-        private const float _scale = 0.01f;
+        private const float _scale = 0.02f;
 
         public void Awake()
         {
@@ -59,7 +59,7 @@ namespace Assets.Scripts
                 {
                     foreach (TileProperty tp in set.tileproperties)
                     {
-                        musicTemplates[tp.id] = new Template() { GameType = new GameType(EntityTypes.tile.ToString()), MusicType = new GameType(tp.musicType) };
+                        musicTemplates[tp.id] = new Template() { GameType = new GameType(EntityTypes.tile.ToString()), MusicType = new GameType(tp.tileType) };
                     }
                     break;
                 }

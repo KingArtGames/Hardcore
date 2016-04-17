@@ -76,10 +76,10 @@
                 {
                  "height":344,
                  "id":23,
-                 "name":"metal_enemy",
+                 "name":"classic_enemy 1",
                  "properties":
                     {
-                     "enemytype":"metal"
+                     "enemytype":"classic"
                     },
                  "propertytypes":
                     {
@@ -89,8 +89,8 @@
                  "type":"",
                  "visible":true,
                  "width":352,
-                 "x":5216,
-                 "y":4428
+                 "x":5192,
+                 "y":4460
                 }, 
                 {
                  "height":344,

@@ -1,16 +1,15 @@
 ﻿using UnityEngine;
 using System.Collections;
+using UnityEngine.UI;
+using UnityEngine.SceneManagement;
 
 public class MainMenu : MonoBehaviour {
-
+    int idiotCnt;
+    Text idiotTxt;
 	// Use this for initialization
 	void Start () {
-	
-	}
-	
-	// Update is called once per frame
-	void Update () {
-	
+        idiotCnt = 0;
+        idiotTxt = GameObject.Find("idiotTxt").GetComponent<Text>();
 	}
 
     public void exitGameButton()
@@ -21,11 +20,15 @@ public class MainMenu : MonoBehaviour {
 
     public void startNewGame()
     {
-        // TODO
+        SceneManager.LoadScene("Test");
     }
 
     public void selectLevel()
     {
-        // TODO
+        if (!idiotTxt.IsActive())
+        {
+            idiotTxt.gameObject.SetActive(true);
+        }
+        idiotTxt.text = "Idiot Counter: "+ ++idiotCnt;
     }
 }

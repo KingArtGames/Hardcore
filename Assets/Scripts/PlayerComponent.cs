@@ -15,6 +15,7 @@ public class PlayerComponent : MonoBehaviour
 
     public Light Spotlight;
     public AudioSource AudioSource;
+    public float MorphSoundDelayed;
 
     [HideInInspector]
     public ParticleSystem activeAttack;
@@ -55,6 +56,7 @@ public class PlayerComponent : MonoBehaviour
         else if(AudioSource.clip != null)
             _activeAudioSources[AudioSource.clip] = AudioSource.time;
 
+        AudioSource.Stop();
         switchAnimation(_activeMusikType, musikType);
 
         if (musikType == MusicTypes.metal)
@@ -90,11 +92,14 @@ public class PlayerComponent : MonoBehaviour
         float audioStartTime;
         if (_activeAudioSources.TryGetValue(AudioSource.clip, out audioStartTime))
         {
-            AudioSource.SetScheduledStartTime(audioStartTime);
-            AudioSource.PlayScheduled(audioStartTime);
+            AudioSource.SetScheduledStartTime(MorphSoundDelayed);
+            AudioSource.PlayScheduled(MorphSoundDelayed);
         }
-        else if(!AudioSource.isPlaying)
-            AudioSource.Play();
+        else if (!AudioSource.isPlaying)
+        {
+            AudioSource.SetScheduledStartTime(MorphSoundDelayed);
+            AudioSource.PlayDelayed(MorphSoundDelayed);
+        }
     }
 
     private void switchAnimation(MusicTypes lastType, MusicTypes activeType)

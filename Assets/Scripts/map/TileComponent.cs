@@ -19,6 +19,8 @@ namespace Assets.Scripts.map
             set { _tile = value; Refresh(); } 
         }
 
+        private bool _onTile;
+
         private void Refresh()
         {
             
@@ -26,9 +28,23 @@ namespace Assets.Scripts.map
 
         public void OnCollisionEnter(Collision collision)
         {
+            _onTile = true;
             Initialiser.Instance.GetService<IMessageBus>().Publish(new TileEnteredMessage(this, _tile.GetModule<TileModule>()));
+            StartCoroutine(DropTile());
         }
 
+        public void OnCollisionExit(Collision collision)
+        {
+            _onTile = false;
+        }
+
+
+        private IEnumerator<object> DropTile()
+        {
+            yield return new WaitForSeconds(3);
+            if(_onTile)
+                Destroy(gameObject);
+        }
 
     }
 }

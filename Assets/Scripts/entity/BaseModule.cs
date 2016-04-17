@@ -36,7 +36,7 @@ namespace Assets.Scripts.entity
     [Serializable]public class Data
     {
         [SerializeField]
-        public Vector2 CurrentPosition;
+        public Vector3 CurrentPosition;
         [SerializeField]
         public GameType CurrentMusicType;
     }
@@ -46,8 +46,6 @@ namespace Assets.Scripts.entity
         public GameType GameType;
         [SerializeField]
         public GameType MusicType;
-        [SerializeField]
-        public Vector2 SpawnPosition;
     }
 
     [Serializable]public class Connection

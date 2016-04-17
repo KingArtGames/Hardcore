@@ -15,7 +15,7 @@ public class Loader : MonoBehaviour
     private const string CHARACTERS_PATH = "/Resources/Characters";
     private const string PLAYER = "/player.json";
     private const string ENEMIES = "/enemies.json";
-    private const string MAP = "/Resources/Map/Test/test_final_unity.json";
+    private const string MAP = "/Resources/Map/Test/level1_final_unity.json";
 
 	// Use this for initialization
 	void Start() 
@@ -45,8 +45,7 @@ public class Loader : MonoBehaviour
         enemy1.Template = new Template()
         {
             MusicType = new GameType(MusicTypes.metal.ToString()),
-            GameType = new GameType(EntityTypes.enemy.ToString()),
-            SpawnPosition = new Vector2(5, 5)
+            GameType = new GameType(EntityTypes.enemy.ToString())
         };
 
         Connection enemy2 = new Connection();
@@ -58,8 +57,7 @@ public class Loader : MonoBehaviour
         enemy2.Template = new Template()
         {
             MusicType = new GameType(MusicTypes.metal.ToString()),
-            GameType = new GameType(EntityTypes.enemy.ToString()),
-            SpawnPosition = new Vector2(5, 5)
+            GameType = new GameType(EntityTypes.enemy.ToString())
         };
 
         enemies.Connections[0] = enemy1;
@@ -74,8 +72,7 @@ public class Loader : MonoBehaviour
         Connection player = new Connection();
         player.Data = new Data() { CurrentMusicType = new GameType(MusicTypes.classic.ToString()), 
                                 CurrentPosition = new Vector2(0, 0) };
-        player.Template = new Template() { MusicType = new GameType(MusicTypes.classic.ToString()), 
-                                        SpawnPosition = new Vector2(0, 0), 
+        player.Template = new Template() { MusicType = new GameType(MusicTypes.classic.ToString()),
                                         GameType = new GameType(EntityTypes.player.ToString()) };
 
         string jsonPlayer = JsonUtility.ToJson(player, true);

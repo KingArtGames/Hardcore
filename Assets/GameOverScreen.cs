@@ -3,6 +3,7 @@ using System.Collections;
 using TinyMessenger;
 using Assets.Scripts.message.custom;
 using Assets.Scripts.manager;
+using UnityEngine.SceneManagement;
 
 public class GameOverScreen : MonoBehaviour {
 
@@ -17,6 +18,11 @@ public class GameOverScreen : MonoBehaviour {
     public void OnGameOver(GameOverMessage msg)
     {
         GameOverPanel.SetActive(true);
+    }
+
+    public void backToMainMenu()
+    {
+        SceneManager.LoadScene("mainMenu");
     }
 
 }

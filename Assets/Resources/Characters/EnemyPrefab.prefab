@@ -8,7 +8,7 @@ GameObject:
   serializedVersion: 4
   m_Component:
   - 4: {fileID: 431246}
-  m_Layer: 8
+  m_Layer: 9
   m_Name: EnemyPrefab
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -26,7 +26,7 @@ GameObject:
   - 33: {fileID: 3348822}
   - 135: {fileID: 13525728}
   - 114: {fileID: 11413726}
-  m_Layer: 8
+  m_Layer: 9
   m_Name: Sphere
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -44,7 +44,7 @@ GameObject:
   - 108: {fileID: 10864842}
   - 114: {fileID: 11423858}
   - 114: {fileID: 11447958}
-  m_Layer: 8
+  m_Layer: 9
   m_Name: SpotLight
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -59,7 +59,7 @@ GameObject:
   serializedVersion: 4
   m_Component:
   - 4: {fileID: 469756}
-  m_Layer: 8
+  m_Layer: 9
   m_Name: EffectContainer
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -75,7 +75,7 @@ GameObject:
   m_Component:
   - 4: {fileID: 423132}
   - 212: {fileID: 21277852}
-  m_Layer: 8
+  m_Layer: 9
   m_Name: SpriteHead
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -95,7 +95,8 @@ GameObject:
   - 135: {fileID: 13530590}
   - 95: {fileID: 9525106}
   - 114: {fileID: 11431816}
-  m_Layer: 8
+  - 114: {fileID: 11483286}
+  m_Layer: 9
   m_Name: CharacterComponent
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -111,7 +112,7 @@ GameObject:
   m_Component:
   - 4: {fileID: 419322}
   - 82: {fileID: 8220008}
-  m_Layer: 8
+  m_Layer: 9
   m_Name: AudioSource
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -426,8 +427,20 @@ MonoBehaviour:
   AudioSource: {fileID: 8220008}
   MorphSoundDelayed: 0
   HeadSprite: {fileID: 21277852}
+  UiFillBar: {fileID: 0}
   activeAttack: {fileID: 0}
   isWalking: 0
+--- !u!114 &11483286
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 141394}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: b63a1001446a9f840a0a15ae488ab92f, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!135 &13525728
 SphereCollider:
   m_ObjectHideFlags: 1
@@ -488,7 +501,11 @@ Prefab:
   serializedVersion: 2
   m_Modification:
     m_TransformParent: {fileID: 0}
-    m_Modifications: []
+    m_Modifications:
+    - target: {fileID: 0}
+      propertyPath: m_Layer
+      value: 9
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 0}
   m_RootGameObject: {fileID: 124522}

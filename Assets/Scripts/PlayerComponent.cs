@@ -214,7 +214,7 @@ public class PlayerComponent : MonoBehaviour
         else if(PlayerIsInMusicBubble)
         {
             Spotlight.GetComponent<FollowTarget>().target = transform;
-            Spotlight.transform.position = Vector3.zero;
+            Spotlight.transform.position = transform.position;
             musicIsDropped = false;
         }
     }

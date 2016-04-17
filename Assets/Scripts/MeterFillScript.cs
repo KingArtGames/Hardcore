@@ -2,27 +2,36 @@
 using System.Collections;
 using UnityEngine.UI;
 using Assets.Scripts.entity;
+using TinyMessenger;
+using Assets.Scripts.manager;
+using Assets.Scripts.message.custom;
 
 public class MeterFillScript : MonoBehaviour {
 
     const float MAXAMOUNT = 100; // "Prozent"
+    public float gameTimer;
     public float fillAmount;
-    public float changeRate;
-
-    public int musicState; // 1 = Metal, 2 = Techno, 3 = Klassik (ALTERNATIV VON PLAYER HOLEN?)
+    private IMessageBus _bus;
 
     public Image fillImage;
-    public Image iconImage;
+    public Image timeImage;
 
 	// Use this for initialization
 	void Awake () {
-        fillImage.fillAmount = 30 / MAXAMOUNT;
-        fillAmount = 30 / MAXAMOUNT;
+        gameTimer = 300f;
+        fillImage.fillAmount = MAXAMOUNT;
+        _bus = Initialiser.Instance.GetService<IMessageBus>();
 	}
 	
 	// Update is called once per frame
 	void Update () {
 
+        gameTimer -= Time.deltaTime;
+        if (gameTimer <= 5)
+        {
+            _bus.Publish(new GameOverMessage(this));
+        }
+        timeImage.fillAmount = gameTimer / 300;
 	}
 
     public void reduceByAmount(float amount)
@@ -42,10 +51,4 @@ public class MeterFillScript : MonoBehaviour {
         fillImage.fillAmount = amount;
     }
 
-    public void changeMusicStyle(int newStyle)
-    {
-        musicState = newStyle;
-        // TODO: Change icon according to music style
-
-    }
 }

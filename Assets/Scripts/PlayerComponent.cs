@@ -9,6 +9,7 @@ using Assets.Scripts.message.custom;
 using UnityEngine.Audio;
 using UnityStandardAssets.Utility;
 using Assets.Scripts.entity.modules;
+using Assets.Scripts;
 
 public class PlayerComponent : MonoBehaviour 
 {
@@ -54,7 +55,7 @@ public class PlayerComponent : MonoBehaviour
         _gameEntity.AddModule<PlayerModule>(new PlayerModule(_gameEntity, _bus, new Data() { CurrentMusicType = new GameType(MusicTypes.metal.ToString()) }, new Template()));
 
         SwitchType(MusicTypes.metal);
-        CoolDownTimer = 3;
+        CoolDownTimer = 13;
     }
 
     private void Update()
@@ -234,6 +235,17 @@ public class PlayerComponent : MonoBehaviour
             Spotlight.transform.position = transform.position;
             musicIsDropped = false;
         }
+    }
+
+    public void OnCollisionEnter(Collision collision)
+    {
+        EnemyComponent com = collision.gameObject.GetComponent<EnemyComponent>();
+        if (com == null) return;
+        int health = _gameEntity.GetModule<PlayerModule>().BaseData.MusicHealthMeter - 30;
+        Debug.Log(health);
+        if (health < 0)
+            _bus.Publish(new GameOverMessage(this));
+        _gameEntity.GetModule<PlayerModule>().BaseData.MusicHealthMeter = health;
     }
 
     IEnumerator DestroyObjectAfterTime(GameObject obj)

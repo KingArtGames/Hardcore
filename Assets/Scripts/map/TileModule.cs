@@ -21,5 +21,24 @@ namespace Assets.Scripts.map
         {
             
         }
+
+        public bool IsDestroyable()
+        {
+            return BaseTemplate.MusicType.Value == MusicTypes.metal.ToString()
+                || BaseTemplate.MusicType.Value == MusicTypes.classic.ToString()
+                || BaseTemplate.MusicType.Value == MusicTypes.techno.ToString();
+        }
+
+        public bool IsBlocked()
+        {
+            return BaseTemplate.MusicType.Value == MusicTypes.blocked.ToString();
+        }
+
+        public bool IsObstacle()
+        {
+            return BaseTemplate.MusicType.Value == MusicTypes.classic_vibrating.ToString()
+                || BaseTemplate.MusicType.Value == MusicTypes.metal_vibrating.ToString()
+                || BaseTemplate.MusicType.Value == MusicTypes.techno_vibrating.ToString();
+        }
     }
 }

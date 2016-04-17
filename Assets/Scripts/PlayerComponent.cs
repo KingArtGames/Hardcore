@@ -97,7 +97,7 @@ public class PlayerComponent : MonoBehaviour
             Spotlight.color = Color.blue;
             foreach (Light sp in Spotlight.GetComponentsInChildren<Light>())
             {
-                sp.color = Color.blue;
+                sp.color = new Color(0.0f, 0.082f, 1.0f, 1.0f);
             }
             AudioSource.clip = Resources.Load<AudioClip>("Audio/music/metal");
             AudioSource.outputAudioMixerGroup = _mixer.FindMatchingGroups("music_metal")[0];
@@ -107,7 +107,7 @@ public class PlayerComponent : MonoBehaviour
             Spotlight.color = Color.red;
             foreach(Light sp in Spotlight.GetComponentsInChildren<Light>())
             {
-                sp.color = Color.red;
+                sp.color = new Color(0.992f, 0.102f, 0.102f, 1.0f);
             }
             AudioSource.clip = Resources.Load<AudioClip>("Audio/music/classic");
             AudioSource.outputAudioMixerGroup = _mixer.FindMatchingGroups("music_classic")[0];
@@ -117,7 +117,7 @@ public class PlayerComponent : MonoBehaviour
             Spotlight.color = Color.green;
             foreach (Light sp in Spotlight.GetComponentsInChildren<Light>())
             {
-                sp.color = Color.green;
+                sp.color = new Color(0.176f, 0.659f, 0.176f, 1.0f);
             }
             AudioSource.clip = Resources.Load<AudioClip>("Audio/music/electro");
             AudioSource.outputAudioMixerGroup = _mixer.FindMatchingGroups("music_techno")[0];

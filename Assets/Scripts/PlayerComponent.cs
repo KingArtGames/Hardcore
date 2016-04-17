@@ -101,6 +101,18 @@ public class PlayerComponent : MonoBehaviour
     {
         Debug.Log(lastType.ToString() + "_to_" + activeType.ToString());
         SpriteAnimator.SetTrigger(lastType.ToString() + "_to_" + activeType.ToString());
+        PlayMusicSwitchSound();
+    }
+
+    private void PlayMusicSwitchSound()
+    {
+        AudioSource warpSource = Instantiate<AudioSource>(Resources.Load<AudioSource>("Audio/AudioSource"));
+        warpSource.clip = Resources.Load<AudioClip>("Audio/sfx/warp");
+        warpSource.outputAudioMixerGroup = _mixer.FindMatchingGroups("sfx")[0];
+        warpSource.transform.SetParent(gameObject.transform);
+        if (!warpSource.isPlaying)
+            warpSource.Play();
+        StartCoroutine(DestroyObjectAfterTime(warpSource.gameObject));
     }
 
     private void InstantiateParticleEffect(MusicTypes type)
@@ -142,5 +154,11 @@ public class PlayerComponent : MonoBehaviour
         relativePos.y = 90;
         Quaternion rotation = Quaternion.LookRotation(relativePos);
         return rotation;
+    }
+
+    IEnumerator DestroyObjectAfterTime(GameObject obj)
+    {
+        yield return new WaitForSeconds(1);
+        Destroy(obj);
     }
 }

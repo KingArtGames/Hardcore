@@ -20,6 +20,7 @@ public class PlayerComponent : MonoBehaviour
 
     [HideInInspector]
     public ParticleSystem activeAttack;
+    public bool isWalking;
 
     private IEntityManager _entityManager;
     private Dictionary<AudioClip, float> _activeAudioSources;
@@ -44,10 +45,14 @@ public class PlayerComponent : MonoBehaviour
         SwitchType(MusicTypes.metal);
     }
 
+    private void Update()
+    {
+        if (!SpriteAnimator.GetCurrentAnimatorStateInfo(0).IsName("Walk"))
+            SpriteAnimator.SetBool("isWalking", isWalking);
+    }
     private void Refresh()
     {
     }
-
     private void SwitchType(MusicTypes musikType)
     {
         Refresh();
@@ -109,8 +114,9 @@ public class PlayerComponent : MonoBehaviour
         SpriteAnimator.SetTrigger(lastType.ToString() + "_to_" + activeType.ToString());
         PlayMusicSwitchSound();
         Sprite sprite = Resources.Load<Sprite>("Animation/"+ activeType);
-        if(sprite != null)
-            StartCoroutine(LateSetSpriteAfterAnimation(sprite, 2.5f));
+        Debug.Log(SpriteAnimator.GetCurrentAnimatorStateInfo(0).IsName("Idle"));
+        if (sprite != null && SpriteAnimator.GetCurrentAnimatorStateInfo(0).IsName("Idle") || SpriteAnimator.GetCurrentAnimatorStateInfo(0).IsName("Walk"))
+            StartCoroutine(LateSetSpriteAfterAnimation(sprite));
     }
 
     private void PlayMusicSwitchSound()
@@ -170,9 +176,11 @@ public class PlayerComponent : MonoBehaviour
         yield return new WaitForSeconds(1);
         Destroy(obj);
     }
-    IEnumerator LateSetSpriteAfterAnimation(Sprite sprite, float duration)
+    IEnumerator LateSetSpriteAfterAnimation(Sprite sprite)
     {
-        yield return new WaitForSeconds(duration);
+        HeadSprite.gameObject.SetActive(false); 
+        yield return new WaitForSeconds(SpriteAnimator.GetCurrentAnimatorClipInfo(0).Length + 0.75f);
+        HeadSprite.gameObject.SetActive(true); 
         HeadSprite.sprite = sprite;
     }
 }

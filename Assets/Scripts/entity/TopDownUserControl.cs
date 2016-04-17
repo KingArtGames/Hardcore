@@ -37,6 +37,8 @@ namespace UnityStandardAssets.Characters.ThirdPerson
         // Fixed update is called in sync with physics
         private void FixedUpdate()
         {
+            _player.isWalking = false;
+
             if (_player != null && _player.activeAttack != null)
             {
                 if (Input.GetMouseButton(0))
@@ -56,10 +58,16 @@ namespace UnityStandardAssets.Characters.ThirdPerson
 
             _player.FollowMouse();
             // pass all parameters to the character control script
-            if(Input.GetKey(KeyCode.W) || Input.GetKey(KeyCode.S))
-                _player.MoveForeward(-v * MovementSpeed); 
-            if(Input.GetKey(KeyCode.A) || Input.GetKey(KeyCode.D))
+            if (Input.GetKey(KeyCode.W) || Input.GetKey(KeyCode.S))
+            {
+                _player.MoveForeward(-v * MovementSpeed);
+                _player.isWalking = true;
+            }
+            if (Input.GetKey(KeyCode.A) || Input.GetKey(KeyCode.D))
+            {
                 _player.MoveSidewards(h * MovementSpeed);
+                _player.isWalking = true;
+            }
         }
     }
 }

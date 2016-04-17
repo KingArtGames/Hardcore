@@ -52,13 +52,9 @@ public class PlayerComponent : MonoBehaviour
         else if(AudioSource.clip != null)
             _activeAudioSources[AudioSource.clip] = AudioSource.time;
 
-<<<<<<< HEAD
-        if (musikType == MusicTypes.metal)
-=======
         switchAnimation(_activeMusikType, musikType);
 
-        if (musikType == MusicTypes.Metal)
->>>>>>> 56b69ed5d4200b66a9de338845263b9e66c732b4
+        if (musikType == MusicTypes.metal)
         {
             Spotlight.color = Color.blue;
             AudioSource.clip = Resources.Load<AudioClip>("Audio/music/metal");

@@ -28,7 +28,7 @@ namespace Assets.Scripts.map
 
         public void OnCollisionEnter(Collision collision)
         {
-           // _onTile = true;
+            _onTile = true;
             Initialiser.Instance.GetService<IMessageBus>().Publish(new TileEnteredMessage(this, _tile.GetModule<TileModule>()));
             StartCoroutine(DropTile());
         }

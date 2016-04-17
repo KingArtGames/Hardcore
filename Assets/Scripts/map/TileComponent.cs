@@ -1,4 +1,5 @@
-﻿using System;
+﻿using Assets.Scripts.entity;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -8,8 +9,8 @@ namespace Assets.Scripts.map
 {
     public class TileComponent : MonoBehaviour
     {
-        private Tile _tile;
-        public Tile Tile 
+        private GameEntity _tile;
+        public GameEntity Tile 
         {
             get { return _tile; }
             set { _tile = value; Refresh(); } 

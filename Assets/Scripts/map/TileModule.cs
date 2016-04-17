@@ -26,12 +26,14 @@ namespace Assets.Scripts.map
         {
             return BaseTemplate.MusicType.Value == MusicTypes.metal.ToString()
                 || BaseTemplate.MusicType.Value == MusicTypes.classic.ToString()
-                || BaseTemplate.MusicType.Value == MusicTypes.techno.ToString();
+                || BaseTemplate.MusicType.Value == MusicTypes.techno.ToString()
+                || IsObstacle();
         }
 
         public bool IsBlocked()
         {
-            return BaseTemplate.MusicType.Value == MusicTypes.blocked.ToString();
+            return BaseTemplate.MusicType.Value == MusicTypes.blocked.ToString()
+                || IsObstacle();
         }
 
         public bool IsObstacle()

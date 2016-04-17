@@ -25,8 +25,8 @@ namespace Assets.Scripts.entity.modules
 
         private void OnTileEntered(TileEnteredMessage msg)
         {
-            if (msg.Tile.BaseTemplate.MusicType.Value == _data.CurrentMusicType.Value)
-                Debug.Log("same music type");
+            //if (msg.Tile.BaseTemplate.MusicType.Value == _data.CurrentMusicType.Value)
+            //    Debug.Log("same music type");
         }
     }
 }

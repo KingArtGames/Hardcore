@@ -51,6 +51,8 @@ namespace Assets.Scripts
         public void Update()
         {
             AttackPlayer();
+            if (transform.position.y <= -20)
+                Destroy(transform.parent.gameObject);
         }
         public void AttackPlayer()
         {

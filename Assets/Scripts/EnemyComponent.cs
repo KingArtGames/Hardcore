@@ -60,10 +60,12 @@ namespace Assets.Scripts
                 transform.localEulerAngles = new Vector3(90, transform.localEulerAngles.y, 0);
                 transform.Translate(new Vector3(0, 1, 0) * move * Time.fixedDeltaTime);
                 SpriteAnimator.SetBool("OnWalk",true);
+                HeadSprite.gameObject.SetActive(false);
             }
             else
             {
                 SpriteAnimator.SetBool("OnWalk", false);
+                HeadSprite.gameObject.SetActive(true);
             }
         }
 

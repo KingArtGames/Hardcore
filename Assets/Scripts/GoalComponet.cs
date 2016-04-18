@@ -11,9 +11,10 @@ namespace Assets.Scripts
 {
     public class GoalComponet : MonoBehaviour
     {
-        public void OnCollisionEnter(Collision collision)
+        public void OnTriggerEnter(Collider collision)
         {
             Initialiser.Instance.GetService<IMessageBus>().Publish(new GoalReachedMessage(this));
         }
+
     }
 }

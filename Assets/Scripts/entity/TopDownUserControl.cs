@@ -41,7 +41,7 @@ namespace UnityStandardAssets.Characters.ThirdPerson
             _player.isWalking = false;
             //TEST HERE
 
-            if (_player != null && _player.activeAttack != null)
+            if (_player != null && _player.activeAttack != null && _player.SpriteAnimator.GetCurrentAnimatorClipInfo(0).ToString() != "Attack")
             {
                 if (Input.GetMouseButton(0))
                 {

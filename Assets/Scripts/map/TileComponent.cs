@@ -27,8 +27,8 @@ namespace Assets.Scripts.map
         private void Refresh()
         {
             _blocked = _tile.GetModule<TileModule>().IsBlocked();
-            if (_blocked)
-                GetComponent<BoxCollider>().size = new Vector3(5, 5, 5);
+            if (_blocked || _tile.GetModule<TileModule>().IsObstacle())
+                GetComponent<BoxCollider>().size = new Vector3(5, 5, 15);
         }
 
         public void OnCollisionEnter(Collision collision)

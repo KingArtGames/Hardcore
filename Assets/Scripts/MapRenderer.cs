@@ -114,12 +114,12 @@ namespace Assets.Scripts
                             go.transform.SetParent(transform, false);
 
                             string sprite = msg.Map.tilesets[0].name + "_" + id;
-                            go.GetComponent<SpriteRenderer>().sprite = _tiles.ContainsKey(sprite) ? _tiles[sprite] : null;
+                            go.GetComponentInChildren<SpriteRenderer>().sprite = _tiles.ContainsKey(sprite) ? _tiles[sprite] : null;
 
                             GameEntity tile = new GameEntity(new GameType(EntityTypes.tile.ToString()));
                             // add tile module based on how tile is designed
                             tile.AddModule<TileModule>(GetTileModule(tile, musicTemplates.ContainsKey(id) ? musicTemplates[id] : new Template()));
-                            go.GetComponent<TileComponent>().Tile = tile;
+                            go.GetComponentInChildren<TileComponent>().Tile = tile;
                         }
 
                     }

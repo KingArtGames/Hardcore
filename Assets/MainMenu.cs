@@ -9,7 +9,8 @@ public class MainMenu : MonoBehaviour {
 	// Use this for initialization
 	void Start () {
         idiotCnt = 0;
-	}
+        SceneManager.UnloadScene(1);
+    }
 
     public void exitGameButton()
     {

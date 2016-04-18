@@ -18,10 +18,12 @@ public class GameOverScreen : MonoBehaviour {
     public void OnGameOver(GameOverMessage msg)
     {
         GameOverPanel.SetActive(true);
+
     }
 
     public void backToMainMenu()
     {
+        SceneManager.UnloadScene(1);
         SceneManager.LoadScene(0);
     }
 

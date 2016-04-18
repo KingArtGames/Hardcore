@@ -80,7 +80,7 @@ namespace Assets.Scripts
                         if (to.name.Contains("enemy"))
                         {
                             GameEntity enemy = new GameEntity(new GameType(EntityTypes.enemy.ToString()));
-                            Vector3 spawnPosition = new Vector3(to.x, 1000, -to.y);
+                            Vector3 spawnPosition = new Vector3(to.x, 860, -to.y);
                             enemy.AddModule<EnemyModule>(GetEnemyModule(enemy, _enemyTemplates[to.properties.enemyType], spawnPosition));
                             enemies.Add(enemy);
 

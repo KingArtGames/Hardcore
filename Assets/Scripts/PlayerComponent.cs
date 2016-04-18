@@ -95,6 +95,8 @@ public class PlayerComponent : MonoBehaviour
                 i.color = Color.white;
             }
         }
+        if (transform.position.y < -15)
+            SpriteAnimator.SetTrigger("falling");
             
     }
     private void Refresh()
@@ -293,4 +295,5 @@ public class PlayerComponent : MonoBehaviour
         if(PlayerIsInMusicBubble)
             PlayerIsInMusicBubble = false;
     }
+
 }

@@ -31,6 +31,7 @@ namespace UnityStandardAssets.Characters.ThirdPerson
                 _bus.Publish(new PlayerChangedMusikTypeMessage(this, MusicTypes.classic));
             if (Input.GetKeyDown(KeyCode.Alpha3))
                 _bus.Publish(new PlayerChangedMusikTypeMessage(this, MusicTypes.techno));
+            
         }
 
 

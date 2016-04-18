@@ -102,7 +102,7 @@ Prefab:
       objectReference: {fileID: 0}
     - target: {fileID: 440778, guid: 728f24368faba8643a0991a4eec27739, type: 2}
       propertyPath: m_LocalPosition.y
-      value: 0
+      value: 4.11
       objectReference: {fileID: 0}
     - target: {fileID: 440778, guid: 728f24368faba8643a0991a4eec27739, type: 2}
       propertyPath: m_LocalPosition.z
@@ -164,6 +164,10 @@ Prefab:
       propertyPath: StateImages.Array.data[2]
       value: 
       objectReference: {fileID: 1008171685}
+    - target: {fileID: 5435336, guid: 728f24368faba8643a0991a4eec27739, type: 2}
+      propertyPath: m_Drag
+      value: 1
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: 728f24368faba8643a0991a4eec27739, type: 2}
   m_IsPrefabParent: 0
@@ -254,22 +258,6 @@ Prefab:
     - target: {fileID: 22455012, guid: 274f394d5ddef554ca7c1dafcfb06e78, type: 2}
       propertyPath: m_Pivot.y
       value: 0.5
-      objectReference: {fileID: 0}
-    - target: {fileID: 22455012, guid: 274f394d5ddef554ca7c1dafcfb06e78, type: 2}
-      propertyPath: m_LocalScale.x
-      value: 1.0018553
-      objectReference: {fileID: 0}
-    - target: {fileID: 22455012, guid: 274f394d5ddef554ca7c1dafcfb06e78, type: 2}
-      propertyPath: m_LocalScale.y
-      value: 1.0018553
-      objectReference: {fileID: 0}
-    - target: {fileID: 22455012, guid: 274f394d5ddef554ca7c1dafcfb06e78, type: 2}
-      propertyPath: m_LocalScale.z
-      value: 1.0018553
-      objectReference: {fileID: 0}
-    - target: {fileID: 155406, guid: 274f394d5ddef554ca7c1dafcfb06e78, type: 2}
-      propertyPath: m_IsActive
-      value: 0
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: 274f394d5ddef554ca7c1dafcfb06e78, type: 2}
@@ -937,7 +925,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 0
+  m_IsActive: 1
 --- !u!82 &1577342487
 AudioSource:
   m_ObjectHideFlags: 0

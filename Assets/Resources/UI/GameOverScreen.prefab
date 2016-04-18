@@ -301,7 +301,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 139f7f6bb50d79742b7d0c3632bf9179, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  GameOverPanel: {fileID: 155406}
+  GameOverPanel: {fileID: 137596}
   GameWonPanel: {fileID: 104606}
   PowerMeter: {fileID: 0}
   Score: {fileID: 11479214}

@@ -53,6 +53,7 @@ namespace Assets.Scripts
             AttackPlayer();
             if (transform.position.y <= -20)
                 Destroy(transform.parent.gameObject);
+
         }
         public void AttackPlayer()
         {
@@ -66,29 +67,31 @@ namespace Assets.Scripts
             }
             else
             {
-                SpriteAnimator.SetBool("OnWalk", false);
-                HeadSprite.gameObject.SetActive(true);
+                //SpriteAnimator.SetBool("OnWalk", false);
+                //HeadSprite.gameObject.SetActive(true);
             }
         }
 
         public void OnParticleCollision(GameObject other)
         {
-            Debug.Log(_gameEntity.GetModule<EnemyModule>().BaseData.CurrentMusicType.Value + " | " + other.name);
-            if (CheckToKill(other.name))
+            Debug.Log(CheckToKill(other.name, _gameEntity.GetModule<EnemyModule>().BaseData.CurrentMusicType.Value));
+            if (CheckToKill(other.name, _gameEntity.GetModule<EnemyModule>().BaseData.CurrentMusicType.Value))
+            {
                 Destroy(transform.parent.gameObject);
+            }
         }
 
-        public bool CheckToKill(String MusikType)
+        public bool CheckToKill(String AttckerMusicType , String VictimMusicType )
         {
-            if (MusikType.Contains(MusicTypes.metal.ToString()) && _gameEntity.GetModule<EnemyModule>().BaseData.CurrentMusicType.Value == MusicTypes.techno.ToString())
+            if (AttckerMusicType.Contains(MusicTypes.metal.ToString()) && VictimMusicType.Contains(MusicTypes.techno.ToString()))
             {
                 return true;
             }
-            else if (MusikType.Contains(MusicTypes.classic.ToString()) && _gameEntity.GetModule<EnemyModule>().BaseData.CurrentMusicType.Value == MusicTypes.metal.ToString())
+            else if (AttckerMusicType.Contains(MusicTypes.classic.ToString()) && VictimMusicType.Contains(MusicTypes.metal.ToString()))
             {
                 return true;
             }
-            else if (MusikType.Contains(MusicTypes.techno.ToString()) && _gameEntity.GetModule<EnemyModule>().BaseData.CurrentMusicType.Value == MusicTypes.classic.ToString())
+            else if (AttckerMusicType.Contains(MusicTypes.techno.ToString()) && VictimMusicType.Contains(MusicTypes.classic.ToString()))
             {
                 return true;
             }
@@ -100,10 +103,24 @@ namespace Assets.Scripts
         public void OnTriggerStay(Collider other)
         {
             PlayerComponent comp = other.gameObject.GetComponentInChildren<PlayerComponent>();
-            if (comp != null && _gameEntity.GetModule<EnemyModule>().BaseData.CurrentMusicType.Value != comp.GameEntity.GetModule<PlayerModule>().BaseData.CurrentMusicType.Value)
+            if (comp != null && CheckToKill(_gameEntity.GetModule<EnemyModule>().BaseData.CurrentMusicType.Value, comp.GameEntity.GetModule<PlayerModule>().BaseData.CurrentMusicType.Value))
+            {
                 _target = comp.Spotlight.gameObject;
-            else if (comp != null && _gameEntity.GetModule<EnemyModule>().BaseData.CurrentMusicType.Value == comp.GameEntity.GetModule<PlayerModule>().BaseData.CurrentMusicType.Value)
+            }
+            else if (comp != null)
+            {
                 _target = null;
+                if (_gameEntity.GetModule<EnemyModule>().BaseData.CurrentMusicType.Value != comp.GameEntity.GetModule<PlayerModule>().BaseData.CurrentMusicType.Value)
+                {
+                    SpriteAnimator.SetBool("OnWalk", true);
+                    HeadSprite.gameObject.SetActive(false);
+                }
+                else
+                {
+                    SpriteAnimator.SetBool("OnWalk", false);
+                    HeadSprite.gameObject.SetActive(true);
+                }
+            }
         }
     }
 }

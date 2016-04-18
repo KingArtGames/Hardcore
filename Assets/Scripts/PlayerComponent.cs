@@ -87,7 +87,6 @@ public class PlayerComponent : MonoBehaviour
                 _gameEntity.GetModule<PlayerModule>().BaseData.MusicHealthMeter -= 0.1f;
             UiFillBar.reduceByAmount(0.1f);
         }
-        Debug.Log(_gameEntity.GetModule<PlayerModule>().BaseData.MusicHealthMeter);
         if (CoolDownTimer >= 0)
             CoolDownTimer -= Time.deltaTime;
         else

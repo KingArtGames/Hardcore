@@ -172,12 +172,6 @@ RectTransform:
   m_PrefabParentObject: {fileID: 22455012, guid: 274f394d5ddef554ca7c1dafcfb06e78,
     type: 2}
   m_PrefabInternal: {fileID: 128306320}
---- !u!114 &15738192 stripped
-MonoBehaviour:
-  m_PrefabParentObject: {fileID: 11444466, guid: 274f394d5ddef554ca7c1dafcfb06e78,
-    type: 2}
-  m_PrefabInternal: {fileID: 128306320}
-  m_Script: {fileID: 11500000, guid: 139f7f6bb50d79742b7d0c3632bf9179, type: 3}
 --- !u!1001 &128306320
 Prefab:
   m_ObjectHideFlags: 0
@@ -261,22 +255,6 @@ Prefab:
       propertyPath: PowerMeter
       value: 
       objectReference: {fileID: 1026483512}
-    - target: {fileID: 11435368, guid: 274f394d5ddef554ca7c1dafcfb06e78, type: 2}
-      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_CallState
-      value: 2
-      objectReference: {fileID: 0}
-    - target: {fileID: 11435368, guid: 274f394d5ddef554ca7c1dafcfb06e78, type: 2}
-      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_Target
-      value: 
-      objectReference: {fileID: 15738192}
-    - target: {fileID: 11435368, guid: 274f394d5ddef554ca7c1dafcfb06e78, type: 2}
-      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_MethodName
-      value: backToMainMenu
-      objectReference: {fileID: 0}
-    - target: {fileID: 11405050, guid: 274f394d5ddef554ca7c1dafcfb06e78, type: 2}
-      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_CallState
-      value: 1
-      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: 274f394d5ddef554ca7c1dafcfb06e78, type: 2}
   m_IsPrefabParent: 0
@@ -457,7 +435,7 @@ MonoBehaviour:
   Detail: 150
   Delay: 5
   rampOffset: -0.11
-  Radius: 0.14
+  Radius: 0.1
   Beat: 1.814014
 --- !u!1001 &436982730
 Prefab:

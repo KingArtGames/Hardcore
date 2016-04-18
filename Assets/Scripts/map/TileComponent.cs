@@ -28,7 +28,7 @@ namespace Assets.Scripts.map
         {
             _blocked = _tile.GetModule<TileModule>().IsBlocked();
             if (_blocked || _tile.GetModule<TileModule>().IsObstacle())
-                GetComponent<BoxCollider>().size = new Vector3(5, 10, 50);
+                GetComponent<BoxCollider>().size = new Vector3(7, 7, 50);
         }
 
         public void OnCollisionEnter(Collision collision)
@@ -60,6 +60,8 @@ namespace Assets.Scripts.map
         private IEnumerator<object> DropTile()
         {
             yield return new WaitForSeconds(2);
+            this.GetComponentInParent<Animation>().Play("falling");
+            yield return new WaitForSeconds(1);
             if (_destroyable)
                 Destroy(transform.parent.gameObject);
         }

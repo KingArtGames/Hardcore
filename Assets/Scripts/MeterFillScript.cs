@@ -5,6 +5,7 @@ using Assets.Scripts.entity;
 using TinyMessenger;
 using Assets.Scripts.manager;
 using Assets.Scripts.message.custom;
+using System;
 
 public class MeterFillScript : MonoBehaviour {
 
@@ -19,7 +20,7 @@ public class MeterFillScript : MonoBehaviour {
 	// Use this for initialization
 	void Awake () {
         gameTimer = 300f;
-        fillImage.fillAmount = MAXAMOUNT;
+        fillImage.fillAmount = 0.5f;
         _bus = Initialiser.Instance.GetService<IMessageBus>();
 	}
 	
@@ -31,8 +32,16 @@ public class MeterFillScript : MonoBehaviour {
         {
             _bus.Publish(new GameOverMessage(this));
         }
-        timeImage.fillAmount = gameTimer / 300;
-	}
+        try
+        {
+            timeImage.fillAmount = gameTimer / 300;
+        }
+        catch (NullReferenceException e)
+        {
+
+        }
+        finally { }
+    }
 
     public void reduceByAmount(float amount)
     {

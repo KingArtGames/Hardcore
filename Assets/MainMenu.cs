@@ -5,11 +5,10 @@ using UnityEngine.SceneManagement;
 
 public class MainMenu : MonoBehaviour {
     int idiotCnt;
-    Text idiotTxt;
+    public Text idiotTxt;
 	// Use this for initialization
 	void Start () {
         idiotCnt = 0;
-        idiotTxt = GameObject.Find("idiotTxt").GetComponent<Text>();
 	}
 
     public void exitGameButton()

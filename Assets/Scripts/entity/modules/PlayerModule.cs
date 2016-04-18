@@ -28,11 +28,16 @@ namespace Assets.Scripts.entity.modules
         {
             if (msg.Tile.IsDestroyable() && msg.Tile.BaseTemplate.MusicType.Value != _data.CurrentMusicType.Value && !msg.Tile.IsObstacle())
             {
-                ((TileComponent)msg.Sender).StartDropping(1);
+                ((TileComponent)msg.Sender).StartDropping(1, TileComponent.Timers[msg.Tile.BaseData.CurrentMusicType.Value]--);
             }
             else if (msg.Tile.IsObstacle() && msg.Tile.BaseTemplate.MusicType.Value.Contains(_data.CurrentMusicType.Value))
             {
-                ((TileComponent)msg.Sender).StartDropping(2);
+                ((TileComponent)msg.Sender).StartDropping(2, 3);
+            }
+
+            if (msg.Tile.IsDestroyable() && msg.Tile.BaseData.CurrentMusicType.Value == _data.CurrentMusicType.Value)
+            {
+                TileComponent.Timers[msg.Tile.BaseData.CurrentMusicType.Value] = TileComponent.START_TIME;
             }
         }
     }

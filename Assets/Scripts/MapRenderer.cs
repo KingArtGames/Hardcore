@@ -80,7 +80,7 @@ namespace Assets.Scripts
                         if (to.name.Contains("enemy"))
                         {
                             GameEntity enemy = new GameEntity(new GameType(EntityTypes.enemy.ToString()));
-                            Vector3 spawnPosition = new Vector3(to.x, 1000, -to.y);
+                            Vector3 spawnPosition = new Vector3(to.x, 860, -to.y);
                             enemy.AddModule<EnemyModule>(GetEnemyModule(enemy, _enemyTemplates[to.properties.enemyType], spawnPosition));
                             enemies.Add(enemy);
 
@@ -114,12 +114,12 @@ namespace Assets.Scripts
                             go.transform.SetParent(transform, false);
 
                             string sprite = msg.Map.tilesets[0].name + "_" + id;
-                            go.GetComponent<SpriteRenderer>().sprite = _tiles.ContainsKey(sprite) ? _tiles[sprite] : null;
+                            go.GetComponentInChildren<SpriteRenderer>().sprite = _tiles.ContainsKey(sprite) ? _tiles[sprite] : null;
 
                             GameEntity tile = new GameEntity(new GameType(EntityTypes.tile.ToString()));
                             // add tile module based on how tile is designed
                             tile.AddModule<TileModule>(GetTileModule(tile, musicTemplates.ContainsKey(id) ? musicTemplates[id] : new Template()));
-                            go.GetComponent<TileComponent>().Tile = tile;
+                            go.GetComponentInChildren<TileComponent>().Tile = tile;
                         }
 
                     }

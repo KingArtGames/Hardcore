@@ -17,7 +17,7 @@ namespace Assets.Scripts
         public SphereCollider Trigger;
         public float move = 10;
 
-        private GameObject _target;
+        public GameObject _target;
 
         private GameEntity _gameEntity;
         public GameEntity GameEntity
@@ -56,16 +56,15 @@ namespace Assets.Scripts
         {
             if (_target != null)
             {
-                transform.rotation = Quaternion.LookRotation(_target.transform.position);
+                transform.LookAt(_target.transform.position, Vector3.down);
                 transform.localEulerAngles = new Vector3(90, transform.localEulerAngles.y, 0);
-
-                //transform.Translate(new Vector3 (0,1,0) * move * Time.fixedDeltaTime);
+                transform.Translate(new Vector3(0, 1, 0) * move * Time.fixedDeltaTime);
             }
         }
 
         public void OnParticleCollision(GameObject other)
         {
-            Debug.Log(_gameEntity.GetModule<EnemyModule>().BaseData.CurrentMusicType.Value+" | " + other.name);
+            Debug.Log(_gameEntity.GetModule<EnemyModule>().BaseData.CurrentMusicType.Value + " | " + other.name);
             if (CheckToKill(other.name))
                 Destroy(transform.parent.gameObject);
         }
@@ -86,16 +85,16 @@ namespace Assets.Scripts
             }
             else
                 return false;
-            
+
         }
 
-        public void OnTriggerEnter(Collider collision)
+        public void OnTriggerStay(Collider other)
         {
-            PlayerComponent comp = collision.gameObject.GetComponentInChildren<PlayerComponent>();
-            if (comp != null)
+            PlayerComponent comp = other.gameObject.GetComponentInChildren<PlayerComponent>();
+            if (comp != null && _gameEntity.GetModule<EnemyModule>().BaseData.CurrentMusicType.Value != comp.GameEntity.GetModule<PlayerModule>().BaseData.CurrentMusicType.Value)
                 _target = comp.gameObject;
+            else if (comp != null && _gameEntity.GetModule<EnemyModule>().BaseData.CurrentMusicType.Value == comp.GameEntity.GetModule<PlayerModule>().BaseData.CurrentMusicType.Value)
+                _target = null;
         }
-
-        
     }
 }

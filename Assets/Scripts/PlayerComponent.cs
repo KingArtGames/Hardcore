@@ -35,6 +35,7 @@ public class PlayerComponent : MonoBehaviour
     private IMessageBus _bus;
     private bool musicIsDropped = false;
     private bool PlayerIsInMusicBubble;
+    private bool forceSwitch = true;
     private Time _startTime;
 
     private MusicTypes _activeMusikType;
@@ -55,10 +56,10 @@ public class PlayerComponent : MonoBehaviour
         _mixer = Resources.Load<AudioMixer>("Audio/Master");
 
         _gameEntity = new GameEntity(new GameType(EntityTypes.player.ToString()));
-        _gameEntity.AddModule<PlayerModule>(new PlayerModule(_gameEntity, _bus, new Data() { CurrentMusicType = new GameType(MusicTypes.metal.ToString()) }, new Template()));
+        _gameEntity.AddModule<PlayerModule>(new PlayerModule(_gameEntity, _bus, new Data() { CurrentMusicType = new GameType(MusicTypes.neutral.ToString()) }, new Template()));
 
-        SwitchType(MusicTypes.metal);
         CoolDownTimer = 13;
+        StartCoroutine(FirstMusicChangeAfterIntro(CoolDownTimer));
         foreach (Image i in StateImages)
         {
             i.color = Color.grey;
@@ -102,14 +103,14 @@ public class PlayerComponent : MonoBehaviour
     private void Refresh()
     {
     }
-    private void SwitchType(MusicTypes musikType)
+    private void SwitchType(MusicTypes musicType)
     {
         Debug.Log(CoolDownTimer);
-        if (musikType != _activeMusikType && CoolDownTimer < 0)
+        if (musicType != _activeMusikType && CoolDownTimer < 0 || forceSwitch)
         {
             Refresh();
 
-            GameEntity.GetModule<PlayerModule>().BaseData.CurrentMusicType.Value = musikType.ToString();
+            GameEntity.GetModule<PlayerModule>().BaseData.CurrentMusicType.Value = musicType.ToString();
 
             if (AudioSource.clip != null && !_activeAudioSources.ContainsKey(AudioSource.clip))
                 _activeAudioSources.Add(AudioSource.clip, AudioSource.time);
@@ -117,10 +118,11 @@ public class PlayerComponent : MonoBehaviour
                 _activeAudioSources[AudioSource.clip] = AudioSource.time;
 
             AudioSource.Stop();
-            switchAnimation(_activeMusikType, musikType);
+            switchAnimation(_activeMusikType, musicType);
 
-            if (musikType == MusicTypes.metal)
+            if (musicType == MusicTypes.metal)
             {
+                Spotlight.gameObject.SetActive(true);
                 Spotlight.color = Color.blue;
                 foreach (Light sp in Spotlight.GetComponentsInChildren<Light>())
                 {
@@ -131,8 +133,9 @@ public class PlayerComponent : MonoBehaviour
                 StateImages[0].color = Color.white;
                 StateImages[1].color = StateImages[2].color = Color.grey;
             }
-            if (musikType == MusicTypes.classic)
+            if (musicType == MusicTypes.classic)
             {
+                Spotlight.gameObject.SetActive(true);
                 Spotlight.color = Color.red;
                 foreach (Light sp in Spotlight.GetComponentsInChildren<Light>())
                 {
@@ -143,8 +146,9 @@ public class PlayerComponent : MonoBehaviour
                 StateImages[1].color = Color.white;
                 StateImages[0].color = StateImages[2].color = Color.grey;
             }
-            if (musikType == MusicTypes.techno)
+            if (musicType == MusicTypes.techno)
             {
+                Spotlight.gameObject.SetActive(true);
                 Spotlight.color = Color.green;
                 foreach (Light sp in Spotlight.GetComponentsInChildren<Light>())
                 {
@@ -155,8 +159,12 @@ public class PlayerComponent : MonoBehaviour
                 StateImages[2].color = Color.white;
                 StateImages[1].color = StateImages[0].color = Color.grey;
             }
-            _activeMusikType = musikType;
-            InstantiateParticleEffect(musikType);
+            if(musicType == MusicTypes.neutral)
+            {
+                Spotlight.gameObject.SetActive(false);
+            }
+            _activeMusikType = musicType;
+            InstantiateParticleEffect(musicType);
 
             GetAudioSourceTime();
 
@@ -265,11 +273,14 @@ public class PlayerComponent : MonoBehaviour
     {
         EnemyComponent com = collision.gameObject.GetComponent<EnemyComponent>();
         if (com == null) return;
-        int health = _gameEntity.GetModule<PlayerModule>().BaseData.MusicHealthMeter - 30;
-        Debug.Log(health);
-        if (health < 0)
-            _bus.Publish(new GameOverMessage(this));
-        _gameEntity.GetModule<PlayerModule>().BaseData.MusicHealthMeter = health;
+        if (com.GameEntity.GetModule<EnemyModule>().BaseData.CurrentMusicType.Value != GameEntity.GetModule<PlayerModule>().BaseData.CurrentMusicType.Value)
+        {
+            int health = _gameEntity.GetModule<PlayerModule>().BaseData.MusicHealthMeter - 30;
+            Debug.Log(health);
+            if (health <= 0)
+                _bus.Publish(new GameOverMessage(this));
+            _gameEntity.GetModule<PlayerModule>().BaseData.MusicHealthMeter = health;
+        }
     }
 
     IEnumerator DestroyObjectAfterTime(GameObject obj)
@@ -283,6 +294,12 @@ public class PlayerComponent : MonoBehaviour
         yield return new WaitForSeconds(SpriteAnimator.GetCurrentAnimatorClipInfo(0).Length + 0.75f);
         HeadSprite.gameObject.SetActive(true); 
         HeadSprite.sprite = sprite;
+    }
+    IEnumerator FirstMusicChangeAfterIntro(float duration)
+    {
+        forceSwitch = true;
+        yield return new WaitForSeconds(duration);
+        SwitchType(MusicTypes.classic);
     }
 
     void OnTriggerStay(Collider other)

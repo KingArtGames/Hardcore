@@ -36,10 +36,11 @@ public class PlayerComponent : MonoBehaviour
     private bool musicIsDropped = false;
     private bool PlayerIsInMusicBubble;
     private bool forceSwitch = false;
+    private bool GameStarted = false;
     private Time _startTime;
 
     private MusicTypes _activeMusikType;
-    private AudioMixer _mixer; 
+    private AudioMixer _mixer;
 
     private GameEntity _gameEntity;
     public GameEntity GameEntity
@@ -233,15 +234,19 @@ public class PlayerComponent : MonoBehaviour
 
     public void MoveForeward(float move)
     {
-        float distance = Vector3.Distance(transform.position, Camera.main.ScreenToWorldPoint(Input.mousePosition));
-        if (distance > 5.5f)
+        if (GameStarted)
         {
-            transform.Translate(transform.forward * move * Time.fixedDeltaTime);
+            float distance = Vector3.Distance(transform.position, Camera.main.ScreenToWorldPoint(Input.mousePosition));
+            if (distance > 5.5f)
+            {
+                transform.Translate(transform.forward * move * Time.fixedDeltaTime);
+            }
         }
     }
     public void MoveSidewards(float move)
     {
-        transform.Translate(new Vector3(1, 0, 0) * move * Time.fixedDeltaTime);
+        if(GameStarted)
+            transform.Translate(new Vector3(1, 0, 0) * move * Time.fixedDeltaTime);
     }
 
     private Quaternion GetMousePosition()
@@ -280,6 +285,8 @@ public class PlayerComponent : MonoBehaviour
             if (health <= 0)
                 _bus.Publish(new GameOverMessage(this));
             _gameEntity.GetModule<PlayerModule>().BaseData.MusicHealthMeter = health;
+
+            UiFillBar.score -= 10.0f;
         }
     }
 
@@ -301,6 +308,8 @@ public class PlayerComponent : MonoBehaviour
         forceSwitch = true;
         SwitchType(MusicTypes.classic);
         forceSwitch = false;
+        UiFillBar.StartScoreDown = true;
+        GameStarted = true;
     }
 
     void OnTriggerStay(Collider other)

@@ -15,6 +15,5 @@ namespace Assets.Scripts
         {
             Initialiser.Instance.GetService<IMessageBus>().Publish(new GoalReachedMessage(this));
         }
-
     }
 }

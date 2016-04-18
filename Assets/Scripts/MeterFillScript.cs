@@ -16,13 +16,17 @@ public class MeterFillScript : MonoBehaviour {
 
     public Image fillImage;
     public Image timeImage;
+    public Text Score;
+    public bool StartScoreDown;
 
-	// Use this for initialization
-	void Awake () {
+    public float score = 10.0f;
+
+    // Use this for initialization
+    void Awake () {
         gameTimer = 300f;
         fillImage.fillAmount = 0;
         _bus = Initialiser.Instance.GetService<IMessageBus>();
-	}
+    }
 	
 	// Update is called once per frame
 	void Update () {
@@ -32,6 +36,13 @@ public class MeterFillScript : MonoBehaviour {
         {
             _bus.Publish(new GameOverMessage(this));
         }
+
+        if (StartScoreDown)
+            score -= Time.deltaTime;
+        if(score <= 0)
+            _bus.Publish(new GameOverMessage(this));
+
+        Score.text = "Score:" + (int)score;
         try
         {
             timeImage.fillAmount = gameTimer / 300;

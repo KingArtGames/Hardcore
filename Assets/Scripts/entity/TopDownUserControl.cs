@@ -45,7 +45,10 @@ namespace UnityStandardAssets.Characters.ThirdPerson
                 if (Input.GetMouseButton(0))
                 {
                     if (!_player.activeAttack.isPlaying)
+                    {
+                        _player.SpriteAnimator.SetTrigger("attack");
                         _player.activeAttack.Play();
+                    }
                 }
                 else if (!Input.GetMouseButton(0))
                 {

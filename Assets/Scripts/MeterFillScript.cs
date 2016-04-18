@@ -20,7 +20,7 @@ public class MeterFillScript : MonoBehaviour {
 	// Use this for initialization
 	void Awake () {
         gameTimer = 300f;
-        fillImage.fillAmount = 0.5f;
+        fillImage.fillAmount = 0;
         _bus = Initialiser.Instance.GetService<IMessageBus>();
 	}
 	

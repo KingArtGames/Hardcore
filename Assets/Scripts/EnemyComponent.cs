@@ -99,7 +99,7 @@ namespace Assets.Scripts
         {
             PlayerComponent comp = other.gameObject.GetComponentInChildren<PlayerComponent>();
             if (comp != null && _gameEntity.GetModule<EnemyModule>().BaseData.CurrentMusicType.Value != comp.GameEntity.GetModule<PlayerModule>().BaseData.CurrentMusicType.Value)
-                _target = comp.gameObject;
+                _target = comp.Spotlight.gameObject;
             else if (comp != null && _gameEntity.GetModule<EnemyModule>().BaseData.CurrentMusicType.Value == comp.GameEntity.GetModule<PlayerModule>().BaseData.CurrentMusicType.Value)
                 _target = null;
         }

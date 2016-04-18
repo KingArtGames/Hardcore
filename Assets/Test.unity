@@ -255,6 +255,10 @@ Prefab:
       propertyPath: PowerMeter
       value: 
       objectReference: {fileID: 1026483512}
+    - target: {fileID: 11444466, guid: 274f394d5ddef554ca7c1dafcfb06e78, type: 2}
+      propertyPath: GameOverPanel
+      value: 
+      objectReference: {fileID: 1962395394}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: 274f394d5ddef554ca7c1dafcfb06e78, type: 2}
   m_IsPrefabParent: 0
@@ -1077,6 +1081,10 @@ Transform:
   m_Children: []
   m_Father: {fileID: 0}
   m_RootOrder: 1
+--- !u!1 &1962395394 stripped
+GameObject:
+  m_PrefabParentObject: {fileID: 137596, guid: 274f394d5ddef554ca7c1dafcfb06e78, type: 2}
+  m_PrefabInternal: {fileID: 128306320}
 --- !u!1 &2049712275
 GameObject:
   m_ObjectHideFlags: 0

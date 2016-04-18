@@ -93,6 +93,7 @@ namespace Assets.Scripts
                         {
                             Vector3 spawnPosition = new Vector3(to.x, 1000, -to.y);
                             CharacterPrefab.transform.position = spawnPosition *= _scale;
+                            CharacterPrefab.SetActive(true);
                         }
                     }
                 }

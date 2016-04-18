@@ -90,12 +90,14 @@ GameObject:
   serializedVersion: 4
   m_Component:
   - 4: {fileID: 454746}
-  - 114: {fileID: 11464218}
   - 54: {fileID: 5407552}
   - 135: {fileID: 13530590}
   - 95: {fileID: 9525106}
   - 114: {fileID: 11431816}
   - 114: {fileID: 11483286}
+  - 135: {fileID: 13524836}
+  - 114: {fileID: 11450562}
+  - 114: {fileID: 11427314}
   m_Layer: 9
   m_Name: CharacterComponent
   m_TagString: Untagged
@@ -410,6 +412,19 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   target: {fileID: 454746}
   offset: {x: 0, y: 4, z: 0}
+--- !u!114 &11427314
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 141394}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 246cc59c7a84ea44f87f6b70acfe30c5, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  target: {fileID: 0}
+  offset: {x: 0, y: 7.5, z: 0}
 --- !u!114 &11431816
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -439,27 +454,19 @@ MonoBehaviour:
   delay: 0.07
   SpotLight: {fileID: 10864842}
   LightMultiplyer: 100
---- !u!114 &11464218
+--- !u!114 &11450562
 MonoBehaviour:
   m_ObjectHideFlags: 1
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 141394}
-  m_Enabled: 0
+  m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 4d2baeb2e4b8aff4a9fabe797805f16f, type: 3}
+  m_Script: {fileID: 11500000, guid: 246cc59c7a84ea44f87f6b70acfe30c5, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  EffectContainer: {fileID: 130656}
-  SpriteAnimator: {fileID: 9525106}
-  Spotlight: {fileID: 10864842}
-  AudioSource: {fileID: 8220008}
-  MorphSoundDelayed: 0
-  HeadSprite: {fileID: 21277852}
-  UiFillBar: {fileID: 0}
-  CoolDownTimer: 0
-  activeAttack: {fileID: 0}
-  isWalking: 0
+  target: {fileID: 0}
+  offset: {x: 0, y: 7.5, z: 0}
 --- !u!114 &11483286
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -474,6 +481,20 @@ MonoBehaviour:
   SpriteAnimator: {fileID: 9525106}
   Spotlight: {fileID: 10864842}
   HeadSprite: {fileID: 21277852}
+  Trigger: {fileID: 0}
+  move: 10
+--- !u!135 &13524836
+SphereCollider:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 141394}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 1
+  m_Enabled: 1
+  serializedVersion: 2
+  m_Radius: 20
+  m_Center: {x: 0, y: 0, z: 0}
 --- !u!135 &13525728
 SphereCollider:
   m_ObjectHideFlags: 1

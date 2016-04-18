@@ -35,7 +35,7 @@ public class PlayerComponent : MonoBehaviour
     private IMessageBus _bus;
     private bool musicIsDropped = false;
     private bool PlayerIsInMusicBubble;
-    private bool forceSwitch = true;
+    private bool forceSwitch = false;
     private Time _startTime;
 
     private MusicTypes _activeMusikType;
@@ -77,16 +77,16 @@ public class PlayerComponent : MonoBehaviour
         if (PlayerIsInMusicBubble)
         {
             if (_gameEntity.GetModule<PlayerModule>().BaseData.MusicHealthMeter <=100)
-                _gameEntity.GetModule<PlayerModule>().BaseData.MusicHealthMeter += 1;
+                _gameEntity.GetModule<PlayerModule>().BaseData.MusicHealthMeter += 0.1f;
             UiFillBar.increaseByAmount(0.1f);
         }
         else
         {
             if (_gameEntity.GetModule<PlayerModule>().BaseData.MusicHealthMeter >= 0)
-                _gameEntity.GetModule<PlayerModule>().BaseData.MusicHealthMeter -= 1;
+                _gameEntity.GetModule<PlayerModule>().BaseData.MusicHealthMeter -= 0.1f;
             UiFillBar.reduceByAmount(0.1f);
         }
-
+        Debug.Log(_gameEntity.GetModule<PlayerModule>().BaseData.MusicHealthMeter);
         if (CoolDownTimer >= 0)
             CoolDownTimer -= Time.deltaTime;
         else
@@ -275,8 +275,8 @@ public class PlayerComponent : MonoBehaviour
         if (com == null) return;
         if (com.GameEntity.GetModule<EnemyModule>().BaseData.CurrentMusicType.Value != GameEntity.GetModule<PlayerModule>().BaseData.CurrentMusicType.Value)
         {
-            int health = _gameEntity.GetModule<PlayerModule>().BaseData.MusicHealthMeter - 30;
-            Debug.Log(health);
+            float health = _gameEntity.GetModule<PlayerModule>().BaseData.MusicHealthMeter - 10.0f;
+            UiFillBar.reduceByAmount(10.0f);
             if (health <= 0)
                 _bus.Publish(new GameOverMessage(this));
             _gameEntity.GetModule<PlayerModule>().BaseData.MusicHealthMeter = health;
@@ -297,9 +297,10 @@ public class PlayerComponent : MonoBehaviour
     }
     IEnumerator FirstMusicChangeAfterIntro(float duration)
     {
-        forceSwitch = true;
         yield return new WaitForSeconds(duration);
+        forceSwitch = true;
         SwitchType(MusicTypes.classic);
+        forceSwitch = false;
     }
 
     void OnTriggerStay(Collider other)

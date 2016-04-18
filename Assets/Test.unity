@@ -501,15 +501,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 243a781cad112c75d0008dfa8d76c639, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  shader: {fileID: 4800000, guid: daf9781cad112c75d0008dfa8d76c639, type: 3}
-  textureRamp: {fileID: 0}
-  AudioSource: {fileID: 1186272188}
-  Amplitude: 0.02
-  Detail: 50
-  Delay: 0.07
-  rampOffset: 0
-  Radius: 0.2
-  Beat: 0
 --- !u!1001 &436982730
 Prefab:
   m_ObjectHideFlags: 0
@@ -1019,11 +1010,6 @@ MonoBehaviour:
   TilePrefab: {fileID: 155160, guid: fb8239936b29a8d4c8185ee40b9f5f86, type: 2}
   EnemyPrefab: {fileID: 124522, guid: e8fbbf97ffecfc645809fb66bfbba04f, type: 2}
   CharacterPrefab: {fileID: 710928957}
---- !u!82 &1186272188 stripped
-AudioSource:
-  m_PrefabParentObject: {fileID: 8236224, guid: 728f24368faba8643a0991a4eec27739,
-    type: 2}
-  m_PrefabInternal: {fileID: 3645432}
 --- !u!114 &1210542019 stripped
 MonoBehaviour:
   m_PrefabParentObject: {fileID: 11494830, guid: 25a44d4006725de4cbe40a85add09f75,

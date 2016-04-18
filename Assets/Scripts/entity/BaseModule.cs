@@ -40,7 +40,7 @@ namespace Assets.Scripts.entity
         [SerializeField]
         public GameType CurrentMusicType;
         [SerializeField]
-        public int MusicHealthMeter = 0;
+        public float MusicHealthMeter = 0;
     }
     [Serializable]public class Template
     {

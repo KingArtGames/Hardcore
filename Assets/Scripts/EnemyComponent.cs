@@ -29,7 +29,7 @@ namespace Assets.Scripts
         private void Refresh()
         {
             HeadSprite.sprite = Resources.Load<Sprite>("Characters/enemies/enemy_" + _gameEntity.GetModule<EnemyModule>().BaseData.CurrentMusicType.Value);
-            //SpriteAnimator.runtimeAnimatorController = Resources.Load<RuntimeAnimatorController>("Animation/Enemy");
+            SpriteAnimator.runtimeAnimatorController = Resources.Load<RuntimeAnimatorController>("Animation/EnemyController/"+ _gameEntity.GetModule<EnemyModule>().BaseData.CurrentMusicType.Value);
             SetEnemyType(_gameEntity.GetModule<EnemyModule>().BaseData.CurrentMusicType.Value);
         }
 

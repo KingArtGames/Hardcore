@@ -28,7 +28,7 @@ namespace Assets.Scripts.map
         {
             _blocked = _tile.GetModule<TileModule>().IsBlocked();
             if (_blocked || _tile.GetModule<TileModule>().IsObstacle())
-                GetComponent<BoxCollider>().size = new Vector3(5, 5, 15);
+                GetComponent<BoxCollider>().size = new Vector3(5, 10, 50);
         }
 
         public void OnCollisionEnter(Collision collision)
@@ -60,12 +60,12 @@ namespace Assets.Scripts.map
         private IEnumerator<object> DropTile()
         {
             yield return new WaitForSeconds(2);
-            if(_destroyable)
-                Destroy(gameObject);
+            if (_destroyable)
+                Destroy(transform.parent.gameObject);
         }
         private IEnumerator<object> DropObstacle()
         {
-            this.GetComponent<Animation>().Play();
+            this.GetComponentInParent<Animation>().Play("Wobble");
             yield return new WaitForSeconds(3);
             GetComponent<SpriteRenderer>().sprite = Default;
             _tile.GetModule<TileModule>().BaseData.CurrentMusicType = new GameType(MusicTypes.neutral.ToString());

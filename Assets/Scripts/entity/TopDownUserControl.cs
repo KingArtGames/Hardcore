@@ -38,6 +38,7 @@ namespace UnityStandardAssets.Characters.ThirdPerson
         private void FixedUpdate()
         {
             _player.isWalking = false;
+            //TEST HERE
 
             if (_player != null && _player.activeAttack != null)
             {

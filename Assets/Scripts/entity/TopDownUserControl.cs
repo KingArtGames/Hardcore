@@ -31,6 +31,7 @@ namespace UnityStandardAssets.Characters.ThirdPerson
                 _bus.Publish(new PlayerChangedMusikTypeMessage(this, MusicTypes.classic));
             if (Input.GetKeyDown(KeyCode.Alpha3))
                 _bus.Publish(new PlayerChangedMusikTypeMessage(this, MusicTypes.techno));
+            
         }
 
 
@@ -45,7 +46,10 @@ namespace UnityStandardAssets.Characters.ThirdPerson
                 if (Input.GetMouseButton(0))
                 {
                     if (!_player.activeAttack.isPlaying)
+                    {
+                        _player.SpriteAnimator.SetTrigger("attack");
                         _player.activeAttack.Play();
+                    }
                 }
                 else if (!Input.GetMouseButton(0))
                 {

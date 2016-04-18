@@ -28,6 +28,7 @@ GameObject:
   - 212: {fileID: 21292584}
   - 114: {fileID: 11423758}
   - 65: {fileID: 6584296}
+  - 111: {fileID: 11107714}
   m_Layer: 0
   m_Name: Tile
   m_TagString: Untagged
@@ -105,6 +106,21 @@ BoxCollider:
   serializedVersion: 2
   m_Size: {x: 5, y: 5, z: 1}
   m_Center: {x: 0, y: 0, z: 0}
+--- !u!111 &11107714
+Animation:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 155160}
+  m_Enabled: 1
+  serializedVersion: 3
+  m_Animation: {fileID: 7400000, guid: c4178711f65f2334da5a2d0e0a9372f9, type: 2}
+  m_Animations:
+  - {fileID: 7400000, guid: c4178711f65f2334da5a2d0e0a9372f9, type: 2}
+  m_WrapMode: 0
+  m_PlayAutomatically: 0
+  m_AnimatePhysics: 0
+  m_CullingType: 0
 --- !u!114 &11423758
 MonoBehaviour:
   m_ObjectHideFlags: 1

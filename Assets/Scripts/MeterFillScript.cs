@@ -11,7 +11,7 @@ public class MeterFillScript : MonoBehaviour {
 
     const float MAXAMOUNT = 100; // "Prozent"
     public float gameTimer;
-    public float fillAmount;
+    //public float fillAmount;
     private IMessageBus _bus;
 
     public Image fillImage;
@@ -20,7 +20,7 @@ public class MeterFillScript : MonoBehaviour {
 	// Use this for initialization
 	void Awake () {
         gameTimer = 300f;
-        fillImage.fillAmount = 0.5f;
+        fillImage.fillAmount = 0;
         _bus = Initialiser.Instance.GetService<IMessageBus>();
 	}
 	
@@ -45,14 +45,17 @@ public class MeterFillScript : MonoBehaviour {
 
     public void reduceByAmount(float amount)
     {
-        this.fillAmount -= amount;
+        //this.fillAmount -= amount;
         fillImage.fillAmount -= amount / MAXAMOUNT;
     }
 
     public void increaseByAmount(float amount)
     {
-        this.fillAmount += amount;
-        fillImage.fillAmount += amount / MAXAMOUNT;
+        if (gameTimer <= 287f)
+        {
+            //this.fillAmount += amount;
+            fillImage.fillAmount += amount / MAXAMOUNT;
+        }
     }
 
     public void setFillAmount(float amount)

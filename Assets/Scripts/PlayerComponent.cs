@@ -10,11 +10,14 @@ using UnityEngine.Audio;
 using UnityStandardAssets.Utility;
 using Assets.Scripts.entity.modules;
 using Assets.Scripts;
+using UnityEngine.UI;
 
 public class PlayerComponent : MonoBehaviour 
 {
     public GameObject EffectContainer;
     public Animator SpriteAnimator;
+
+    public Image[] StateImages; 
 
     public Light Spotlight;
     public AudioSource AudioSource;
@@ -56,6 +59,10 @@ public class PlayerComponent : MonoBehaviour
 
         SwitchType(MusicTypes.metal);
         CoolDownTimer = 13;
+        foreach (Image i in StateImages)
+        {
+            i.color = Color.grey;
+        }
     }
 
     private void Update()
@@ -79,8 +86,18 @@ public class PlayerComponent : MonoBehaviour
             UiFillBar.reduceByAmount(0.1f);
         }
 
-        if(CoolDownTimer >=0)
+        if (CoolDownTimer >= 0)
             CoolDownTimer -= Time.deltaTime;
+        else
+        {
+            foreach (Image i in StateImages)
+            {
+                i.color = Color.white;
+            }
+        }
+        if (transform.position.y < -15)
+            SpriteAnimator.SetTrigger("falling");
+            
     }
     private void Refresh()
     {
@@ -111,6 +128,8 @@ public class PlayerComponent : MonoBehaviour
                 }
                 AudioSource.clip = Resources.Load<AudioClip>("Audio/music/metal");
                 AudioSource.outputAudioMixerGroup = _mixer.FindMatchingGroups("music_metal")[0];
+                StateImages[0].color = Color.white;
+                StateImages[1].color = StateImages[2].color = Color.grey;
             }
             if (musikType == MusicTypes.classic)
             {
@@ -121,6 +140,8 @@ public class PlayerComponent : MonoBehaviour
                 }
                 AudioSource.clip = Resources.Load<AudioClip>("Audio/music/classic");
                 AudioSource.outputAudioMixerGroup = _mixer.FindMatchingGroups("music_classic")[0];
+                StateImages[1].color = Color.white;
+                StateImages[0].color = StateImages[2].color = Color.grey;
             }
             if (musikType == MusicTypes.techno)
             {
@@ -131,6 +152,8 @@ public class PlayerComponent : MonoBehaviour
                 }
                 AudioSource.clip = Resources.Load<AudioClip>("Audio/music/electro");
                 AudioSource.outputAudioMixerGroup = _mixer.FindMatchingGroups("music_techno")[0];
+                StateImages[2].color = Color.white;
+                StateImages[1].color = StateImages[0].color = Color.grey;
             }
             _activeMusikType = musikType;
             InstantiateParticleEffect(musikType);
@@ -140,6 +163,7 @@ public class PlayerComponent : MonoBehaviour
             _gameEntity.GetModule<PlayerModule>().BaseData.MusicHealthMeter = 0;
             UiFillBar.setFillAmount(0);
             CoolDownTimer = 3;
+
         }
     }
 
@@ -271,4 +295,5 @@ public class PlayerComponent : MonoBehaviour
         if(PlayerIsInMusicBubble)
             PlayerIsInMusicBubble = false;
     }
+
 }

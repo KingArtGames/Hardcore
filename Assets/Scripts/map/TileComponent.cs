@@ -65,6 +65,7 @@ namespace Assets.Scripts.map
         }
         private IEnumerator<object> DropObstacle()
         {
+            this.GetComponent<Animation>().Play();
             yield return new WaitForSeconds(3);
             GetComponent<SpriteRenderer>().sprite = Default;
             _tile.GetModule<TileModule>().BaseData.CurrentMusicType = new GameType(MusicTypes.neutral.ToString());

@@ -20,12 +20,18 @@ public class Loader : MonoBehaviour
 	// Use this for initialization
 	void Start() 
     {
-        _bus = Initialiser.Instance.GetService<IMessageBus>();
-        _bus.Subscribe<LoadMapMessage>(OnLoadMap);
+        //_bus = Initialiser.Instance.GetService<IMessageBus>();
+        //_bus.Subscribe<LoadMapMessage>(OnLoadMap);
         //TestSavePlayer();
         //TestSaveEnemies();
         //Load();
 	}
+
+    public void Awake()
+    {
+        _bus = Initialiser.Instance.GetService<IMessageBus>();
+        _bus.Subscribe<LoadMapMessage>(OnLoadMap);
+    }
 
     private void OnLoadMap(LoadMapMessage obj)
     {

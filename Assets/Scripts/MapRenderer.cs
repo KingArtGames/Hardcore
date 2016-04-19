@@ -33,9 +33,14 @@ namespace Assets.Scripts
             _bus = Initialiser.Instance.GetService<IMessageBus>();
             _entityManger = Initialiser.Instance.GetService<IEntityManager>();
             _bus.Subscribe<MapLoadedMessage>(OnMapLoaded);
-
-            StartCoroutine(WaitForLoad());
         }
+
+        public void OnEnable()
+        {
+            _bus.Publish<LoadMapMessage>(new LoadMapMessage(this));
+        }
+
+
 
         private IEnumerator<object> WaitForLoad()
         {

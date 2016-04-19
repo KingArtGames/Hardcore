@@ -145,6 +145,7 @@ Animation:
   m_Animation: {fileID: 7400000, guid: d44f5f1871c3ffb4f9cb7c816f2d2fdb, type: 2}
   m_Animations:
   - {fileID: 7400000, guid: c4178711f65f2334da5a2d0e0a9372f9, type: 2}
+  - {fileID: 7400000, guid: d44f5f1871c3ffb4f9cb7c816f2d2fdb, type: 2}
   m_WrapMode: 0
   m_PlayAutomatically: 0
   m_AnimatePhysics: 0
@@ -160,6 +161,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 23523f530e4755a47a1bf323672456d3, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  Metal: {fileID: 21300002, guid: 782cd0b52935c1e42a82cc54c4f566ad, type: 3}
+  Classic: {fileID: 21300010, guid: 782cd0b52935c1e42a82cc54c4f566ad, type: 3}
+  Techno: {fileID: 21300006, guid: 782cd0b52935c1e42a82cc54c4f566ad, type: 3}
   Default: {fileID: 21300020, guid: 782cd0b52935c1e42a82cc54c4f566ad, type: 3}
 --- !u!212 &21240824
 SpriteRenderer:

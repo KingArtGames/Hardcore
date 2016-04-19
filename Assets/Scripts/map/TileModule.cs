@@ -24,23 +24,23 @@ namespace Assets.Scripts.map
 
         public bool IsDestroyable()
         {
-            return BaseTemplate.MusicType.Value == MusicTypes.metal.ToString()
-                || BaseTemplate.MusicType.Value == MusicTypes.classic.ToString()
-                || BaseTemplate.MusicType.Value == MusicTypes.techno.ToString()
+            return BaseData.CurrentMusicType.Value == MusicTypes.metal.ToString()
+                || BaseData.CurrentMusicType.Value == MusicTypes.classic.ToString()
+                || BaseData.CurrentMusicType.Value == MusicTypes.techno.ToString()
                 || IsObstacle();
         }
 
         public bool IsBlocked()
         {
-            return BaseTemplate.MusicType.Value == MusicTypes.blocked.ToString()
+            return BaseData.CurrentMusicType.Value == MusicTypes.blocked.ToString()
                 || IsObstacle();
         }
 
         public bool IsObstacle()
         {
-            return BaseTemplate.MusicType.Value == MusicTypes.classic_vibrating.ToString()
-                || BaseTemplate.MusicType.Value == MusicTypes.metal_vibrating.ToString()
-                || BaseTemplate.MusicType.Value == MusicTypes.techno_vibrating.ToString();
+            return BaseData.CurrentMusicType.Value == MusicTypes.classic_vibrating.ToString()
+                || BaseData.CurrentMusicType.Value == MusicTypes.metal_vibrating.ToString()
+                || BaseData.CurrentMusicType.Value == MusicTypes.techno_vibrating.ToString();
         }
     }
 }

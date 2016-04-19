@@ -22,6 +22,7 @@ namespace Assets.Scripts
         public GameObject TilePrefab;
         public GameObject EnemyPrefab;
         public GameObject CharacterPrefab;
+        public GameObject GoalPrefab;
 
         private Dictionary<string, Sprite> _tiles;
         private const float _scale = 0.02f;
@@ -94,6 +95,13 @@ namespace Assets.Scripts
                             Vector3 spawnPosition = new Vector3(to.x, 1000, -to.y);
                             CharacterPrefab.transform.position = spawnPosition *= _scale;
                             CharacterPrefab.SetActive(true);
+                        }
+                        else if (to.name.Contains("END"))
+                        {
+                            GameObject go = Instantiate(GoalPrefab);
+                            Vector3 pos = new Vector3(to.x - 6 / _scale, 0, -to.y - 27 / _scale);
+                            go.transform.position = pos *= _scale;
+                            go.transform.SetParent(transform, false);
                         }
                     }
                 }

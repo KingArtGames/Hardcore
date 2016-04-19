@@ -630,6 +630,20 @@
          "spacing":0,
          "tilecount":14,
          "tileheight":512,
+         "tileproperties":
+            {
+             "1":
+                {
+                 "specialTile":"end"
+                }
+            },
+         "tilepropertytypes":
+            {
+             "1":
+                {
+                 "specialTile":"string"
+                }
+            },
          "tilewidth":512
         }],
  "tilewidth":512,

@@ -101,6 +101,7 @@ namespace Assets.Scripts
                             GameObject go = Instantiate(GoalPrefab);
                             Vector3 pos = new Vector3(to.x - 6 / _scale, 0, -to.y - 27 / _scale);
                             go.transform.position = pos *= _scale;
+                            go.transform.GetComponent<BoxCollider>().size = new Vector3(to.width * _scale, 20, to.height * _scale);
                             go.transform.SetParent(transform, false);
                         }
                     }

@@ -23,6 +23,7 @@ public class GameOverScreen : MonoBehaviour {
     public void OnGameOver(GameOverMessage msg)
     {
         GameOverPanel.SetActive(true);
+        Time.timeScale = 0f;
     }
     public void OnGoalReched(GoalReachedMessage msg)
     {

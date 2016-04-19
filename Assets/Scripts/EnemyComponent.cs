@@ -38,14 +38,17 @@ namespace Assets.Scripts
             if (musikType == MusicTypes.metal.ToString())
             {
                 Spotlight.color = Color.blue;
+                move =  7.5f;
             }
             if (musikType == MusicTypes.classic.ToString())
             {
                 Spotlight.color = Color.red;
+                move = 5;
             }
             if (musikType == MusicTypes.techno.ToString())
             {
                 Spotlight.color = Color.green;
+                move = 10;
             }
         }
         public void Update()

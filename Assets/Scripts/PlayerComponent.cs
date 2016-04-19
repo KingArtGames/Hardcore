@@ -29,6 +29,7 @@ public class PlayerComponent : MonoBehaviour
     [HideInInspector]
     public ParticleSystem activeAttack;
     public bool isWalking;
+    private bool falling = false;
 
     private IEntityManager _entityManager;
     private Dictionary<AudioClip, float> _activeAudioSources;
@@ -96,9 +97,10 @@ public class PlayerComponent : MonoBehaviour
                 i.color = Color.white;
             }
         }
-        if (transform.position.y < -15)
-            SpriteAnimator.SetTrigger("falling");
-            
+        if (transform.position.y <= -15 && falling == false) { 
+            transform.GetComponentInParent<Animation>().Play("falling");
+            falling = true;    
+        }
     }
     private void Refresh()
     {

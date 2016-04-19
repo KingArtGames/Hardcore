@@ -26,12 +26,18 @@ namespace UnityStandardAssets.Characters.ThirdPerson
         private void Update()
         {
             if (Input.GetKeyDown(KeyCode.Alpha1))
+            {
                 _bus.Publish(new PlayerChangedMusikTypeMessage(this, MusicTypes.metal));
-            if (Input.GetKeyDown(KeyCode.Alpha2))
+                MovementSpeed = 30;
+            }
+            if (Input.GetKeyDown(KeyCode.Alpha2)) { 
                 _bus.Publish(new PlayerChangedMusikTypeMessage(this, MusicTypes.classic));
-            if (Input.GetKeyDown(KeyCode.Alpha3))
+                MovementSpeed = 20;
+            }
+            if (Input.GetKeyDown(KeyCode.Alpha3)) { 
                 _bus.Publish(new PlayerChangedMusikTypeMessage(this, MusicTypes.techno));
-            
+                MovementSpeed = 40;
+            }
         }
 
 

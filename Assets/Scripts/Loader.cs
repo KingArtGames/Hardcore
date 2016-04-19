@@ -17,6 +17,8 @@ public class Loader : MonoBehaviour
     private const string ENEMIES = "/enemies.json";
     private const string MAP = "Map/Test/level1_final_unity";
 
+    private TinyMessageSubscriptionToken _token;
+
 	// Use this for initialization
 	void Start() 
     {
@@ -30,13 +32,19 @@ public class Loader : MonoBehaviour
     public void Awake()
     {
         _bus = Initialiser.Instance.GetService<IMessageBus>();
-        _bus.Subscribe<LoadMapMessage>(OnLoadMap);
+        _token = _bus.Subscribe<LoadMapMessage>(OnLoadMap);
     }
 
     private void OnLoadMap(LoadMapMessage obj)
     {
         _bus.Publish(new MapLoadedMessage(this, GetTiles()));
     }
+
+    public void OnDisable()
+    {
+        _bus.Unsubscribe<LoadMapMessage>(_token);
+    }
+
 
     private void TestSaveEnemies()
     {

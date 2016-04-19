@@ -27,12 +27,14 @@ namespace Assets.Scripts
         private Dictionary<string, Sprite> _tiles;
         private const float _scale = 0.02f;
 
+        private TinyMessageSubscriptionToken _token;
+
         public void Awake()
         {
             _tiles = new Dictionary<string, Sprite>();
             _bus = Initialiser.Instance.GetService<IMessageBus>();
             _entityManger = Initialiser.Instance.GetService<IEntityManager>();
-            _bus.Subscribe<MapLoadedMessage>(OnMapLoaded);
+            _token = _bus.Subscribe<MapLoadedMessage>(OnMapLoaded);
         }
 
         public void OnEnable()
@@ -40,7 +42,10 @@ namespace Assets.Scripts
             _bus.Publish<LoadMapMessage>(new LoadMapMessage(this));
         }
 
-
+        public void OnDisable()
+        {
+            _bus.Unsubscribe<LoadMapMessage>(_token);
+        }
 
         private IEnumerator<object> WaitForLoad()
         {

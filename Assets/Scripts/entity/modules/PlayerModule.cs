@@ -26,11 +26,11 @@ namespace Assets.Scripts.entity.modules
 
         private void OnTileEntered(TileEnteredMessage msg)
         {
-            if (msg.Tile.IsDestroyable() && msg.Tile.BaseTemplate.MusicType.Value != _data.CurrentMusicType.Value && !msg.Tile.IsObstacle())
+            if (msg.Tile.IsDestroyable() && msg.Tile.BaseData.CurrentMusicType.Value != _data.CurrentMusicType.Value && !msg.Tile.IsObstacle())
             {
                 ((TileComponent)msg.Sender).StartDropping(1, TileComponent.Timers[msg.Tile.BaseData.CurrentMusicType.Value]--);
             }
-            else if (msg.Tile.IsObstacle() && msg.Tile.BaseTemplate.MusicType.Value.Contains(_data.CurrentMusicType.Value))
+            else if (msg.Tile.IsObstacle() && msg.Tile.BaseData.CurrentMusicType.Value.Contains(_data.CurrentMusicType.Value))
             {
                 ((TileComponent)msg.Sender).StartDropping(2, 3);
             }

@@ -56,6 +56,7 @@ namespace Assets.Scripts
             AttackPlayer();
             if (transform.position.y <= -20)
                 Destroy(transform.parent.gameObject);
+            transform.localEulerAngles = new Vector3(90.0f, transform.localEulerAngles.y, transform.localEulerAngles.z);
 
         }
         public void AttackPlayer()
@@ -70,8 +71,7 @@ namespace Assets.Scripts
             }
             else
             {
-                //SpriteAnimator.SetBool("OnWalk", false);
-                //HeadSprite.gameObject.SetActive(true);
+                transform.position = transform.position;
             }
         }
 

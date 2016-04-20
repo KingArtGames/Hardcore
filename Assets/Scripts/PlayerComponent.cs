@@ -137,6 +137,7 @@ public class PlayerComponent : MonoBehaviour
                 AudioSource.outputAudioMixerGroup = _mixer.FindMatchingGroups("music_metal")[0];
                 StateImages[0].color = Color.white;
                 StateImages[1].color = StateImages[2].color = Color.grey;
+                GetComponent<TopDownUserControl>().MovementSpeed = 30;
             }
             if (musicType == MusicTypes.classic)
             {
@@ -150,6 +151,7 @@ public class PlayerComponent : MonoBehaviour
                 AudioSource.outputAudioMixerGroup = _mixer.FindMatchingGroups("music_classic")[0];
                 StateImages[1].color = Color.white;
                 StateImages[0].color = StateImages[2].color = Color.grey;
+                GetComponent<TopDownUserControl>().MovementSpeed = 20;
             }
             if (musicType == MusicTypes.techno)
             {
@@ -163,6 +165,7 @@ public class PlayerComponent : MonoBehaviour
                 AudioSource.outputAudioMixerGroup = _mixer.FindMatchingGroups("music_techno")[0];
                 StateImages[2].color = Color.white;
                 StateImages[1].color = StateImages[0].color = Color.grey;
+                GetComponent<TopDownUserControl>().MovementSpeed = 40;
             }
             if(musicType == MusicTypes.neutral)
             {

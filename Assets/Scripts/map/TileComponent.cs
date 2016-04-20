@@ -74,6 +74,7 @@ namespace Assets.Scripts.map
             else if (enemy != null && !_tileModule.IsObstacle() && !_tileModule.IsBlocked())
             {
                 _tileModule.BaseData.CurrentMusicType = enemy.GameEntity.GetModule<EnemyModule>().BaseData.CurrentMusicType;
+                _tileModule.BaseTemplate.MusicType = enemy.GameEntity.GetModule<EnemyModule>().BaseData.CurrentMusicType;
                 GetComponent<SpriteRenderer>().sprite = _musics[enemy.GameEntity.GetModule<EnemyModule>().BaseData.CurrentMusicType.Value];
             }
         }

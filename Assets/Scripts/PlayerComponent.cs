@@ -25,6 +25,7 @@ public class PlayerComponent : MonoBehaviour
     public SpriteRenderer HeadSprite;
     public MeterFillScript UiFillBar;
     public float CoolDownTimer;
+    public AudioSource tutorial_voice;
 
     [HideInInspector]
     public ParticleSystem activeAttack;
@@ -42,6 +43,7 @@ public class PlayerComponent : MonoBehaviour
 
     private MusicTypes _activeMusikType;
     private AudioMixer _mixer;
+    private IEnumerator _startCoroutine;
 
     private GameEntity _gameEntity;
     public GameEntity GameEntity
@@ -61,7 +63,8 @@ public class PlayerComponent : MonoBehaviour
         _gameEntity.AddModule<PlayerModule>(new PlayerModule(_gameEntity, _bus, new Data() { CurrentMusicType = new GameType(MusicTypes.neutral.ToString()) }, new Template()));
 
         CoolDownTimer = 13;
-        StartCoroutine(FirstMusicChangeAfterIntro(CoolDownTimer));
+        _startCoroutine = FirstMusicChangeAfterIntro(CoolDownTimer);
+        StartCoroutine(_startCoroutine);
         foreach (Image i in StateImages)
         {
             i.color = Color.grey;
@@ -322,6 +325,13 @@ public class PlayerComponent : MonoBehaviour
     {
         if(PlayerIsInMusicBubble)
             PlayerIsInMusicBubble = false;
+    }
+    public void SkipIntro()
+    {
+        tutorial_voice.Stop();
+        CoolDownTimer = 0.1f;
+        StopCoroutine(_startCoroutine);
+        StartCoroutine(FirstMusicChangeAfterIntro(CoolDownTimer));
     }
 
 }

@@ -24,13 +24,14 @@ GameObject:
   serializedVersion: 4
   m_Component:
   - 4: {fileID: 440778}
+  - 111: {fileID: 11153914}
   m_Layer: 8
   m_Name: CharacterPrefab
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!1 &118450
 GameObject:
   m_ObjectHideFlags: 1
@@ -295,7 +296,7 @@ Transform:
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 107802}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: 4.11, z: 0}
+  m_LocalPosition: {x: 100, y: 100, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
   - {fileID: 444882}
@@ -693,6 +694,21 @@ Light:
   m_ShadowRadius: 0
   m_ShadowAngle: 0
   m_AreaSize: {x: 1, y: 1}
+--- !u!111 &11153914
+Animation:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 107802}
+  m_Enabled: 1
+  serializedVersion: 3
+  m_Animation: {fileID: 7400000, guid: d44f5f1871c3ffb4f9cb7c816f2d2fdb, type: 2}
+  m_Animations:
+  - {fileID: 7400000, guid: d44f5f1871c3ffb4f9cb7c816f2d2fdb, type: 2}
+  m_WrapMode: 0
+  m_PlayAutomatically: 0
+  m_AnimatePhysics: 0
+  m_CullingType: 0
 --- !u!114 &11425316
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -794,6 +810,7 @@ MonoBehaviour:
   HeadSprite: {fileID: 21291020}
   UiFillBar: {fileID: 0}
   CoolDownTimer: 0
+  tutorial_voice: {fileID: 0}
   activeAttack: {fileID: 0}
   isWalking: 0
 --- !u!114 &11459728

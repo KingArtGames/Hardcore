@@ -62,11 +62,7 @@ public class MeterFillScript : MonoBehaviour {
 
     public void increaseByAmount(float amount)
     {
-        if (gameTimer <= 287f)
-        {
-            //this.fillAmount += amount;
-            fillImage.fillAmount += amount / MAXAMOUNT;
-        }
+        fillImage.fillAmount += amount / MAXAMOUNT;
     }
 
     public void setFillAmount(float amount)

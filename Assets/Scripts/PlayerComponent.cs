@@ -44,6 +44,7 @@ public class PlayerComponent : MonoBehaviour
     private MusicTypes _activeMusikType;
     private AudioMixer _mixer;
     private IEnumerator _startCoroutine;
+    private PlayerModule _player;
 
     private GameEntity _gameEntity;
     public GameEntity GameEntity
@@ -60,7 +61,9 @@ public class PlayerComponent : MonoBehaviour
         _mixer = Resources.Load<AudioMixer>("Audio/Master");
 
         _gameEntity = new GameEntity(new GameType(EntityTypes.player.ToString()));
-        _gameEntity.AddModule<PlayerModule>(new PlayerModule(_gameEntity, _bus, new Data() { CurrentMusicType = new GameType(MusicTypes.neutral.ToString()) }, new Template()));
+        if(_player == null)
+            _player = new PlayerModule(_gameEntity, _bus, new Data() { CurrentMusicType = new GameType(MusicTypes.neutral.ToString()) }, new Template());
+        _gameEntity.AddModule<PlayerModule>(_player);
 
         CoolDownTimer = 13;
         _startCoroutine = FirstMusicChangeAfterIntro(CoolDownTimer);

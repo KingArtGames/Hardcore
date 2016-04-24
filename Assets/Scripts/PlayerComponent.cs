@@ -12,12 +12,12 @@ using Assets.Scripts.entity.modules;
 using Assets.Scripts;
 using UnityEngine.UI;
 
-public class PlayerComponent : MonoBehaviour 
+public class PlayerComponent : MonoBehaviour
 {
     public GameObject EffectContainer;
     public Animator SpriteAnimator;
 
-    public Image[] StateImages; 
+    public Image[] StateImages;
 
     public Light Spotlight;
     public AudioSource AudioSource;
@@ -53,7 +53,7 @@ public class PlayerComponent : MonoBehaviour
         set { _gameEntity = value; Refresh(); }
     }
 
-    public void Start ()
+    public void Start()
     {
         _bus = Initialiser.Instance.GetService<IMessageBus>();
         _bus.Subscribe<PlayerChangedMusikTypeMessage>(OnSwitchType);
@@ -61,7 +61,7 @@ public class PlayerComponent : MonoBehaviour
         _mixer = Resources.Load<AudioMixer>("Audio/Master");
 
         _gameEntity = new GameEntity(new GameType(EntityTypes.player.ToString()));
-        if(_player == null)
+        if (_player == null)
             _player = new PlayerModule(_gameEntity, _bus, new Data() { CurrentMusicType = new GameType(MusicTypes.neutral.ToString()) }, new Template());
         _gameEntity.AddModule<PlayerModule>(_player);
 
@@ -84,7 +84,7 @@ public class PlayerComponent : MonoBehaviour
 
         if (PlayerIsInMusicBubble)
         {
-            if (_gameEntity.GetModule<PlayerModule>().BaseData.MusicHealthMeter <=100)
+            if (_gameEntity.GetModule<PlayerModule>().BaseData.MusicHealthMeter <= 100)
                 _gameEntity.GetModule<PlayerModule>().BaseData.MusicHealthMeter += 0.1f;
             UiFillBar.increaseByAmount(0.1f);
         }
@@ -103,9 +103,10 @@ public class PlayerComponent : MonoBehaviour
                 i.color = Color.white;
             }
         }
-        if (transform.position.y <= -15 && falling == false) { 
+        if (transform.position.y <= -15 && falling == false)
+        {
             transform.GetComponentInParent<Animation>().Play("falling");
-            falling = true;    
+            falling = true;
         }
     }
     private void Refresh()
@@ -170,7 +171,7 @@ public class PlayerComponent : MonoBehaviour
                 StateImages[1].color = StateImages[0].color = Color.grey;
                 GetComponent<TopDownUserControl>().MovementSpeed = 40;
             }
-            if(musicType == MusicTypes.neutral)
+            if (musicType == MusicTypes.neutral)
             {
                 Spotlight.gameObject.SetActive(false);
             }
@@ -208,7 +209,7 @@ public class PlayerComponent : MonoBehaviour
         Debug.Log(lastType.ToString() + "_to_" + activeType.ToString());
         SpriteAnimator.SetTrigger(lastType.ToString() + "_to_" + activeType.ToString());
         PlayMusicSwitchSound();
-        Sprite sprite = Resources.Load<Sprite>("Animation/"+ activeType);
+        Sprite sprite = Resources.Load<Sprite>("Animation/" + activeType);
         Debug.Log(SpriteAnimator.GetCurrentAnimatorStateInfo(0).IsName("Idle"));
         if (sprite != null && SpriteAnimator.GetCurrentAnimatorStateInfo(0).IsName("Idle") || SpriteAnimator.GetCurrentAnimatorStateInfo(0).IsName("Walk"))
             StartCoroutine(LateSetSpriteAfterAnimation(sprite));
@@ -227,7 +228,7 @@ public class PlayerComponent : MonoBehaviour
 
     private void InstantiateParticleEffect(MusicTypes type)
     {
-        if(activeAttack != null)
+        if (activeAttack != null)
             Destroy(activeAttack.gameObject);
         ParticleSystem resource = Resources.Load<ParticleSystem>("Effects/Attacks/" + type.ToString());
         activeAttack = Instantiate<ParticleSystem>(resource);
@@ -255,7 +256,7 @@ public class PlayerComponent : MonoBehaviour
     }
     public void MoveSidewards(float move)
     {
-        if(GameStarted)
+        if (GameStarted)
             transform.Translate(new Vector3(1, 0, 0) * move * Time.fixedDeltaTime);
     }
 
@@ -276,7 +277,7 @@ public class PlayerComponent : MonoBehaviour
             Spotlight.GetComponent<FollowTarget>().target = null;
             musicIsDropped = true;
         }
-        else if(PlayerIsInMusicBubble)
+        else if (PlayerIsInMusicBubble)
         {
             Spotlight.GetComponent<FollowTarget>().target = transform;
             Spotlight.transform.position = transform.position;
@@ -307,9 +308,9 @@ public class PlayerComponent : MonoBehaviour
     }
     IEnumerator LateSetSpriteAfterAnimation(Sprite sprite)
     {
-        HeadSprite.gameObject.SetActive(false); 
+        HeadSprite.gameObject.SetActive(false);
         yield return new WaitForSeconds(SpriteAnimator.GetCurrentAnimatorClipInfo(0).Length + 0.75f);
-        HeadSprite.gameObject.SetActive(true); 
+        HeadSprite.gameObject.SetActive(true);
         HeadSprite.sprite = sprite;
     }
     IEnumerator FirstMusicChangeAfterIntro(float duration)
@@ -324,12 +325,12 @@ public class PlayerComponent : MonoBehaviour
 
     void OnTriggerStay(Collider other)
     {
-        if(!PlayerIsInMusicBubble)
+        if (!PlayerIsInMusicBubble)
             PlayerIsInMusicBubble = true;
     }
     void OnTriggerExit(Collider other)
     {
-        if(PlayerIsInMusicBubble)
+        if (PlayerIsInMusicBubble)
             PlayerIsInMusicBubble = false;
     }
     public void SkipIntro()
@@ -340,4 +341,8 @@ public class PlayerComponent : MonoBehaviour
         StartCoroutine(FirstMusicChangeAfterIntro(CoolDownTimer));
     }
 
+    public void OnDestroy()
+    {
+        _player.Dispose();
+    }
 }
